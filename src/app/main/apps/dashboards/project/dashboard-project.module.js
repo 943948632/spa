@@ -1,32 +1,27 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('app.dashboards.project',
-            [
-                // 3rd Party Dependencies
-                'nvd3',
-                'datatables'
-            ]
-        )
+        .module('app.dashboards.project', [
+            // 3rd Party Dependencies
+            'nvd3',
+            'datatables'
+        ])
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, msApiProvider)
-    {
+    function config($stateProvider, msApiProvider) {
         // State
         $stateProvider.state('app.dashboards_project', {
-            url      : '/dashboard-project',
-            views    : {
+            url: '/dashboard-project',
+            views: {
                 'content@app': {
                     templateUrl: 'app/main/apps/dashboards/project/dashboard-project.html',
-                    controller : 'DashboardProjectController as vm'
+                    controller: 'DashboardProjectController as vm'
                 }
             },
-            resolve  : {
-                DashboardData: function (msApi)
-                {
+            resolve: {
+                DashboardData: function(msApi) {
                     return msApi.resolve('dashboard.project@get');
                 }
             },

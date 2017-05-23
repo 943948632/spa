@@ -1,22 +1,7 @@
 #dashboard-server {
     padding: 12px;
-    #widgets {}
-    .layout-row>.flex-gt-md-60 {
-        max-width: 100%;
-    }
-    .dataTables_wrapper .bottom .right {
-        padding: 0 200px;
-    }
-    .dataTables_wrapper .top {
-        padding: 16px 200px;
-    }
-    .secondary-text {
-        width: 10%;
-    }
-    .table.dataTable tbody td {
-        padding: 16px 0px;
-    }
-    .sorting_1 {
-        width: 10%;
+
+    #widgets {
+
     }
 }

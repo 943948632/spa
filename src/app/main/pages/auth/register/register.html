@@ -36,11 +36,11 @@
                         </div>
                     </div>
                 </md-input-container>
-                 <input-container>
-                    
-                      <input style="border-bottom: 1px solid gainsboro;font-size: 14px;font-weight: lighter;" type="text" name="验证" ng-model="vm.form.phone" placeholder="请输入验证码"> 
-                      <a ng-click="zcyzsend()" style="border: 1px solid red;display: inline-block;text-align: center; width: 100px;border-radius: 10px; line-height: 20px;height: 20px;color: gainsboro;font-size: 14px；">发送</a>
-                      
+                <input-container>
+
+                    <input style="border-bottom: 1px solid gainsboro;font-size: 14px;font-weight: lighter;" type="text" name="验证" ng-model="vm.form.phone_code" placeholder="请输入验证码">
+                    <a ng-click="zcyzsend()" style="border: 1px solid red;display: inline-block;text-align: center; width: 100px;border-radius: 10px; line-height: 20px;height: 20px;color: gainsboro;font-size: 14px；">{{vm.codetext}}</a>
+
                 </input-container>
 
                 <md-input-container class="md-block" md-no-float>
@@ -53,7 +53,7 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm" placeholder="Password (Confirm)" translate translate-attr-placeholder="REGISTER.PASSWORD_CONFIRM" required>
+                    <input type="password" name="passwordConfirm" ng-model="vm.form.password_confirmation" placeholder="Password (Confirm)" translate translate-attr-placeholder="REGISTER.PASSWORD_CONFIRM" required>
                     <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.PASSWORD_CONFIRM_REQUIRED">Password (Confirm) field is required</span>

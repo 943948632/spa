@@ -1,16 +1,16 @@
 {
     "REGISTER": {
-        "TITLE": "Create an account",
+        "TITLE": "注册用户",
         "NAME": "Name",
-        "PHONE":"Phone",
+        "PHONE": "Phone",
         "EMAIL": "Email",
         "PASSWORD": "Password",
         "PASSWORD_CONFIRM": "Password (Confirm)",
-        "READ_ACCEPT": "I read and accept",
-        "TERMS_COND": "terms and conditions",
-        "CREATE_ACCOUNT": "CREATE MY ACCOUNT",
-        "ALREADY_HAVE": "Already have an account?",
-        "LOGIN": "Log in",
+        "READ_ACCEPT": "我同意本协议",
+        "TERMS_COND": "天后投资协议",
+        "CREATE_ACCOUNT": "创建用户",
+        "ALREADY_HAVE": "已经有账户了？",
+        "LOGIN": "返回登陆",
         "ERRORS": {
             "USERNAME_REQUIRED": "Username field is required",
             "EMAIL_REQUIRED": "Email field is required",
