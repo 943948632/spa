@@ -1,0 +1,16 @@
+[{id: "tsm1", time: 1495324800, color: "red", label: "A", tooltip: ""},…]
+0
+:
+{id: "tsm1", time: 1495324800, color: "red", label: "A", tooltip: ""}
+1
+:
+{id: "tsm2", time: 1494979200, color: "blue", label: "D",…}
+2
+:
+{id: "tsm3", time: 1494720000, color: "green", label: "D",…}
+3
+:
+{id: "tsm4", time: 1494028800, color: "#999999", label: "E",…}
+4
+:
+{id: "tsm7", time: 1492732800, color: "red", label: "E",…}

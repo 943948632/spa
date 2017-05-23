@@ -1,0 +1,118 @@
+<div id="dashboard-analytics">
+
+    <!-- WIDGETS -->
+    <div id="widgets">
+
+        <!-- WIDGET GROUP -->
+        <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+            <!-- WIDGET 1 -->
+            <ms-widget flippable="false" layout="row" flex="100">
+
+                <!-- Front -->
+                <ms-widget-front class="white-bg">
+
+
+                    <iframe src="./app/trad.html" frameborder="0" width="100%" height="600px"></iframe>
+                    <div class="simple-table-container md-whiteframe-4dp">
+            <div class="table-title">
+                我的持仓
+            </div>
+
+            <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>  
+                        <th> 交易品种</th>
+                        <th>数量</th>
+                        <th>持仓本金</th>
+                        <th>平均价格</th>
+                        <th>价格</th>
+                        <th class="text-right">币种</th>
+                        <th class="text-right">盈亏</th>
+                        <th class="text-right">盈亏($)</th>
+                        <th class="text-right">市值</th>
+                        <th class="text-right">市值($)</th>
+                        <th class="text-right">操作</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+                    
+                <tbody>
+                    <tr ng-repeat="warehouse in vm.rep">
+                        <td class="name">{{warehouse.name}}</td>
+                        <td class="position">{{warehouse.status}}</td>
+                        <td class="office">{{warehouse.ord_type_name}}</td>
+                        <td class="age text-right">{{warehouse.side_name}}</td>
+                        <td class="start-date text-right">{{warehouse.qty}}</td>
+                        <td class="salary text-right">{{warehouse.filled }}</td>
+                        <td class="salary text-right">{{warehouse.avg_px }}</td>
+                        <td class="salary text-right">{{warehouse.stop_px }}</td>
+                        <td class="salary text-right">{{warehouse.last_updated }}</td>
+                        <td class="salary text-right">{{warehouse.can_cancel }}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                    <div>
+
+
+                        
+
+
+
+                       
+
+
+                    </div>
+
+                   
+                    
+                   
+
+                   
+                    
+
+
+                   
+            </ms-widget>
+            
+
+                    
+
+
+
+        </div>
+        
+        <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+            
+            <ms-widget flippable="false" layout="column" flex="100" flex-gt-md="65">
+
+                <!-- Front -->
+                <ms-widget-front class="white-bg">
+                   
+                </ms-widget-front>
+                <!-- / Front -->
+
+            </ms-widget>
+            <!-- / WIDGET 2 -->
+
+            <!-- WIDGET 3 -->
+            <ms-widget flippable="false" layout="column" flex="100" flex-gt-md="35">
+
+                <!-- Front -->
+                <ms-widget-front class="white-bg">
+                   
+                  
+        </div>
+      
+        
+      
+    </div>
+</div>

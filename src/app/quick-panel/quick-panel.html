@@ -1,0 +1,32 @@
+<md-content>
+    <md-tabs md-no-pagination md-swipe-content md-stretch-tabs="always">
+        <md-tab>
+            <md-tab-label>
+                <!--<span translate="QUICKPANEL.TODAY">你的交易</span>-->
+                <span>你的交易</span>
+            </md-tab-label>
+            <md-tab-body>
+                <md-content class="today-tab scrollable" ms-scroll ng-include="'app/quick-panel/tabs/today/today-tab.html'">
+                </md-content>
+            </md-tab-body>
+        </md-tab>
+        <md-tab>
+            <md-tab-label>
+                <span>聊天</span>
+            </md-tab-label>
+            <md-tab-body>
+                <md-content class="chat-tab scrollable" ms-scroll ng-include="'app/quick-panel/tabs/chat/chat-tab.html'" ng-controller="ChatTabController as vm">
+                </md-content>
+            </md-tab-body>
+        </md-tab>
+        <md-tab>
+            <md-tab-label>
+                <span>活动</span>
+            </md-tab-label>
+            <md-tab-body>
+                <md-content class="activity-tab scrollable" ms-scroll ng-include="'app/quick-panel/tabs/activity/activity-tab.html'">
+                </md-content>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+</md-content>
