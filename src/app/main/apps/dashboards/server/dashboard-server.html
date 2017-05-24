@@ -1,7 +1,7 @@
 <div id="dashboard-server">
 
     <!-- WIDGETS -->
-    <div id="widgets">
+    <div>
 
         <!-- WIDGET GROUP -->
         <div class="widget-group" layout="row" flex="100" layout-wrap>
@@ -28,8 +28,9 @@
                         </md-menu>
                     </div>
 
-                    <div>
-                        <nvd3 class="h-320" class="remove-x-lines" options="vm.widget1.chart.options" data="vm.widget1.chart.data"></nvd3>
+                    <div class="container-fluid">
+                        <highchart class="chart-container-big" title='vm.charts.title' series="vm.charts.series" options="vm.charts.options">
+                        </highchart>
                     </div>
 
                 </ms-widget-front>
@@ -109,7 +110,7 @@
                     <tbody>
 
 
-                        <tr ng-repeat="orders in vm.aa">
+                        <tr ng-repeat="orders in vm.aa" {{}}>
                             <td>{{ orders.product.name }}</td>
                             <td>{{ orders.status_name }}</td>
                             <td>{{ orders.ord_type_name }}</td>
@@ -121,6 +122,7 @@
                             <td>{{ orders.stop_px }}</td>
                             <td>{{ orders.last_updated }}</td>
                             <td>{{ orders.is_active }}</td>
+
                         </tr>
                     </tbody>
                 </table>

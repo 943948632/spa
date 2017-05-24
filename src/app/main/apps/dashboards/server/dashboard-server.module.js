@@ -4,8 +4,8 @@
     angular
         .module('app.dashboards.server', [
             // 3rd Party Dependencies
-            'nvd3',
-            'datatables'
+            'nvd3'
+
         ])
         .config(config);
 
@@ -19,18 +19,13 @@
                     templateUrl: 'app/main/apps/dashboards/server/dashboard-server.html',
                     controller: 'DashboardServerController as vm'
                 }
-            },
-            resolve: {
-                DashboardData: function(msApi) {
-                    return msApi.resolve('dashboard.server@get');
+            }
 
-                }
-            },
-            bodyClass: 'dashboard-server'
+
         });
 
         // Api
-        msApiProvider.register('dashboard.server', ['app/data/dashboard/server/data.json']);
+
 
     }
 })();
