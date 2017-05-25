@@ -1,28 +1,23 @@
-<style> 
-.newspaper
-{   
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    /*display: none*/
-
-}
-
-   .topfontsize{
-    font-size: 23px;
-    color: red;
-}
-
-
-@media screen and (max-width:695px) {
-    .newspaper{
-       display: none;
+<style>
+    .newspaper {
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        /*display: none*/
     }
     
-};
-
-	
-
+    .topfontsize {
+        font-size: 24px;
+        /*color: red;*/
+    }
+    
+    @media screen and (max-width:695px) {
+        .newspaper {
+            display: none;
+        }
+    }
+    
+    ;
 </style>
 <div layout="row" layout-align="start center">
     <div layout="row" layout-align="start center" flex>
@@ -33,9 +28,9 @@
         <ms-shortcuts></ms-shortcuts>
 
         <div class="toolbar-separator"></div>
-        <div  class="newspaper"><span class="topfontsize">{{vm.cost}}</span><span class="topfontsize">/<span class="topfontsize">{{vm.paic}}</span><span> 美元</span></div>
+        <div class="newspaper"><span class="topfontsize">{{vm.cost}}</span><span class="topfontsize">/<span class="topfontsize">{{vm.paic}}</span><span> 美元</span></div>
     </div>
-  
+
     <div layout="row" layout-align="start center">
         <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress" class="md-accent" md-diameter="32">
         </md-progress-circular>
@@ -46,7 +41,7 @@
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
                             <!--<img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">-->
-                           <img md-menu-align-target class="avatar" src={{vm.img}}>
+                            <img md-menu-align-target class="avatar" src={{vm.img}}>
                             <md-icon md-font-icon ng-class="vm.userStatus.icon" ng-style="{'color': vm.userStatus.color }" class="icon status s16">
                             </md-icon>
                         </div>

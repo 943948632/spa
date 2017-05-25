@@ -1,7 +1,7 @@
 <div id="dashboard-server">
 
     <!-- WIDGETS -->
-    <div>
+    <div id="widgets">
 
         <!-- WIDGET GROUP -->
         <div class="widget-group" layout="row" flex="100" layout-wrap>
@@ -28,9 +28,8 @@
                         </md-menu>
                     </div>
 
-                    <div class="container-fluid">
-                        <highchart class="chart-container-big" title='vm.charts.title' series="vm.charts.series" options="vm.charts.options">
-                        </highchart>
+                    <div>
+                        <nvd3 class="h-320" class="remove-x-lines" options="vm.widget1.chart.options" data="vm.widget1.chart.data"></nvd3>
                     </div>
 
                 </ms-widget-front>
@@ -41,11 +40,9 @@
 
         </div>
         <!-- / WIDGET GROUP -->
-
         <div class="content">
 
-            <div class="md-title mb-32">我的订单</div>
-
+            <div class="md-title mb-32">Zero Configuration</div>
             <div class="white-bg md-whiteframe-4dp">
                 <table class="dataTable row-border hover" datatable="ng">
                     <thead>
@@ -129,15 +126,5 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
     </div>
-
 </div>
