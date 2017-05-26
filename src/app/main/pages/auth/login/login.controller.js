@@ -31,7 +31,8 @@
                 sessionStorage.setItem("name", d.user.name);
                 //用户头像
                 var touxiang=d.user.avatar_url;
-                var img=touxiang.replace(/[?]+x-oss-process=style[^]+[200-200]/, "");
+                // var img=touxiang.replace(/[?]+x-oss-process=style[^]+[200-200]/, "");
+                var img=touxiang;
                  sessionStorage.setItem("touxiang",img);
                 
                 // sessionStorage.setItem("imgs", touxiang);

@@ -6,17 +6,17 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService) {
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService, $http) {
         var vm = this;
         //用户的名称
         var username = sessionStorage.getItem('name');
         vm.cc = username;
         //用户头像
-         var touimg = sessionStorage.getItem('touxiang');
+        var touimg = sessionStorage.getItem('touxiang');
         //  //截取用户头像地址
-         var img=touimg.replace(/[?]+x-oss-process=style[^]+[200-200]/, "");
-         vm.img = touimg;
-      
+        vm.img = touimg;
+
+
 
         vm.cost = "10000";
         vm.paic = "50000";
@@ -105,8 +105,17 @@
          * @param sidenavId
          */
         function toggleSidenav(sidenavId) {
+
+
+            var Token = sessionStorage.getItem("Token");
+
+
+
             $mdSidenav(sidenavId).toggle();
-        }
+        };
+
+
+
 
         /**
          * Sets User Status

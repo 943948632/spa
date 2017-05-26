@@ -336,12 +336,12 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
                 var l = new Array();
                 var c = new Array();
                 data = {
-                    "s": "ok",
-                    t,
-                    c,
-                    o,
-                    h,
-                    l
+                   s:"ok",
+                    t:t,
+                    c:c,
+                    o:o,
+                    h:h,
+                    l:l
                 };
 
 

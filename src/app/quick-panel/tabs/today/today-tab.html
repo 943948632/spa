@@ -17,21 +17,21 @@
 <md-list>
     <!--<md-subheader class="md-no-sticky"><span translate="QUICKPANEL.EVENTS">Events</span></md-subheader>-->
 
-    <md-list-item class="md-2-line" ng-repeat="event in vm.events" ng-click="dummyFunction()">
-        <div class="md-list-item-text">
-            <h3>{{event.title}}</h3>
+    <md-list-item class="md-2-line" ng-repeat="event in vm.events" ng-click="dummyFunction(event.id,event.name,event.en_name,event.current_price)">
 
-            <p>{{event.detail}}</p>
+        <div class="md-list-item-text" style="float:left;overflow: hidden; width:33%">
+            <h3>{{event.name}}</h3>
+
+            <p>{{event.en_name}}</p>
         </div>
-        <div class="md-list-item-text" style="float:right">
-            <h4>成本：{{event.cost}}</h4>
+        <div class="md-list-item-text" style="float:right;width:33%">
+            <h4>成本：{{event.prev_close}}</h4>
 
-            <p>现价：{{event.Presentprice}}</p>
+            <p>现价：{{event.current_price}}</p>
         </div>
-        <div class="md-list-item-text" style="float:left">
-            <h4>赢：{{event.cost}}</h4>
-
-            <p>亏：{{event.Presentprice}}</p>
+        <div class="md-list-item-text" style="float:left;width:33%">
+            <h4>杠杆率：{{event.leverage}}</h4>
+            <!--<p>亏：{{event.Presentprice}}</p>-->
         </div>
     </md-list-item>
 </md-list>
