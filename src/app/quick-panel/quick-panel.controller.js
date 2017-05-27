@@ -32,41 +32,16 @@
             headers: { "Content-Type": "application/json", "X-Access-Token": Token }
         }).success(function(d) {
             vm.events = d.products;
+
+
         }).error(function(error) {});
         // }, 2000);
 
-        // vm.dummyFunction = dummyFunction;
-        // $scope.dummyFunction = function(a) {
 
         $scope.dummyFunction = function(ev, task, en_name, current_price) {
             var id = ev;
+            console.log(id + "" + task + "" + en_name + "" + current_price);
 
-
-            $http({
-                method: "get",
-                data: { id: id },
-                url: "https://staging.tophold.com/api/v2/products",
-                headers: { "Content-Type": "application/json" }
-            }).success(function(d) {
-                var mairuprice = d.ProductDetail.bid_price;
-                alert(mairuprice);
-                sessionStorage.setItem("mairuprice", mairuprice);
-                var maichu = d.ProductDetail.offer_price;
-                sessionStorage.setItem("maichu", maichu);
-            }).error(function(error) {});
-
-
-
-            vm.task = task;
-            vm.en_name = en_name;
-            console.log(vm.task + "这是task");
-            console.log(vm.en_name + "这是task");
-            console.log(ev + "这是task");
-            console.log(current_price + "这是task");
-
-            //现价
-            var price = current_price;
-            sessionStorage.setItem("price", price);
 
 
             $mdDialog.show({
@@ -85,20 +60,7 @@
                 }
 
             });
-
-            // }
-
-
         }
-
-
-
-        // msApi.request('quickPanel.events@get', { "Content-Type": "application/json", "X-Access-Token": "NxncuhWcLoPdNPU9qYjX" },
-        //     // Success
-        //     function(response) {
-        //         vm.events = response.products;
-        //     }
-        // );
 
         msApi.request('quickPanel.notes@get', {},
             // Success
@@ -106,10 +68,6 @@
                 vm.notes = response.data;
             }
         );
-
-        // Methods
-
-        //////////
     }
 
 })();

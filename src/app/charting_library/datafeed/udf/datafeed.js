@@ -98,7 +98,8 @@ Datafeeds.UDFCompatibleDatafeed.prototype._send = function(url, params) {
 Datafeeds.UDFCompatibleDatafeed.prototype._initialize = function() {
     var that = this;
 
-    this._send(this._datafeedURL + '/config.json')
+    this._send("https://www.tophold.com/trading_view/live/settings")
+        //  this._send(this._datafeedURL + '/config.json')
         .done(function(response) {
             var configurationData = response;
             that._setupWithConfiguration(configurationData);
@@ -336,12 +337,12 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
                 var l = new Array();
                 var c = new Array();
                 data = {
-                   s:"ok",
-                    t:t,
-                    c:c,
-                    o:o,
-                    h:h,
-                    l:l
+                    s: "ok",
+                    t: t,
+                    c: c,
+                    o: o,
+                    h: h,
+                    l: l
                 };
 
 
@@ -471,7 +472,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.unsubscribeQuotes = function(listenerG
 Datafeeds.SymbolsStorage = function(datafeed) {
     this._datafeed = datafeed;
 
-    this._exchangesList = ['NYSE', 'FOREX', 'AMEX'];
+    this._exchangesList = ['AAPL', 'AAPL', 'AAPL'];
     this._exchangesWaitingForData = {};
     this._exchangesDataCache = {};
 
@@ -495,8 +496,11 @@ Datafeeds.SymbolsStorage.prototype._requestFullSymbolsList = function() {
 
         this._exchangesWaitingForData[exchange] = 'waiting_for_data';
 
-        this._datafeed._send(this._datafeed._datafeedURL + '/symbol_info', {
-                group: exchange
+        this._datafeed._send(this._datafeed._datafeedURL, {
+                code: exchange,
+                mode: "1day",
+                limit: 200,
+                order_by: 1
             })
             .done((function(exchange) {
                 return function(response) {

@@ -9,10 +9,23 @@
     function RegisterController($scope, $state, msApi, $http) {
         // Data
         const vm = this;
-        vm.codetext = "免费获取验证";
+        // vm.codetext = "免费获取验证";
 
         $scope.zcyzsend = function() {
 
+         var timer = setInterval(function() {
+              var tg;
+            //   alert(tg);
+              vm.codetext = "免费获取验证"(tg);
+			for(i = 0; i < 60; i++) {
+				var time = 60;
+				 tg = time - i;
+				if(tg == 1) {
+					clearInterval(timer); //清除定时器
+				}
+				 
+			}
+		}, 1000); 
             $http({
                 method: "post",
 

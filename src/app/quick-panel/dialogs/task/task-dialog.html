@@ -27,29 +27,33 @@
                 <div layout="column" layout-gt-xs="row">
                     <md-input-container flex>
                         <label>数量</label>
-                        <input type="text" name="city" ng-model="vm.number">
+                        <input type="text" name="number" ng-model="vm.number">
                     </md-input-container>
-                    <!--<md-input-container flex>
-                        <span class="md-subhead">估计金额：</span>{{vm.task}}
-                    </md-input-container>-->
-
-                    <md-radio-group ng-model="data.group1">
-                        <md-radio-button value="" class="md-primary">即时</md-radio-button>
-                        <md-radio-button value="">委托</md-radio-button>
-                        <md-radio-button value="">止损</md-radio-button>
+                    <md-input-container flex>
+                        <span>估计金额：{{vm.number*vm.mairuprice/2}]</span>
+                    </md-input-container>
+                    <md-radio-group ng-model="selected">
+                        <md-radio-button ng-repeat="d in colorOptions" ng-value="d.value" aria-label="{{ d.label }}">{{ d.label }}
+                        </md-radio-button>
+                    </md-radio-group>
+                    <md-radio-group>
+                        <md-radio-button value="realtime">即时</md-radio-button>
+                        <md-radio-button value="entrust">委托</md-radio-button>
+                        <md-radio-button value="stoploss">止损</md-radio-button>
                     </md-radio-group>
                 </div>
                 <div layout="column" layout-gt-xs="row">
                     <md-input-container flex>
-                        <span class="md-subhead">卖价：{{}}</span>
+                        <span class="md-subhead">卖价：{{vm.maichu}}</span>
                     </md-input-container>
                     <md-input-container flex>
-                        <span class="md-subhead">买价：{{}}</span>
+                        <span class="md-subhead">买价：{{vm.mairuprice}}</span>
                     </md-input-container>
 
-                    <md-radio-group ng-model="data.group1">
-                        <md-radio-button value="" class="md-primary">当日有效</md-radio-button>
-                        <md-radio-button value="">撤销前有效</md-radio-button>
+                    <md-radio-group>
+                        <md-radio-button value="DayOrder">当日有效</md-radio-button>
+                        <md-radio-button value="CancelledOrder">撤销前有效</md-radio-button>
+
                     </md-radio-group>
                 </div>
             </div>
@@ -59,13 +63,13 @@
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-button type="submit" ng-if="!vm.newTask" ng-click="vm.saveTask()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
+                <md-button type="submit" ng-if="!vm.newTask" ng-click="vm.buy()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
                     买入
                 </md-button>
             </div>
 
             <div layout="row">
-                <md-button type="submit" ng-if="!vm.newTask" ng-click="vm.saveTask()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
+                <md-button type="submit" ng-if="!vm.newTask" ng-click="vm.sale()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
                     卖出
                 </md-button>
             </div>

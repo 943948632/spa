@@ -10,7 +10,7 @@
     function TaskDialogController($mdDialog, Task, Tasks, event)
     {
         var vm = this;
-
+         
         // Data
         vm.title = 'Edit Task';
         vm.task = angular.copy(Task);

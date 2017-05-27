@@ -25,14 +25,20 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
+        // var symbol = "AAPL";
+        var code = 'SINA';
+        var mode = "1day";
+        var limit = 200;
+        var order_by = 1;
+        var addrs = "https://staging.tophold.com/api/v2/products/quotes";
         TradingView.onready(function() {
             var widget = window.tvWidget = new TradingView.widget({
                 fullscreen: true,
-                symbol: 'AAPL',
+                symbol: code,
                 interval: 'D',
                 container_id: "tv_chart_container",
                 //	BEWARE: no trailing slash is expected in feed URL
-                datafeed: new Datafeeds.UDFCompatibleDatafeed("charting_library/data"),
+                datafeed: new Datafeeds.UDFCompatibleDatafeed(addrs),
                 library_path: "charting_library/",
                 locale: "zh",
                 //	Regression Trend-related functionality is not implemented yet, so it's hidden for a while

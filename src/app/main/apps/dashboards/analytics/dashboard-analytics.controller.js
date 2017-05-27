@@ -23,16 +23,17 @@
             vm.aa = data;
             $scope.toggle = function(a, b) {
                 var symbol = b;
-
+                 var Token=sessionStorage.getItem("Token");
 
                 $http({
                     symbol: symbol,
                     method: "delete",
                     url: "https://staging.tophold.com/api/v2/holds/sell" + symbol,
-                    headers: { "Content-Type": "application/json" }
+                    headers: { "Content-Type": "application/json","X-Access-Token":Token }
                 }).success(function(d) {
                     vm.bb = "已平仓";
                     vm.ft = false;
+                    alert("平唱");
                     console.log(d);
 
                 }).error(function(error) {

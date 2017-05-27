@@ -6,12 +6,39 @@
         .controller('TaskDialogController', TaskDialogController);
 
     /** @ngInject */
-    function TaskDialogController($mdDialog, Task, Tasks, event) {
-
+    function TaskDialogController($mdDialog, Task, Tasks, event, $http, $scope) {
+        //Task指的事股票的名称,event指的事ID
+        console.log($mdDialog + "" + Task + "" + Tasks + "" + event + "=================");
+        //event指的是当前ID
         var vm = this;
-        // var number = vm.number;
-        // var pice = vm.current_price;
 
+        var id = event;
+
+        $http({
+            method: "get",
+
+            url: "https://staging.tophold.com/api/v2/products/" + id,
+            headers: { "Content-Type": "application/json" }
+        }).success(function(d) {
+            //买入价格
+            vm.mairuprice = d.product.bid_price;
+            sessionStorage.setItem("mairuprice", vm.mairuprice);
+            //卖出价格
+            vm.maichu = d.product.offer_price;
+        }).error(function(error) {});
+
+        $scope.buy = function() {
+            $http({
+                method: "",
+
+                url: "",
+                headers: { "Content-Type": "application/json" }
+            }).success(function(d) {
+                closeDialog();
+            }).error(function(error) {
+                closeDialog();
+            });
+        }
 
 
 
@@ -34,7 +61,8 @@
 
         // Methods
         vm.addNewTask = addNewTask;
-        vm.saveTask = saveTask;
+        vm.buy = buy;
+        vm.sale = sale;
         vm.deleteTask = deleteTask;
         vm.newTag = newTag;
         vm.closeDialog = closeDialog;
@@ -53,7 +81,12 @@
         /**
          * Save task
          */
-        function saveTask() {
+        function buy() {
+
+            closeDialog();
+        }
+
+        function sale() {
 
             closeDialog();
         }
@@ -99,8 +132,8 @@
          */
         function closeDialog() {
             $mdDialog.hide();
-            sessionStorage.removeItem("mairuprice");
-            sessionStorage.removeItem("maichu");
+            // sessionStorage.removeItem("mairuprice");
+            // sessionStorage.removeItem("maichu");
         }
     }
 })();
