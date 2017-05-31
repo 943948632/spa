@@ -9,23 +9,11 @@
     function RegisterController($scope, $state, msApi, $http) {
         // Data
         const vm = this;
-        // vm.codetext = "免费获取验证";
-
+         vm.codetext = "免费获取验证";
+        // vm.pd=false;
         $scope.zcyzsend = function() {
 
-         var timer = setInterval(function() {
-              var tg;
-            //   alert(tg);
-              vm.codetext = "免费获取验证"(tg);
-			for(i = 0; i < 60; i++) {
-				var time = 60;
-				 tg = time - i;
-				if(tg == 1) {
-					clearInterval(timer); //清除定时器
-				}
-				 
-			}
-		}, 1000); 
+              
             $http({
                 method: "post",
 
@@ -35,6 +23,24 @@
 
                 headers: { "Content-Type": "application/json" }
             }).success(function(d) {
+                 var timer = setInterval(function() {
+                vm.codetext = "免费获取验证";
+
+		     	for(i = 0; i < 60; i++) {
+				var time = 60;
+				 vm.tg = time - i;
+                 
+                 vm.codetext="重新获取";
+                 
+                // vm.pd=true;
+
+				if(tg == 1) {
+					clearInterval(timer); //清除定时器
+				}
+				 
+			}
+		}, 1000); 
+
                 console.log("获取手机验证码")
 
 
@@ -49,7 +55,7 @@
                 $http({
                     method: "post",
 
-                    data: { name: vm.form.username, phone: vm.form.phone, useemali: vm.form.email, phone_code: vm.form.phone_code, password: vm.form.password, password_confirmation: vm.form.password_confirmation },
+                    data: { name: vm.form.username, phone: vm.form.phone, useemali: vm.form.email,invitation_code:vm.invitation_code, phone_code: vm.form.phone_code, password: vm.form.password, password_confirmation: vm.form.password_confirmation },
 
                     url: "https://staging.tophold.com/api/v2/users",
 
@@ -57,12 +63,13 @@
                 }).success(function(d) {
                     if (d == d.level_name) {
                         vm.cc = "注册成功";
-                        console.log("dscfdsvdfv");
+                         $state.go("app.pages.auth.login");
+                       
                     }
 
 
 
-                    console.log(d + "登录成功");
+                    
                 }).error(function(error) { console.log(error + "错误"); });
 
 

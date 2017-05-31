@@ -8878,8 +8878,9 @@ div.missed-connection {
 }
 
 .header-chart-panel .symbol-edit-widget {
+    display: none;
     margin-right: -1px;
-    width: 100px
+   /*width: 100px*/
 }
 
 .chart-top-toolbar .space-single,
@@ -13027,7 +13028,8 @@ td.chart-markup-table {
     pointer-events: none;
     border: 0;
     box-sizing: border-box;
-    background-color: transparent
+    /*background-color:;*/
+    display: none;
 }
 
 .pane-legend svg {
@@ -14514,6 +14516,7 @@ div .tvcolorpicker-container:last-of-type {
 }
 
 .chart-controls-bar {
+    display: none;
     position: absolute;
     height: 22px;
     width: 100%;

@@ -8,15 +8,24 @@
     /** @ngInject */
     function TaskDialogController($mdDialog, Task, Tasks, event, $http, $scope) {
         //Task指的事股票的名称,event指的事ID
-        console.log($mdDialog + "" + Task + "" + Tasks + "" + event + "=================");
+        console.log($mdDialog + "" + Task + "" + Tasks + "" + event + "=================" + this);
         //event指的是当前ID
         var vm = this;
-
         var id = event;
+        var token = sessionStorage.getItem("Token");
+
+
+
+
+
+
+
+
+
+
 
         $http({
             method: "get",
-
             url: "https://staging.tophold.com/api/v2/products/" + id,
             headers: { "Content-Type": "application/json" }
         }).success(function(d) {
@@ -27,19 +36,41 @@
             vm.maichu = d.product.offer_price;
         }).error(function(error) {});
 
-        $scope.buy = function() {
-            $http({
-                method: "",
 
-                url: "",
-                headers: { "Content-Type": "application/json" }
-            }).success(function(d) {
-                closeDialog();
-            }).error(function(error) {
-                closeDialog();
-            });
-        }
+        vm.ll = 1;
+        vm.kk = 2;
+        vm.kl = 3;
+        vm.lm = 0;
+        vm.mm = 1;
+        $scope.my = function(a) {
+            $scope.mys = function(b) {
 
+
+
+                var data = {
+                    custom_typ: 1,
+                    product_id: id,
+                    qty: vm.number,
+                    ord_type: a,
+                    side: 1,
+                    time_in_force: b,
+                };
+                $scope.buy = function() {
+                    $http({
+                        method: "post",
+                        data: data,
+                        url: "https://staging.tophold.com/api/v2/orders",
+                        headers: { "Content-Type": "application/json", "X-Access-Token": token }
+                    }).success(function(d) {
+
+                        closeDialog();
+
+                    }).error(function(error) {
+                        closeDialog();
+                    });
+                }
+            }
+        };
 
 
 
@@ -49,14 +80,14 @@
 
 
         // Data
-        vm.title = 'Edit Task';
-        vm.task = angular.copy(Task);
+        //  vm.title = 'Edit Task';
+        // vm.task = angular.copy(Task);
 
 
         vm.tasks = Tasks;
 
 
-        vm.newTask = false;
+        // vm.newTask = false;
 
 
         // Methods
@@ -132,8 +163,7 @@
          */
         function closeDialog() {
             $mdDialog.hide();
-            // sessionStorage.removeItem("mairuprice");
-            // sessionStorage.removeItem("maichu");
+
         }
     }
 })();

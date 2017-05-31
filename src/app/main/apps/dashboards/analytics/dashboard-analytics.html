@@ -30,47 +30,47 @@
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">状态</span>
-                                                </div>
-                                            </th>
-                                            <th class="secondary-text">
-                                                <div class="table-header">
-                                                    <span class="column-title">类型</span>
-                                                </div>
-                                            </th>
-                                            <th class="secondary-text">
-                                                <div class="table-header">
-                                                    <span class="column-title">方向</span>
-                                                </div>
-                                            </th>
-                                            <th class="secondary-text">
-                                                <div class="table-header">
                                                     <span class="column-title">数量</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">已成交</span>
+                                                    <span class="column-title">持仓本金</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">委托价</span>
+                                                    <span class="column-title">平均价格</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">平均价</span>
+                                                    <span class="column-title">价格</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">止损</span>
+                                                    <span class="column-title">币种</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
                                                 <div class="table-header">
-                                                    <span class="column-title">成交时间</span>
+                                                    <span class="column-title">盈亏</span>
+                                                </div>
+                                            </th>
+                                            <th class="secondary-text">
+                                                <div class="table-header">
+                                                    <span class="column-title">盈亏$</span>
+                                                </div>
+                                            </th>
+                                            <th class="secondary-text">
+                                                <div class="table-header">
+                                                    <span class="column-title">市值</span>
+                                                </div>
+                                            </th>
+                                            <th class="secondary-text">
+                                                <div class="table-header">
+                                                    <span class="column-title">市值$</span>
                                                 </div>
                                             </th>
                                             <th class="secondary-text">
@@ -85,25 +85,26 @@
                                             </th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
 
 
-                                        <tr ng-repeat="orders in vm.aa">
+                                        <tr ng-repeat="cic in vm.aa">
 
-                                            <td>{{ orders.product.name }}</td>
-                                            <td>{{ orders.status_name }}</td>
-                                            <td>{{ orders.ord_type_name }}</td>
-                                            <td>{{ orders.side_name }}</td>
-                                            <td>{{ orders.qty }}</td>
-                                            <td>{{ orders.filled }}</td>
-                                            <td>{{ orders.name }}</td>
-                                            <td>{{ orders.avg_px }}</td>
-                                            <td>{{ orders.stop_px }}</td>
-                                            <td>{{ orders.last_updated }}</td>
+                                            <td>{{ cic.name }}</td>
+                                            <td>{{ cic.qty }}</td>
+                                            <td>{{ cic.symbol }}</td>
+                                            <td>{{ cic.avg_px }}</td>
+                                            <td>{{ cic.value }}</td>
+                                            <td>{{ cic.symbol }}</td>
+                                            <td>{{ cic.profit_and_loss }}</td>
+                                            <td>{{ cic.converted_profit_and_loss }}</td>
+                                            <td>{{ cic.value }}</td>
+                                            <td>{{ cic.converted_value }}</td>
                                             <td>
-                                                <button class="md-raised md-primary md-button md-default-theme " ,style="coloe:#ffffff" ng-disabled="{{vm.tf}}" ng-click="toggle(orders.id ,orders.product.symbol)" type="button">{{ vm.nmfalse}}</button>
+                                                <button class=" md-raised md-primary md-button md-default-theme " ,style="coloe:#ffffff " ng-click="toggle(orders.id ,cic.symbol,cic.product_id) " type="button ">{{ vm.nmfalse}}</button>
                                             </td>
-                                            <td>{{orders.id}} </td>
+                                            <td>{{cic.product_id}} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -123,11 +124,11 @@
                     </div>
             </ms-widget>
         </div>
-        <div class="widget-group" layout="row" flex="100" layout-wrap>
-            <ms-widget flippable="false" layout="column" flex="100" flex-gt-md="65">
+        <div class="widget-group " layout="row " flex="100 " layout-wrap>
+            <ms-widget flippable="false " layout="column " flex="100 " flex-gt-md="65 ">
 
                 <!-- Front -->
-                <ms-widget-front class="white-bg">
+                <ms-widget-front class="white-bg ">
 
                 </ms-widget-front>
                 <!-- / Front -->
@@ -135,10 +136,10 @@
             <!-- / WIDGET 2 -->
 
             <!-- WIDGET 3 -->
-            <ms-widget flippable="false" layout="column" flex="100" flex-gt-md="35">
+            <ms-widget flippable="false " layout="column " flex="100 " flex-gt-md="35 ">
 
                 <!-- Front -->
-                <ms-widget-front class="white-bg">
+                <ms-widget-front class="white-bg ">
         </div>
     </div>
 </div>

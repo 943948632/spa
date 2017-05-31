@@ -6,9 +6,12 @@
         .controller('QuickPanelController', QuickPanelController);
 
     /** @ngInject */
-    function QuickPanelController($document, msApi, $http, $scope, $mdDialog) {
+    function QuickPanelController($document, msApi, $http, $scope, $mdDialog,$state) {
         var vm = this;
-
+        // if(event==undefined){
+        //         $state.go('app.dashboard-analytics');
+        //         alert("5155")
+        //     }
         // Data
         vm.date = new Date();
         vm.settings = {
@@ -32,18 +35,19 @@
             headers: { "Content-Type": "application/json", "X-Access-Token": Token }
         }).success(function(d) {
             vm.events = d.products;
+           
 
 
         }).error(function(error) {});
         // }, 2000);
 
 
-        $scope.dummyFunction = function(ev, task, en_name, current_price) {
+        $scope.dummyFunction = function(ev, task, en_name, current_price,name,symbol) {
             var id = ev;
-            console.log(id + "" + task + "" + en_name + "" + current_price);
-
-
-
+             // $state.go('app.dashboard-analytics');
+            sessionStorage.setItem("gusymbol", symbol);
+             localStorage.setItem("gusymbol",symbol);
+            console.log(id + "" + task + "" + en_name + "" + current_price+"这是点击的事件"+name);
             $mdDialog.show({
                 controller: 'TaskDialogController',
                 controllerAs: 'vm',

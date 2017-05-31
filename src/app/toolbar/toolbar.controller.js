@@ -12,9 +12,9 @@
         var username = sessionStorage.getItem('name');
         vm.cc = username;
         //用户头像
-        var touimg = sessionStorage.getItem('touxiang');
+        vm.img  = localStorage.getItem('touxiang');
         //  //截取用户头像地址
-        vm.img = touimg;
+        
 
 
 

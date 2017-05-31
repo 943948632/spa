@@ -34,7 +34,7 @@
 
 
 
-                $state.go('app.pages.auth.login');
+               // $state.go('app.pages.auth.login');
 
                 console.log(d + "登录成功");
             }).error(function(error) { console.log(error + "错误"); });

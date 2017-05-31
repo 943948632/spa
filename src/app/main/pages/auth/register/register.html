@@ -36,10 +36,19 @@
                         </div>
                     </div>
                 </md-input-container>
+                 <md-input-container class="md-block" md-no-float>
+                    <input name="username" ng-model="vm.form.invitation_code" placeholder="Name" translate translate-attr-placeholder="REGISTER.PHONES" required>
+                    <div ng-messages="registerForm.username.$error" role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
                 <input-container>
 
-                    <input style="border-bottom: 1px solid gainsboro;font-size: 14px;font-weight: lighter;" type="text" name="验证" ng-model="vm.form.phone_code" placeholder="请输入验证码">
-                    <a ng-click="zcyzsend()" style="border: 1px solid red;display: inline-block;text-align: center; width: 100px;border-radius: 10px; line-height: 20px;height: 20px;color: gainsboro;font-size: 14px；">{{vm.codetext}}</a>
+                    <input style="border-bottom: 1px solid gainsboro;color:gainsboro" type="text" name="验证" ng-model="vm.form.phone_code"  placeholder="Name" translate translate-attr-placeholder="REGISTER.REQUEST" required>
+                    <md-button ng-disabled="{{vm.pd}}" class=" md-primary" ng-click="zcyzsend(tg)">{{vm.tg}}{{vm.codetext}}</md-button>
+                    <!--<a  style="border: 1px solid red;display: inline-block;text-align: center; width: 100px;border-radius: 10px; line-height: 20px;height: 20px;color: gainsboro;font-size: 14px；"></a>-->
 
                 </input-container>
 

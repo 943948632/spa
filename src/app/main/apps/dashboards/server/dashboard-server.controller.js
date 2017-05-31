@@ -13,16 +13,18 @@
 
 
         // Data
-        vm.dashboardData = DashboardData;
-
+        // vm.dashboardData = DashboardData;
+        var token = sessionStorage.getItem("Token")
 
         $http({
+            data: { page: 1, per_page: 20, offset: 0, },
             method: "get",
-            url: "app/data/dashboard/analytics/a.json",
-            headers: { "Content-Type": "application/json" }
+            url: "https://staging.tophold.com/api/v2/orders",
+            headers: { "Content-Type": "application/json", "X-Access-Token": token }
         }).success(function(d) {
 
             vm.aa = d.orders;
+
 
         }).error(function(error) {});
 

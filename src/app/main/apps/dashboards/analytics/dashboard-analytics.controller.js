@@ -14,37 +14,43 @@
         var toke = sessionStorage.getItem("Token");
         // var symbol =
         //     alert(tock);
-        $http({
-            method: "get",
-            url: "app/data/dashboard/analytics/a.json",
-            headers: { "Content-Type": "application/json" }
-        }).success(function(d) {
-            var data = d.orders;
-            vm.aa = data;
-            $scope.toggle = function(a, b) {
-                var symbol = b;
-                 var Token=sessionStorage.getItem("Token");
-
-                $http({
-                    symbol: symbol,
-                    method: "delete",
-                    url: "https://staging.tophold.com/api/v2/holds/sell" + symbol,
-                    headers: { "Content-Type": "application/json","X-Access-Token":Token }
-                }).success(function(d) {
-                    vm.bb = "已平仓";
-                    vm.ft = false;
-                    alert("平唱");
-                    console.log(d);
-
-                }).error(function(error) {
+        setTimeout(function() {
 
 
-                });
-            };
-            vm.bb = "平仓";
-        }).error(function(error) {});
-        vm.nmfalse = "平仓";
+            $http({
+                method: "get",
+                url: "https://staging.tophold.com/api/v2/accounts/detail",
+                headers: { "X-Access-Token": toke }
+            }).success(function(d) {
 
+                vm.aa = d.holds;
+                var aa = d.holds;
+                alert(aa);
+                $scope.toggle = function(a, b, c) {
+                    //c就是删除的i
+                    var c = c;
+                    var Token = sessionStorage.getItem("Token");
+                    $http({
+                        data: { symbol: b },
+                        method: "delete",
+                        url: "https://staging.tophold.com/api/v2/holds/sell",
+                        headers: { "Content-Type": "application/json", "X-Access-Token": Token }
+                    }).success(function(d) {
+                        vm.bb = "已平仓";
+                        vm.ft = false;
+                        alert("平唱");
+                        console.log(d);
+
+
+                    }).error(function(error) {
+
+
+                    });
+                };
+                vm.bb = "平仓";
+            }).error(function(error) {});
+            vm.nmfalse = "平仓";
+        }, 2000);
 
 
 

@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Echarts--柱状图与饼图</title>
-    <link rel="stylesheet" href="../jc/jquery-ui.css">
+
+
     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
     </script>
-    <script type="text/javascript" src="../jc/jquery-ui.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script type="text/javascript" src="js/echarts.min.js"></script>
     <style>
@@ -30,7 +29,12 @@
 
             angular.module('MyApp', [])
                 .controller('MyCtrl', function($scope, $http) {
+
+
+
+
                     $scope.groupData = ['测试栏目1', '测试栏目2', '测试栏目3', '测试栏目4', '测试栏目5', '测试栏目6'];
+
                     $scope.chart = 0;
                     $scope.show = true;
                     $scope.myCharts = {
@@ -38,63 +42,31 @@
                         "饼图": 1
                     };
                     $scope.showChange = function(chart) {
+
+
+
+
                         if (chart == 0) {
                             $scope.show = true;
                         } else {
                             $scope.show = false;
                         }
                     };
-                    var Token = sessionStorage.getItem("Token");
-                    var page = 1;
-                    var per_page = 20;
-                    var offset = 0;
-
-                    $http({
-                        method: "get",
-                        data: {
-                            page: page,
-                            per_page: per_page,
-                            offset: offset
-                        },
-                        url: "https://staging.tophold.com/api/v2/accounts/transactions",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-Access-Token": Token
-                        }
-                    }).success(function(data) {
-                        var zijin = data.transactions;
-
-                        var ch;
-
-                        for (var k in zijin) {
-                            var x = zijin[k].time;
-                            var timestamp2 = Date.parse(new Date(x));
-                            var timestamp2 = timestamp2 / 1000;
-                            var x = timestamp2;
-                            var y = zijin[k].total_sum;
-                            var values = {
-                                "time": x,
-                                "total_sum": y
-                            };
-                            var cha = new Array();
-                            var val = new Array();
-                            var cha = {
-                                key: "总金额",
-                                val: values
-                            };
-                            ch = cha;
-                        }
-                    }).error(function(error) {
-
-
-                    });
 
                 })
                 .directive('barCharts', function() {
+
+
                     return {
                         template: '<div>这是柱图</div>',
-                        controller: function($scope) {},
+                        controller: function($scope, $http) {
+
+                        },
                         link: function(scope, element, attr) {
+
+
+
+
                             console.log(scope.source);
                             var chart = element.find('div')[0];
                             var parent = element['context'];
@@ -103,6 +75,36 @@
                             chart.style.height = parent.clientHeight + 'px';
 
                             var myChart = echarts.init(chart);
+                            // var t=['2017-05-19 21:27:43','2017-06-19 21:27:43','2017-07-19 21:27:43',]
+                            var t = new Array();
+                            var total_sum = new Array();
+                            (function() {
+                                var token = sessionStorage.getItem("Token");
+                                $.ajax({
+                                    type: "get",
+                                    url: "https://staging.tophold.com/api/v2/accounts/transactions?page=1&per_page=20&offset=0",
+                                    async: false,
+                                    headers: {
+                                        "X-Access-Token": token
+                                    },
+                                    dataType: "json",
+
+                                    success: function(data) {
+
+                                        var data = data.transactions;
+
+
+                                        for (k in data) {
+
+                                            t[k] = data[k].time;
+                                            total_sum[k] = data[k].total_sum;
+
+                                        }
+
+                                    }
+                                });
+                            })();
+
                             var option = {
                                 title: {
                                     text: '资金流动记录'
@@ -136,22 +138,23 @@
                                         }
                                     }
                                 },
+
                                 calculable: true,
                                 xAxis: [{
                                     type: 'category',
                                     boundaryGap: false,
-                                    data: ['2017-05-19 21:27:43', '周二', '周三', '周四', '2017-05-19 21:27:43', '周六', '周日']
+                                    data: t
                                 }],
                                 yAxis: [{
                                     type: 'value',
                                     axisLabel: {
-                                        formatter: '{value} MB'
+                                        formatter: '{value} $'
                                     }
                                 }],
                                 series: [{
-                                    name: '最高气温',
+                                    name: '最高资金',
                                     type: 'line',
-                                    data: [18.6898, 11, 15, 200.6898, 12, 13, 10],
+                                    data: total_sum,
                                     markPoint: {
                                         data: [{
                                             type: 'max',
@@ -159,24 +162,6 @@
                                         }, {
                                             type: 'min',
                                             name: '最小值'
-                                        }]
-                                    },
-                                    markLine: {
-                                        data: [{
-                                            type: 'average',
-                                            name: '平均值'
-                                        }]
-                                    }
-                                }, {
-                                    name: '最低气温',
-                                    type: 'line',
-                                    data: [1, 18.6898, 2, 5, 18.6898, 2, 0],
-                                    markPoint: {
-                                        data: [{
-                                            name: '周最低',
-                                            value: -2,
-                                            xAxis: 1,
-                                            yAxis: -1.5
                                         }]
                                     },
                                     markLine: {
