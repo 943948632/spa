@@ -34,7 +34,7 @@
 
         // Api
         msApiProvider.register('contacts.contacts', ['app/data/contacts/contacts.json']);
-        msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+        msApiProvider.register('contacts.user', ['app/main/apps/contacts/i18n/user.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.contacts', {

@@ -28,10 +28,10 @@
             state: 'app.dashboards_analytics'
         });
 
-        msNavigationServiceProvider.saveItem('apps.dashboards.project', {
-            title: '发现',
-            state: 'app.dashboards_project'
-        });
+        // msNavigationServiceProvider.saveItem('apps.dashboards.project', {
+        //     title: '发现',
+        //     state: 'app.dashboards_project'
+        // });
 
         msNavigationServiceProvider.saveItem('apps.dashboards.server', {
             title: '账户资金',

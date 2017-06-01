@@ -1,6 +1,6 @@
 {
     "CONTACTS": {
-        "CONTACTS": "Contacts",
+        "CONTACTS": "市场行情",
         "TOGGLE_SIDENAV": "Toggle sidenav",
         "SEARCH_FOR_ANYONE": "Search for anyone",
         "BACK": "Back",
@@ -9,9 +9,9 @@
         "SELECT_NONE": "Select none",
         "SELECTED": "selected",
         "DELETE_SELECTED": "Delete selected",
-        "ALL_CONTACTS": "All contacts",
-        "FREQUENTLY_CONTACTED": "Frequently contacted",
-        "STARRED_CONTACTS": "Starred contacts",
+        "ALL_CONTACTS": "全部股票",
+        "FREQUENTLY_CONTACTED": "近期查看",
+        "STARRED_CONTACTS": "收藏股票",
         "EDIT_GROUP_NAME": "edit group name",
         "DELETE_GROUP": "delete group",
         "SORT": "sort",

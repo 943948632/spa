@@ -1,5 +1,4 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
@@ -7,10 +6,78 @@
         .controller('ContactsController', ContactsController);
 
     /** @ngInject */
-    function ContactsController($scope, $mdSidenav, Contacts, User, msUtils, $mdDialog, $document)
-    {
+    function ContactsController($scope, $mdSidenav, Contacts, User, msUtils, $mdDialog, $document, $http) {
 
         var vm = this;
+        vm.name = sessionStorage.getItem("name");
+
+        (function(a) {
+            if (a == 0) {
+                vm.guname = "美股"
+            } else if (a == 1) {
+                vm.guname = "A股"
+            } else if (a == 2) {
+                vm.guname = "指数"
+            } else if (a == 3) {
+                vm.guname = "外汇"
+            } else {
+                vm.guname = "商品"
+            }
+            $http({
+                method: "get",
+
+                // data: { "sub_category": a, "page": 1, per_page: 100, offset: 0 },
+
+                url: "https://staging.tophold.com/api/v2/products" + "/?sub_category=" + a + "&page=1&per_page=100&offset=0",
+
+                headers: { "Content-Type": "application/json" }
+            }).success(function(d) {
+
+                vm.gupiao = d.products;
+
+
+
+            }).error(function(error) {
+
+
+            })
+
+        })(0)
+        $scope.gupiao = function(a) {
+
+            if (a == 0) {
+                vm.guname = "美股"
+            } else if (a == 1) {
+                vm.guname = "A股"
+            } else if (a == 2) {
+                vm.guname = "指数"
+            } else if (a == 3) {
+                vm.guname = "外汇"
+            } else {
+                vm.guname = "商品"
+            }
+            $http({
+                method: "get",
+
+                // data: { "sub_category": a, "page": 1, per_page: 100, offset: 0 },
+
+                url: "https://staging.tophold.com/api/v2/products" + "/?sub_category=" + a + "&page=1&per_page=100&offset=0",
+
+                headers: { "Content-Type": "application/json" }
+            }).success(function(d) {
+
+                vm.gupiao = d.products;
+
+
+            }).error(function(error) {
+
+
+            })
+        };
+
+
+
+
 
         // Data
         vm.contacts = Contacts.data;
@@ -44,25 +111,19 @@
          * Change Contacts List Filter
          * @param type
          */
-        function filterChange(type)
-        {
+        function filterChange(type) {
+
 
             vm.listType = type;
+            console.log(vm.listType + "544151133.1");
 
-            if ( type === 'all' )
-            {
+            if (type === 'all') {
                 vm.filterIds = null;
-            }
-            else if ( type === 'frequent' )
-            {
+            } else if (type === 'frequent') {
                 vm.filterIds = vm.user.frequentContacts;
-            }
-            else if ( type === 'starred' )
-            {
+            } else if (type === 'starred') {
                 vm.filterIds = vm.user.starred;
-            }
-            else if ( angular.isObject(type) )
-            {
+            } else if (angular.isObject(type)) {
                 vm.filterIds = type.contactIds;
             }
 
@@ -76,18 +137,17 @@
          * @param ev
          * @param contact
          */
-        function openContactDialog(ev, contact)
-        {
+        function openContactDialog(ev, contact) {
             $mdDialog.show({
-                controller         : 'ContactDialogController',
-                controllerAs       : 'vm',
-                templateUrl        : 'app/main/apps/contacts/dialogs/contact/contact-dialog.html',
-                parent             : angular.element($document.find('#content-container')),
-                targetEvent        : ev,
+                controller: 'ContactDialogController',
+                controllerAs: 'vm',
+                templateUrl: 'app/main/apps/contacts/dialogs/contact/contact-dialog.html',
+                parent: angular.element($document.find('#content-container')),
+                targetEvent: ev,
                 clickOutsideToClose: true,
-                locals             : {
-                    Contact : contact,
-                    User    : vm.user,
+                locals: {
+                    Contact: contact,
+                    User: vm.user,
                     Contacts: vm.contacts
                 }
             });
@@ -96,8 +156,7 @@
         /**
          * Delete Contact Confirm Dialog
          */
-        function deleteContactConfirm(contact, ev)
-        {
+        function deleteContactConfirm(contact, ev) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure want to delete the contact?')
                 .htmlContent('<b>' + contact.name + ' ' + contact.lastName + '</b>' + ' will be deleted.')
@@ -106,14 +165,12 @@
                 .ok('OK')
                 .cancel('CANCEL');
 
-            $mdDialog.show(confirm).then(function ()
-            {
+            $mdDialog.show(confirm).then(function() {
 
                 deleteContact(contact);
                 vm.selectedContacts = [];
 
-            }, function ()
-            {
+            }, function() {
 
             });
         }
@@ -121,16 +178,14 @@
         /**
          * Delete Contact
          */
-        function deleteContact(contact)
-        {
+        function deleteContact(contact) {
             vm.contacts.splice(vm.contacts.indexOf(contact), 1);
         }
 
         /**
          * Delete Selected Contacts
          */
-        function deleteSelectedContacts(ev)
-        {
+        function deleteSelectedContacts(ev) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure want to delete the selected contacts?')
                 .htmlContent('<b>' + vm.selectedContacts.length + ' selected</b>' + ' will be deleted.')
@@ -139,11 +194,9 @@
                 .ok('OK')
                 .cancel('CANCEL');
 
-            $mdDialog.show(confirm).then(function ()
-            {
+            $mdDialog.show(confirm).then(function() {
 
-                vm.selectedContacts.forEach(function (contact)
-                {
+                vm.selectedContacts.forEach(function(contact) {
                     deleteContact(contact);
                 });
 
@@ -159,19 +212,14 @@
          * @param contact
          * @param event
          */
-        function toggleSelectContact(contact, event)
-        {
-            if ( event )
-            {
+        function toggleSelectContact(contact, event) {
+            if (event) {
                 event.stopPropagation();
             }
 
-            if ( vm.selectedContacts.indexOf(contact) > -1 )
-            {
+            if (vm.selectedContacts.indexOf(contact) > -1) {
                 vm.selectedContacts.splice(vm.selectedContacts.indexOf(contact), 1);
-            }
-            else
-            {
+            } else {
                 vm.selectedContacts.push(contact);
             }
         }
@@ -179,33 +227,29 @@
         /**
          * Deselect contacts
          */
-        function deselectContacts()
-        {
+        function deselectContacts() {
             vm.selectedContacts = [];
         }
 
         /**
          * Sselect all contacts
          */
-        function selectAllContacts()
-        {
+        function selectAllContacts() {
             vm.selectedContacts = $scope.filteredContacts;
         }
 
         /**
          *
          */
-        function addNewGroup()
-        {
-            if ( vm.newGroupName === '' )
-            {
+        function addNewGroup() {
+            if (vm.newGroupName === '') {
                 return;
             }
 
             var newGroup = {
-                'id'        : msUtils.guidGenerator(),
-                'name'      : vm.newGroupName,
-                'contactIds': []
+                //'id': msUtils.guidGenerator(),
+                //'name': vm.newGroupName,
+                // 'contactIds': []
             };
 
             vm.user.groups.push(newGroup);
@@ -215,8 +259,7 @@
         /**
          * Delete Group
          */
-        function deleteGroup(ev)
-        {
+        function deleteGroup(ev) {
             var group = vm.listType;
 
             var confirm = $mdDialog.confirm()
@@ -227,8 +270,7 @@
                 .ok('OK')
                 .cancel('CANCEL');
 
-            $mdDialog.show(confirm).then(function ()
-            {
+            $mdDialog.show(confirm).then(function() {
 
                 vm.user.groups.splice(vm.user.groups.indexOf(group), 1);
 
@@ -242,8 +284,7 @@
          *
          * @param sidenavId
          */
-        function toggleSidenav(sidenavId)
-        {
+        function toggleSidenav(sidenavId) {
             $mdSidenav(sidenavId).toggle();
         }
 

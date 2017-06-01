@@ -158,39 +158,39 @@ Datafeeds.UDFCompatibleDatafeed.prototype._setupWithConfiguration = function(con
 //	===============================================================================================================================
 //	The functions set below is the implementation of JavaScript API.
 
-// Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
-// 	if(this._configuration.supports_marks) {
-// 		this._send(this._datafeedURL + '/marks.json', {
-// 				symbol: symbolInfo.ticker.toUpperCase(),
-// 				from: rangeStart,
-// 				to: rangeEnd,
-// 				resolution: resolution
-// 			})
-// 			.done(function(response) {
-// 				onDataCallback(response);
-// 			})
-// 			.fail(function() {
-// 				onDataCallback([]);
-// 			});
-// 	}
-// };
+Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
+    if (this._configuration.supports_marks) {
+        this._send("http://localhost:3000/app/charting_library/data" + '/marks.json', {
+                symbol: symbolInfo.ticker.toUpperCase(),
+                from: rangeStart,
+                to: rangeEnd,
+                resolution: resolution
+            })
+            .done(function(response) {
+                onDataCallback(response);
+            })
+            .fail(function() {
+                onDataCallback([]);
+            });
+    }
+};
 
-// Datafeeds.UDFCompatibleDatafeed.prototype.getTimescaleMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
-// 	if(this._configuration.supports_timescale_marks) {
-// 		this._send(this._datafeedURL + '/timescale_marks.json', {
-// 				symbol: symbolInfo.ticker.toUpperCase(),
-// 				from: rangeStart,
-// 				to: rangeEnd,
-// 				resolution: resolution
-// 			})
-// 			.done(function(response) {
-// 				onDataCallback(response);
-// 			})
-// 			.fail(function() {
-// 				onDataCallback([]);
-// 			});
-// 	}
-// };
+Datafeeds.UDFCompatibleDatafeed.prototype.getTimescaleMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
+    if (this._configuration.supports_timescale_marks) {
+        this._send("http://localhost:3000/app/charting_library/data" + '/timescale_marks.json', {
+                symbol: symbolInfo.ticker.toUpperCase(),
+                from: rangeStart,
+                to: rangeEnd,
+                resolution: resolution
+            })
+            .done(function(response) {
+                onDataCallback(response);
+            })
+            .fail(function() {
+                onDataCallback([]);
+            });
+    }
+};
 
 Datafeeds.UDFCompatibleDatafeed.prototype.searchSymbols = function(searchString, exchange, type, onResultReadyCallback) {
     var MAX_SEARCH_RESULTS = 30;
@@ -318,7 +318,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
     }
 
     var mode = "1day";
-    var limit = 500;
+    var limit = 501;
     var order_by = 1;
     this._send(this._datafeedURL, {
             code: code || "AAPL",
@@ -804,6 +804,7 @@ Datafeeds.DataPulseUpdater.prototype.periodLengthSeconds = function(resolution, 
 
     if (resolution === 'D') {
         daysCount = requiredPeriodsCount;
+
     } else if (resolution === 'M') {
         daysCount = 31 * requiredPeriodsCount;
     } else if (resolution === 'W') {
@@ -877,6 +878,8 @@ Datafeeds.QuotesPulseUpdater.prototype._updateQuotes = function(symbolsGetter) {
 
                     for (var i = 0; i < subscribers.length; ++i) {
                         subscribers[i](data);
+
+
                     }
                 };
             }(subscriptionRecord.listeners, listenerGUID)),
