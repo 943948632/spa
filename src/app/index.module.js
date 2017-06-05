@@ -27,26 +27,28 @@
             // Apps
             'app.dashboards',
             'app.calendar',
-            // 'app.e-commerce',
-            //'app.gantt-chart',
-            // 'app.mail',
+            //'app.e-commerce',
+            'app.gantt-chart',
+            //'app.mail',
             'app.chat',
             // 'app.file-manager',
 
-            'app.scrumboard',
+            //'app.scrumboard',
             'app.todo',
             'app.contacts',
             //'app.notes',
 
             // Pages
             'app.pages',
+            //blank
+            //'app.blank',
             //////////////////
 
 
 
 
             // User Interface
-            // 'app.ui',
+            //'app.ui',
 
             // Components
             // 'app.components'

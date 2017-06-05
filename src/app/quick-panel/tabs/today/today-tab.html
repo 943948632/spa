@@ -6,7 +6,7 @@
 
 <md-list>
 
-    <md-list-item class="md-2-line" ng-repeat="event in vm.events" ng-click="dummyFunction(event.id,event.name,event.en_name,event.current_price,event,event.symbol)">
+    <md-list-item ng-class="{'md-2-line':true,'active': isactive==event.id}" ng-repeat="event in vm.events" ng-click="dummyFunction(event.id,event.name,event.en_name,event.current_price,event,event.symbol)">
 
         <div class="md-list-item-text" style="float:left;overflow: hidden; width:33%">
             <h3>{{event.name}}</h3>
@@ -24,3 +24,9 @@
         </div>
     </md-list-item>
 </md-list>
+<style type="text/css">
+    .active {
+        background: #039be5;
+        color: wheat;
+    }
+</style>

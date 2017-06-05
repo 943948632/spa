@@ -7,9 +7,12 @@
 
     /** @ngInject */
     function ContactsController($scope, $mdSidenav, Contacts, User, msUtils, $mdDialog, $document, $http) {
-
+        // console.log(Contacts + "===" + User + "===" + msUtils);a
         var vm = this;
+        //用户名
         vm.name = sessionStorage.getItem("name");
+        //头像
+        vm.img = localStorage.getItem('touxiang');
 
         (function(a) {
             if (a == 0) {
@@ -69,6 +72,9 @@
                 vm.gupiao = d.products;
 
 
+
+
+
             }).error(function(error) {
 
 
@@ -81,6 +87,7 @@
 
         // Data
         vm.contacts = Contacts.data;
+
         vm.user = User.data;
         vm.filterIds = null;
         vm.listType = 'all';
@@ -91,7 +98,7 @@
 
         // Methods
         vm.filterChange = filterChange;
-        vm.openContactDialog = openContactDialog;
+        // vm.openContactDialog = openContactDialog;
         vm.deleteContactConfirm = deleteContactConfirm;
         vm.deleteContact = deleteContact;
         vm.deleteSelectedContacts = deleteSelectedContacts;
@@ -115,7 +122,7 @@
 
 
             vm.listType = type;
-            console.log(vm.listType + "544151133.1");
+            // console.log(vm.listType + "544151133.1");
 
             if (type === 'all') {
                 vm.filterIds = null;
@@ -131,13 +138,19 @@
 
         }
 
-        /**
-         * Open new contact dialog
-         *
-         * @param ev
-         * @param contact
-         */
-        function openContactDialog(ev, contact) {
+
+
+
+
+
+
+        //ev 点击的对象  gusymbol 股票代码 //guid 股票的ID contact contact
+        $scope.open = function(ev, gusymbol, guid, gucurrent_price, contact) {
+
+            sessionStorage.setItem("gusymbol", gusymbol);
+            sessionStorage.setItem("guid", guid);
+            sessionStorage.setItem("gucurrent_price", gucurrent_price);
+            $scope.isactives = guid;
             $mdDialog.show({
                 controller: 'ContactDialogController',
                 controllerAs: 'vm',
@@ -148,10 +161,36 @@
                 locals: {
                     Contact: contact,
                     User: vm.user,
-                    Contacts: vm.contacts
+                    Contacts: vm.contacts,
+
                 }
             });
         }
+
+        /**
+         * Open new contact dialog
+         *
+         * @param ev
+         * @param contact
+         */
+        // function openContactDialog(ev, contact, mm) {
+
+
+        //     $mdDialog.show({
+        //         controller: 'ContactDialogController',
+        //         controllerAs: 'vm',
+        //         templateUrl: 'app/main/apps/contacts/dialogs/contact/contact-dialog.html',
+        //         parent: angular.element($document.find('#content-container')),
+        //         targetEvent: ev,
+        //         clickOutsideToClose: true,
+        //         locals: {
+        //             Contact: contact,
+        //             User: vm.user,
+        //             Contacts: vm.contacts,
+
+        //         }
+        //     });
+        // }
 
         /**
          * Delete Contact Confirm Dialog

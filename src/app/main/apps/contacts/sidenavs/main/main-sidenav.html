@@ -2,7 +2,7 @@
 <div class="header md-padding" layout="row" layout-align="start center">
 
     <!-- USER -->
-    <img ng-src="{{vm.user.avatar}}" class="md-avatar avatar mr-16" alt="{{vm.user.name}}" />
+    <img ng-src="{{vm.img}}" class="md-avatar avatar mr-16" alt="{{vm.user.name}}" />
     <span class="font-weight-500 font-size-14">{{vm.name}}</span>
     <!-- / USER -->
 
@@ -39,27 +39,6 @@
         <md-list-item>
             <button class="md-no-style md-button ng-scope md-default-theme " ng-click="gupiao(5)" type="button">商品</button>
         </md-list-item>
-
-
-
-        <!--<md-divider></md-divider>-->
-
-        <!--<md-subheader class="md-no-sticky"> 股票分类</md-subheader>
-
-        <md-list-item ng-if="vm.user.groups" ng-repeat="group in vm.user.groups" ng-click="vm.filterChange(group)" ng-class="{'selected':vm.listType.name === group.name}">
-            <p class="pl-8">
-                {{group.name}}
-            </p>
-        </md-list-item>
-
-        <md-list-item class="new-group-form" ng-show="newListForm.$visible">
-            <p class="pl-8" editable-text="vm.newGroupName" e-form="newListForm" onaftersave="vm.addNewGroup()"></p>
-        </md-list-item>-->
-
-        <!--<md-list-item class="" ng-click="newListForm.$show()" ng-hide="newListForm.$visible">
-            <p class="pl-8 md-accent-fg" translate="CONTACTS.NEW_GROUP">New Group</p>
-        </md-list-item>-->
-
     </md-list>
 
 </div>

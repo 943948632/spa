@@ -194,7 +194,7 @@
                         </tfoot>
 
                         <tbody>
-                            <tr ng-repeat="gu in vm.gupiao" ng-click="vm.openContactDialog($event,gu.id)">
+                            <tr ng-repeat="gu in vm.gupiao" ng-class="{'md-2-lines':true,'actives': isactives==gu.id}" ng-click="open($event,gu.symbol,gu.id,gu.current_price)">
                                 <td class="name">{{gu.name}}</td>
                                 <td class="position">{{gu.symbol}}</td>
                                 <td class="office">{{gu.current_price }}</td>
@@ -205,6 +205,11 @@
                         </tbody>
                     </table>
                 </div>
+                <style type="text/css">
+                    .actives {
+                        background: #039be5;
+                    }
+                </style>
                 <!-- CONTACT ITEM -->
 
             </md-list>

@@ -25,9 +25,8 @@
 
                 vm.aa = d.holds;
                 var aa = d.holds;
-                alert(aa);
+
                 $scope.toggle = function(a, b, c) {
-                    //c就是删除的i
                     var c = c;
                     var Token = sessionStorage.getItem("Token");
                     $http({

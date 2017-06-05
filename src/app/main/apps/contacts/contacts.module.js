@@ -38,7 +38,7 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.contacts', {
-            title: '投资排行榜',
+            title: '市场行情',
             icon: 'icon-account-box',
             state: 'app.contacts',
             weight: 4

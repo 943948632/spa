@@ -89,7 +89,7 @@
                                     <tbody>
 
 
-                                        <tr ng-repeat="cic in vm.aa">
+                                        <tr ng-repeat="cic in vm.aa" ng-show="visible">
 
                                             <td>{{ cic.name }}</td>
                                             <td>{{ cic.qty }}</td>
@@ -124,6 +124,32 @@
                     </div>
             </ms-widget>
         </div>
+
+        <style>
+            div.dataTables_filter label {
+                font-weight: 400;
+                float: right;
+                position: relative;
+                top: -12px;
+            }
+            
+            div.dataTables_length label {
+                font-weight: 400;
+                float: left;
+                text-align: left;
+                position: relative;
+                top: 25px;
+            }
+            
+            .dataTables_wrapper .dataTables_paginate {
+                float: right;
+                text-align: right;
+                padding-top: 0.25em;
+                position: relative;
+                top: -12px;
+                right: 10px;
+            }
+        </style>
         <div class="widget-group " layout="row " flex="100 " layout-wrap>
             <ms-widget flippable="false " layout="column " flex="100 " flex-gt-md="65 ">
 

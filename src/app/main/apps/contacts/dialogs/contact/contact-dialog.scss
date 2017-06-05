@@ -1,13 +1,16 @@
 md-dialog {
+   
+        max-width: 750px;
+        width: 750px;
 
     &.contact-dialog {
-        max-width: 400px;
-        width: 400px;
+        max-width:750px;
+        width: 750px;
 
         md-toolbar {
-            height: 240px;
-            min-height: 240px;
-            max-height: 240px;
+            height: 600px;
+            min-height: 600px;
+            max-height: 600px;
 
             .title {
                 font-size: 17px;

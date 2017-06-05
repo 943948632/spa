@@ -1,10 +1,7 @@
-<div id="gantt-chart" class="page-layout carded fullwidth"
-     ng-class="{'date-filter-active':vm.dateFilterActive, 'search-active': vm.searchActive}" layout="row">
+<div id="gantt-chart" class="page-layout carded fullwidth" ng-class="{'date-filter-active':vm.dateFilterActive, 'search-active': vm.searchActive}" layout="row">
 
     <!-- SETTINGS SIDENAV -->
-    <md-sidenav class="sidenav settings-sidenav md-sidenav-right" md-component-id="settings-sidenav"
-                ng-include="'app/main/apps/gantt-chart/sidenavs/settings/settings-sidenav.html'" ms-scroll
-                ms-sidenav-helper>
+    <md-sidenav class="sidenav settings-sidenav md-sidenav-right" md-component-id="settings-sidenav" ng-include="'app/main/apps/gantt-chart/sidenavs/settings/settings-sidenav.html'" ms-scroll ms-sidenav-helper>
     </md-sidenav>
     <!-- / SETTINGS SIDENAV -->
 
@@ -24,236 +21,400 @@
                     </span>
                     <span class="logo-text" translate="GANTT.GANTT_CHART">Gantt Chart</span>
                 </div>
-
-                <div layout="row" layout-align="end center">
-                    <md-button class="md-icon-button" ng-click="vm.searchActive = !vm.searchActive" aria-label="Search"
-                               translate
-                               translate-attr-aria-label="GANTT.SEARCH">
-                        <md-icon md-font-icon="icon-magnify"></md-icon>
-                        <md-tooltip><span translate="GANTT.SEARCH">Search</span></md-tooltip>
-                    </md-button>
-
-                    <md-button class="md-icon-button" ng-click="vm.dateFilterActive = !vm.dateFilterActive"
-                               aria-label="Filter Date" translate
-                               translate-attr-aria-label="GANTT.FILTER_DATE">
-                        <md-icon md-font-icon="icon-calendar"></md-icon>
-                        <md-tooltip><span translate="GANTT.FILTER_DATE">Filter Date</span></md-tooltip>
-                    </md-button>
-
-                    <md-button ng-click="vm.reload()" class="md-icon-button"
-                               aria-label="Reload"
-                               translate translate-attr-aria-label="GANTT.RELOAD">
-                        <md-icon md-font-icon="icon-reload"></md-icon>
-                        <md-tooltip><span translate="GANTT.RELOAD">RELOAD</span></md-tooltip>
-                    </md-button>
-
-                    <md-button ng-click="vm.toggleSidenav('settings-sidenav')" class="md-icon-button"
-                               aria-label="Settings"
-                               translate translate-attr-aria-label="GANTT.SETTINGS">
-                        <md-icon md-font-icon="icon-cog"></md-icon>
-                        <md-tooltip><span translate="GANTT.SETTINGS">Settings</span></md-tooltip>
-                    </md-button>
-                </div>
             </div>
-
             <div class="bottom" layout="column" layout-gt-sm="row" layout-align-gt-sm="end center">
                 <div class="search-boxes" flex ng-show="vm.searchActive" layout="column" layout-gt-xs="row">
                     <div class="search md-whiteframe-3dp mr-8" flex layout="row" layout-align="start center">
                         <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
-                        <input flex ng-model="vm.searchRowKeyword"
-                               ng-change="vm.search('rows', vm.searchRowKeyword)" type="text"
-                               placeholder="Search in rows" translate
-                               translate-attr-placeholder="GANTT.SEARCH_IN_ROWS">
+                        <input flex ng-model="vm.searchRowKeyword" ng-change="vm.search('rows', vm.searchRowKeyword)" type="text" placeholder="Search in rows" translate translate-attr-placeholder="GANTT.SEARCH_IN_ROWS">
                     </div>
                     <div class="search md-whiteframe-3dp" flex layout="row" layout-align="start center">
                         <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
-                        <input flex ng-model="vm.searchTaskKeyword" ng-change="vm.search('tasks', vm.searchTaskKeyword)"
-                               type="text"
-                               placeholder="Search in tasks" translate
-                               translate-attr-placeholder="GANTT.SEARCH_IN_TASKS">
+                        <input flex ng-model="vm.searchTaskKeyword" ng-change="vm.search('tasks', vm.searchTaskKeyword)" type="text" placeholder="Search in tasks" translate translate-attr-placeholder="GANTT.SEARCH_IN_TASKS">
                     </div>
                 </div>
 
-                <div class="date-filter-box md-whiteframe-3dp" ng-show="vm.dateFilterActive" layout="column"
-                     layout-gt-xs="row" layout-align-gt-xs="center center">
+                <div class="date-filter-box md-whiteframe-3dp" ng-show="vm.dateFilterActive" layout="column" layout-gt-xs="row" layout-align-gt-xs="center center">
                     <div layout="row" layout-align="center center" class="filter from">
                         <span class="label">From:</span>
-                        <md-datepicker ms-datepicker-fix ng-model="vm.options.fromDate"
-                                       md-max-date="vm.options.toDate"
-                                       md-placeholder="Enter date"></md-datepicker>
+                        <md-datepicker ms-datepicker-fix ng-model="vm.options.fromDate" md-max-date="vm.options.toDate" md-placeholder="Enter date"></md-datepicker>
                     </div>
                     <div layout="row" layout-align="center center" class="filter to">
                         <span class="label">To:</span>
-                        <md-datepicker ms-datepicker-fix ng-model="vm.options.toDate"
-                                       md-min-date="vm.options.fromDate"
-                                       md-placeholder="Enter date"></md-datepicker>
+                        <md-datepicker ms-datepicker-fix ng-model="vm.options.toDate" md-min-date="vm.options.fromDate" md-placeholder="Enter date"></md-datepicker>
                     </div>
                 </div>
             </div>
 
         </div>
+        <div class="content-card">
+            <div>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="支付宝汇款">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <h1>支付宝汇款须知</h1>
+                                        <p>充值须知：填好以下充值信息后,需要您自主登录支付宝或网银向汇款账户进行手动打款,充值金额最少$10</p>
+                                        <p>充值时间：7*24小时可充,我们确认收到汇款后充值到您的账户</p>
+                                        <p>赠送资金：100-199.99美元赠送50%；200-499.99美元赠送75%；500美元及以上赠送100%。当本金亏损完，赠金亏损≥100美金时，账户自动清零。如重新充值可继续获得赠金。</p>
+                                        <p>备注信息：请务必在汇款附言中填写您的备注信息</p>
+                                        <p>如果您有疑问,请联系客服或者拨打400 118 0770</p>
+                                    </md-card>
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款帐号:</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款金额(￥)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-        <!-- / CONTENT HEADER -->
 
-        <!-- CONTENT CARD -->
-        <div class="content-card" layout="column" flex>
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>现汇买入价：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>兑换($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-            <!-- CONTENT TOOLBAR -->
-            <div class="toolbar" layout="row" layout-align="space-between center">
 
-                <div layout="row" layout-align="start center">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>赠金($)：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>到账金额($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                    </md-card>
+                                </md-content>
+                            </md-content>
 
-                    <md-button ng-click="vm.addDialog($event)" class="md-icon-button add-row-button" aria-label="Add"
-                               translate
-                               translate-attr-aria-label="GANTT.ADD">
-                        <md-icon md-font-icon="icon-plus"></md-icon>
-                    </md-button>
+                        </md-tab>
+                        <md-tab label="银行汇款">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <h1>支付宝汇款须知</h1>
+                                        <p>充值须知：填好以下充值信息后,需要您自主登录支付宝或网银向汇款账户进行手动打款,充值金额最少$10</p>
+                                        <p>充值时间：7*24小时可充,我们确认收到汇款后充值到您的账户</p>
+                                        <p>赠送资金：100-199.99美元赠送50%；200-499.99美元赠送75%；500美元及以上赠送100%。当本金亏损完，赠金亏损≥100美金时，账户自动清零。如重新充值可继续获得赠金。</p>
+                                        <p>备注信息：请务必在汇款附言中填写您的备注信息</p>
+                                        <p>如果您有疑问,请联系客服或者拨打400 118 0770</p>
+                                    </md-card>
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款帐号:</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款金额(￥)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-                </div>
 
-                <div layout="row" layout-align="start center">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>现汇买入价：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>兑换($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-                    <div class="zoom" layout="row" layout-align="end center">
-                        <span class="label">Zoom:</span>
 
-                        <div class="input-wrapper" layout="row" layout-align="center center">
-                            <md-button class="md-icon-button" aria-label="minus"
-                                       ng-click="vm.options.zoom  = vm.options.zoom - 0.1">
-                                <md-icon md-font-icon="icon-minus"></md-icon>
-                            </md-button>
-                            <input type="number" ng-model="vm.options.zoom" step="0.1" min="0.1" max="5">
-                            <md-button class="md-icon-button" aria-label="plus"
-                                       ng-click="vm.options.zoom =vm.options.zoom + 0.1">
-                                <md-icon md-font-icon="icon-plus"></md-icon>
-                            </md-button>
-                        </div>
-                    </div>
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>赠金($)：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>到账金额($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                    </md-card>
+                                </md-content>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="网银在线">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <h1>支付宝汇款须知</h1>
+                                        <p>充值须知：填好以下充值信息后,需要您自主登录支付宝或网银向汇款账户进行手动打款,充值金额最少$10</p>
+                                        <p>充值时间：7*24小时可充,我们确认收到汇款后充值到您的账户</p>
+                                        <p>赠送资金：100-199.99美元赠送50%；200-499.99美元赠送75%；500美元及以上赠送100%。当本金亏损完，赠金亏损≥100美金时，账户自动清零。如重新充值可继续获得赠金。</p>
+                                        <p>备注信息：请务必在汇款附言中填写您的备注信息</p>
+                                        <p>如果您有疑问,请联系客服或者拨打400 118 0770</p>
+                                    </md-card>
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款帐号:</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款金额(￥)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-                    <md-select class="simplified select-scale" ng-model="vm.options.scale" placeholder="Scale">
-                        <md-option value="hour" translate="GANTT.HOUR">hour</md-option>
-                        <md-option value="3 hours" translate="GANTT.3_HOURS">3 hours</md-option>
-                        <md-option value="day" translate="GANTT.DAY">day</md-option>
-                        <md-option value="week" translate="GANTT.WEEK">week</md-option>
-                        <md-option value="2 weeks" translate="GANTT.2_WEEKS">2 weeks</md-option>
-                        <md-option value="month" translate="GANTT.MONTH">month</md-option>
-                        <md-option value="quarter" translate="GANTT.QUARTER">quarter</md-option>
-                        <md-option value="6 months" translate="GANTT.6_MONTHS">6 months</md-option>
-                        <md-option value="year" translate="GANTT.YEAR">year</md-option>
-                    </md-select>
 
-                    <div class="divider-vertical"></div>
-                    <md-menu>
-                        <md-button class="md-icon-button"
-                                   ng-click="$mdOpenMenu($event)"
-                                   aria-label="Filters"
-                                   translate translate-attr-aria-label="MAIL.FILTERS">
-                            <md-icon md-font-icon="icon-sort"></md-icon>
-                        </md-button>
-                        <md-menu-content width="3">
-                            <md-menu-item>
-                                <md-button aria-label="disabled"
-                                           ng-click="vm.setSortMode(undefined)"
-                                           translate="GANTT.DISABLED" translate-attr-aria-label="GANTT.DISABLED">
-                                    disabled
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button aria-label="disabled"
-                                           ng-click="vm.setSortMode('from')"
-                                           translate="GANTT.FROM" translate-attr-aria-label="GANTT.FROM">
-                                    from
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button aria-label="disabled"
-                                           ng-click="vm.setSortMode('to')"
-                                           translate="GANTT.TO" translate-attr-aria-label="GANTT.TO">
-                                    to
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button aria-label="disabled"
-                                           ng-click="vm.setSortMode('model.name')"
-                                           translate="GANTT.NAME" translate-attr-aria-label="GANTT.NAME">
-                                    name
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>现汇买入价：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>兑换($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
 
-                </div>
+
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>赠金($)：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>到账金额($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                    </md-card>
+                                </md-content>
+                            </md-content>
+                        </md-tab>
+
+                        <md-tab label="取款">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <h1>支付宝汇款须知</h1>
+                                        <p>充值须知：填好以下充值信息后,需要您自主登录支付宝或网银向汇款账户进行手动打款,充值金额最少$10</p>
+                                        <p>充值时间：7*24小时可充,我们确认收到汇款后充值到您的账户</p>
+                                        <p>赠送资金：100-199.99美元赠送50%；200-499.99美元赠送75%；500美元及以上赠送100%。当本金亏损完，赠金亏损≥100美金时，账户自动清零。如重新充值可继续获得赠金。</p>
+                                        <p>备注信息：请务必在汇款附言中填写您的备注信息</p>
+                                        <p>如果您有疑问,请联系客服或者拨打400 118 0770</p>
+                                    </md-card>
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款帐号:</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>汇款金额(￥)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+
+
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>现汇买入价：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>兑换($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+
+
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>赠金($)：</label>
+                                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                                                    <div ng-message="required">Name is required.</div>
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>到账金额($)：</label>
+                                                <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                    </md-card>
+                                </md-content>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
             </div>
-            <!-- / CONTENT TOOLBAR -->
 
-            <!-- CONTENT -->
-            <md-content id="chart-container" class="content" flex layout="column">
 
-                <div flex layout-fill
-                     id="gantt"
-                     gantt
-                     data="vm.data"
-                     timespans="vm.timespans"
-                     show-side="vm.options.labelsEnabled"
-                     daily="vm.options.daily"
-                     filter-task="{'name': vm.options.filterTask}"
-                     filter-row="{'name': vm.options.filterRow}"
-                     sort-mode="vm.options.sortMode"
-                     view-scale="vm.options.scale"
-                     column-width="vm.getColumnWidth(vm.options.width, vm.options.scale, vm.options.zoom)"
-                     auto-expand="vm.options.autoExpand"
-                     task-out-of-range="vm.options.taskOutOfRange"
-                     from-date="vm.options.fromDate"
-                     to-date="vm.options.toDate"
-                     allow-side-resizing="vm.options.allowSideResizing"
-                     task-content="vm.options.taskContentEnabled ? vm.options.taskContent : undefined"
-                     row-content="vm.options.rowContentEnabled ? vm.options.rowContent : undefined"
-                     current-date="vm.options.currentDate"
-                     current-date-value="vm.options.currentDateValue"
-                     headers="vm.options.width && vm.options.shortHeaders || vm.options.longHeaders"
-                     max-height="vm.options.maxHeight"
-                     time-frames="vm.options.timeFrames"
-                     date-frames="vm.options.dateFrames"
-                     time-frames-non-working-mode="vm.options.timeFramesNonWorkingMode"
-                     time-frames-magnet="vm.options.timeFramesMagnet"
-                     api="vm.options.api"
-                     column-magnet="vm.options.columnMagnet">
-                    <gantt-tree enabled="vm.options.sideMode === 'Tree' || vm.options.sideMode === 'TreeTable'"
-                                header-content="vm.options.treeHeaderContent"
-                                keep-ancestor-on-filter-row="true">
-                    </gantt-tree>
-                    <gantt-table enabled="vm.options.sideMode === 'Table' || vm.options.sideMode === 'TreeTable'"
-                                 columns="vm.options.sideMode === 'TreeTable' ? vm.options.treeTableColumns : vm.options.columns"
-                                 headers="vm.options.columnsHeaders"
-                                 classes="vm.options.columnsClasses"
-                                 formatters="vm.options.columnsFormatters"
-                                 contents="vm.options.columnsContents"
-                                 header-contents="vm.options.columnsHeaderContents">
-                    </gantt-table>
-                    <gantt-groups
-                            enabled="vm.options.groupDisplayMode === 'group' || vm.options.groupDisplayMode === 'overview' || vm.options.groupDisplayMode === 'promote'"
-                            display="vm.options.groupDisplayMode"></gantt-groups>
-                    <!--<gantt-tooltips></gantt-tooltips>-->
-                    <gantt-bounds></gantt-bounds>
-                    <gantt-progress></gantt-progress>
-                    <gantt-sortable></gantt-sortable>
-                    <gantt-movable enabled="!vm.options.readOnly"></gantt-movable>
-                    <gantt-draw-task
-                            enabled="vm.options.canDraw"
-                            move-threshold="2"
-                            task-factory="vm.options.drawTaskFactory">
-                    </gantt-draw-task>
-                    <gantt-overlap></gantt-overlap>
-                    <gantt-resize-sensor></gantt-resize-sensor>
-                    <gantt-dependencies></gantt-dependencies>
-                </div>
-
-            </md-content>
-            <!-- / CONTENT -->
 
         </div>
-        <!-- / CONTENT CARD -->
-
     </div>
-    <!-- / CENTER -->
-
 </div>
+<style>
+    .page-layout.carded.fullwidth>.center .header {
+        height: 1px;
+        min-height: 0px;
+        max-height: 0px;
+        padding: 0px;
+    }
+</style>

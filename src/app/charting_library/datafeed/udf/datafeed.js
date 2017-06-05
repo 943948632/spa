@@ -36,7 +36,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.defaultConfiguration = function() {
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getServerTime = function(callback) {
     if (this._configuration.supports_time) {
-        this._send("http://localhost:3000/app/charting_library/data" + '/time.json', {})
+        this._send(this._datafeedURL + '/time', {})
             .done(function(response) {
                 callback(+response);
             })
@@ -98,9 +98,9 @@ Datafeeds.UDFCompatibleDatafeed.prototype._send = function(url, params) {
 Datafeeds.UDFCompatibleDatafeed.prototype._initialize = function() {
     var that = this;
 
-    this._send("http://localhost:3000/app/charting_library/data" + '/config.json')
+    this._send(this._datafeedURL + '/config')
         .done(function(response) {
-            var configurationData = response;
+            var configurationData = JSON.parse(response);
             that._setupWithConfiguration(configurationData);
         })
         .fail(function(reason) {
@@ -160,14 +160,14 @@ Datafeeds.UDFCompatibleDatafeed.prototype._setupWithConfiguration = function(con
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
     if (this._configuration.supports_marks) {
-        this._send("http://localhost:3000/app/charting_library/data" + '/marks.json', {
+        this._send(this._datafeedURL + '/marks', {
                 symbol: symbolInfo.ticker.toUpperCase(),
                 from: rangeStart,
                 to: rangeEnd,
                 resolution: resolution
             })
             .done(function(response) {
-                onDataCallback(response);
+                onDataCallback(JSON.parse(response));
             })
             .fail(function() {
                 onDataCallback([]);
@@ -177,14 +177,14 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeS
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getTimescaleMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
     if (this._configuration.supports_timescale_marks) {
-        this._send("http://localhost:3000/app/charting_library/data" + '/timescale_marks.json', {
+        this._send(this._datafeedURL + '/timescale_marks', {
                 symbol: symbolInfo.ticker.toUpperCase(),
                 from: rangeStart,
                 to: rangeEnd,
                 resolution: resolution
             })
             .done(function(response) {
-                onDataCallback(response);
+                onDataCallback(JSON.parse(response));
             })
             .fail(function() {
                 onDataCallback([]);
@@ -202,10 +202,8 @@ Datafeeds.UDFCompatibleDatafeed.prototype.searchSymbols = function(searchString,
 
     if (this._configuration.supports_search) {
         this._send(this._datafeedURL + '/search', {
-                limit: 30,
-                query: AAPL,
-                // limit: MAX_SEARCH_RESULTS,
-                // query: searchString.toUpperCase(),
+                limit: MAX_SEARCH_RESULTS,
+                query: searchString.toUpperCase(),
                 type: type,
                 exchange: exchange
             })
@@ -253,7 +251,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.searchSymbols = function(searchString,
     }
 };
 
-Datafeeds.UDFCompatibleDatafeed.prototype._symbolResolveURL = '';
+Datafeeds.UDFCompatibleDatafeed.prototype._symbolResolveURL = '/symbols';
 
 //	BEWARE: this function does not consider symbol's exchange
 Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, onSymbolResolvedCallback, onResolveErrorCallback) {
@@ -282,11 +280,11 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, o
     }
 
     if (!this._configuration.supports_group_request) {
-        this._send("http://localhost:3000/app/charting_library/data/symbols.json", {
+        this._send(this._datafeedURL + this._symbolResolveURL, {
                 symbol: symbolName ? symbolName.toUpperCase() : ''
             })
             .done(function(response) {
-                var data = response;
+                var data = JSON.parse(response);
 
                 if (data.s && data.s !== 'ok') {
                     onResolveErrorCallback('unknown_symbol');
@@ -309,72 +307,33 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, o
     }
 };
 
-Datafeeds.UDFCompatibleDatafeed.prototype._historyURL = '';
+Datafeeds.UDFCompatibleDatafeed.prototype._historyURL = '/history';
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, rangeStartDate, rangeEndDate, onDataCallback, onErrorCallback) {
     //	timestamp sample: 1399939200
     if (rangeStartDate > 0 && (rangeStartDate + '').length > 10) {
         throw new Error(['Got a JS time instead of Unix one.', rangeStartDate, rangeEndDate]);
     }
-
     var mode = "1day";
     var limit = 501;
     var order_by = 1;
     this._send(this._datafeedURL, {
+        code: code || "AAPL",
+        mode: mode,
+        limit: limit,
+        order_by: order_by
+    })
+    this._send('https://staging.tophold.com/api/v2/products/quotes', {
             code: code || "AAPL",
             mode: mode,
             limit: limit,
             order_by: order_by
         })
         .done(function(response) {
+            var data = response.quotes;
 
-            //var data = JSON.parse(response.quotes);
-            //var data = response;
-            var response = response.quotes;
-            var data;
+            /*data.s = "ok";
 
-
-            function text(response) {
-
-
-                var t = new Array();
-                var o = new Array();
-                var h = new Array();
-                var l = new Array();
-                var c = new Array();
-                data = {
-                    "s": "ok",
-                    t: t,
-                    c: c,
-                    o: o,
-                    h: h,
-                    l: l
-                };
-
-
-                //var k=1;
-                for (var k in response) {
-                    var mt = response[k].t;
-                    var timestamp2 = Date.parse(new Date(mt));
-                    var timestamp2 = timestamp2 / 1000;
-                    t[k] = timestamp2;
-
-                    var mo = response[k].o;
-                    o[k] = mo;
-
-                    var mh = response[k].h;
-                    h[k] = mh;
-
-                    var ml = response[k].l;
-                    l[k] = ml;
-
-                    var mc = response[k].c;
-                    c[k] = mc;
-
-                }
-            }
-            text(response);
-            console.log(data);
             var nodata = data.s === 'no_data';
 
             if (data.s !== 'ok' && !nodata) {
@@ -383,36 +342,38 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
                 }
 
                 return;
-            }
+            }*/
 
+            var nodata = false;
             var bars = [];
 
-
-            var barsCount = nodata ? 0 : data.t.length;
+            //	data is JSON having format {s: "status" (ok, no_data, error),
+            //  v: [volumes], t: [times], o: [opens], h: [highs], l: [lows], c:[closes], nb: "optional_unixtime_if_no_data"}
+            var barsCount = nodata ? 0 : data.length;
 
             var volumePresent = typeof data.v != 'undefined';
             var ohlPresent = typeof data.o != 'undefined';
 
+            var rg = /([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})/;
+
             for (var i = 0; i < barsCount; ++i) {
+
+                var mt = data[i]['t'];
+                var matched = rg.exec(mt);
+                var timestamp2 = Date.UTC(matched[1], matched[2] - 1, matched[3], matched[4], matched[5], matched[6])
+
                 var barValue = {
-                    time: data.t[i] * 1000,
-                    close: data.c[i]
+                    time: Math.floor(timestamp2.valueOf() / 1000) * 1000
                 };
-
-                if (ohlPresent) {
-                    barValue.open = data.o[i];
-                    barValue.high = data.h[i];
-                    barValue.low = data.l[i];
-                } else {
-                    barValue.open = barValue.high = barValue.low = barValue.close;
-                }
-
-                if (volumePresent) {
-                    barValue.volume = data.v[i];
-                }
+                barValue.open = data[i]['o'];
+                barValue.close = data[i]['c'];
+                barValue.high = data[i]['h'];
+                barValue.low = data[i]['l'];
 
                 bars.push(barValue);
             }
+            console.log("================");
+            console.log(bars);
 
             onDataCallback(bars, {
                 noData: nodata,
@@ -426,9 +387,6 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
                 onErrorCallback('network error: ' + JSON.stringify(arg));
             }
         });
-
-
-
 };
 
 Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, resolution, onRealtimeCallback, listenerGUID, onResetCacheNeededCallback) {
@@ -804,7 +762,6 @@ Datafeeds.DataPulseUpdater.prototype.periodLengthSeconds = function(resolution, 
 
     if (resolution === 'D') {
         daysCount = requiredPeriodsCount;
-
     } else if (resolution === 'M') {
         daysCount = 31 * requiredPeriodsCount;
     } else if (resolution === 'W') {
@@ -878,8 +835,6 @@ Datafeeds.QuotesPulseUpdater.prototype._updateQuotes = function(symbolsGetter) {
 
                     for (var i = 0; i < subscribers.length; ++i) {
                         subscribers[i](data);
-
-
                     }
                 };
             }(subscriptionRecord.listeners, listenerGUID)),

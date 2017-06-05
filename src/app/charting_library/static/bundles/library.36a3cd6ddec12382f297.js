@@ -32305,9 +32305,9 @@ webpackJsonp([0], [function(t, e, i) {
                             showSeriesOHLC: this._chart.properties().paneProperties.legendProperties.showSeriesOHLC.value(),
                             showStudyValues: this._chart.properties().paneProperties.legendProperties.showStudyValues.value(),
                             showLegend: this._model.model().properties().paneProperties.legendProperties.showLegend.value()
-                        }, n = this._model.mainSeries(), s = t.orderedSources().slice(), r = s.indexOf(n), r > -1 && (s.splice(r, 1), s.push(n)), a = s.length - 1; a >= 0; a--) h = s[a], (c = h.statusView()) && (!(d = h === n) || o.showSeriesTitle || o.showSeriesOHLC || o.showStudyTitles || o.showStudyValues) && (d && e.enabled("fundamental_widget") || (o.showLegend || !d ? (d || o.showStudyTitles || o.showStudyValues) && o.showLegend && (p = $("<div>").addClass("pane-legend-line pane-legend-wrap").appendTo(this.$el), p.source = h, d ? (u = $('<a class="pane-legend-minbtn apply-common-tooltip apply" title="' + $.t("Hide") + '"></a>').append($(i(456)).attr({
+                        }, n = this._model.mainSeries(), s = t.orderedSources().slice(), r = s.indexOf(n), r > -1 && (s.splice(r, 1), s.push(n)), a = s.length - 1; a >= 0; a--) h = s[a], (c = h.statusView()) && (!(d = h === n) || o.showSeriesTitle || o.showSeriesOHLC || o.showStudyTitles || o.showStudyValues) && (d && e.enabled("fundamental_widget") || (o.showLegend || !d ? (d || o.showStudyTitles || o.showStudyValues) && o.showLegend && (p = $("<div>").addClass("pane-legend-line pane-legend-wrap").appendTo(this.$el), p.source = h, d ? (u = $('').append($(i(456)).attr({
                         class: "expand"
-                    })), p.addClass("main").append(u.on("click touchend", this.toggleTitles.bind(this)))) : p.addClass("study"), h.properties().visible.value() || p.addClass("disabled"), this._generateItemsForRow(p, c, o), l(p, this, !0)) : this.$el.find(".expand-line").length || (p = $("<div>").addClass("pane-legend-line pane-legend-wrap main expand-line").appendTo(this.$el), u = $('<a class="pane-legend-minbtn apply-common-tooltip apply" title="' + $.t("Show") + '"></a>').append($(i(455)).attr({
+                    })), p.addClass("main").append(u.on("click touchend", this.toggleTitles.bind(this)))) : p.addClass("study"), h.properties().visible.value() || p.addClass("disabled"), this._generateItemsForRow(p, c, o), l(p, this, !0)) : this.$el.find(".expand-line").length || (p = $("<div>").addClass("pane-legend-line pane-legend-wrap main expand-line").appendTo(this.$el), u = $('').append($(i(455)).attr({
                         class: "expand closed"
                     })), p.append(u.on("click touchend", this.toggleTitles.bind(this))), p.source = h, o = {
                         showStudyTitles: !1,
@@ -32321,8 +32321,9 @@ webpackJsonp([0], [function(t, e, i) {
                 var a, l, h, c, d, p, u, _, f, m, g, v, y, b, w = t.source,
                     S = this,
                     T = w === this._model.mainSeries();
-                if ((T && s.showSeriesTitle || !T && s.showStudyTitles) && (a = $("<span>"), a.addClass("pane-legend-line apply-overflow-tooltip"), e.enabled("legend_context_menu") && !this._chart.readOnly() || a.addClass("no-context-menu"), T && a.addClass("main"), w.properties().visible.value() || a.addClass("disabled"), a.css({
+                if ((T && s.showSeriesTitle || !T && s.showStudyTitles) && (a = $("<span>"), a.addClass(""), e.enabled("legend_context_menu") && !this._chart.readOnly() || a.addClass("no-context-menu"), T && a.addClass(""), w.properties().visible.value() || a.addClass("disabled"), a.css({
                         "font-weight": o.bold() ? "bold" : "normal",
+                        "display": "none",
                         "font-size": o.size()
                     }), a.click(function(e) {
                         S.contextMenuEvent(e, t)
@@ -41577,7 +41578,7 @@ webpackJsonp([0], [function(t, e, i) {
             }
             var a, f, m, g, v, y, b, w, S, T, C, x, P, L, k, I, A, E, M;
             t = t || {}, a = this._chartWidgetCollection = t.chartWidgetCollection, f = this._chartWidget = a.activeChartWidget.value(), m = this._onWidget = f.onWidget(), g = this, v = Modernizr.touch ? "touchstart" : "click", this._resizerBridge = t.resizerBridge, this._$root = $(t.resizerBridge.body.value()), this._$root.addClass("header-chart-panel").html('<div class="header-chart-panel-sizer"><div class="header-chart-panel-content"><div class="right"></div><div class="left"></div></div></div>'), this._$sizer = this._$root.find(".header-chart-panel-sizer"),
-                this._$content = this._$root.find(".header-chart-panel-content"), this._$left = this._$root.find(".left"), this._$right = this._$root.find(".right"), this._itemsVisibility = t.itemsVisibility, a.readOnly() || (e.enabled("header_symbol_search") && (y = this.createGroup("symbol-search").appendTo(this._$left), b = $('<div class="symbol-edit-widget no-last"></div>').appendTo(y), w = $('<div class="symbol-edit-wrap">').appendTo(b), S = null, !e.enabled("charting_library_base") && d.canShowSpreadActions() && (T = $('<div class="symbol-edit-buttonswrap">').appendTo(w), S = $('<div class="spread-actions">').appendTo(T).on("mousedown", function(t) {
+                this._$content = this._$root.find(".header-chart-panel-content"), this._$left = this._$root.find(".left"), this._$right = this._$root.find(".right"), this._itemsVisibility = t.itemsVisibility, a.readOnly() || (e.enabled("header_symbol_search") && (y = this.createGroup("symbol-search").appendTo(this._$left), b = $('<div class=""></div>').appendTo(y), w = $('<div class="symbol-edit-wrap">').appendTo(b), S = null, !e.enabled("charting_library_base") && d.canShowSpreadActions() && (T = $('<div class="symbol-edit-buttonswrap">').appendTo(w), S = $('<div class="spread-actions">').appendTo(T).on("mousedown", function(t) {
                     t.preventDefault()
                 })), C = $('<div class="symbol-edit-inputspacer">').appendTo(w), x = $('<input type="text" class="symbol-edit" maxlenght="' + TradingView.SYMBOL_SEARCH_MAX_LENGTH + '">').appendTo(C), d.bindToInput(x, {
                     syncWithChartWidget: !0,

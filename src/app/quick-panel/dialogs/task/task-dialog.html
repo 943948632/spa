@@ -2,7 +2,8 @@
     <form name="taskForm" class="md-inline-form" novalidate>
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title">交易中心</span><span class="title">当前交易：{{vm.task}} </span>
+                <span class="title">交易中心</span>
+                <!--<span class="title">当前交易：{{vm.task}} </span>-->
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()">
                     <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
                 </md-button>
@@ -69,7 +70,11 @@
                     买入
                 </md-button>
             </div>
-
+            <div layout="row" layout-align="start center">
+                <md-button type="submit" ng-click="remove(a)" class="send-button md-accent md-raised">
+                    移除自选股
+                </md-button>
+            </div>
             <div layout="row">
                 <md-button type="submit" ng-click="vm.sale()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
                     卖出

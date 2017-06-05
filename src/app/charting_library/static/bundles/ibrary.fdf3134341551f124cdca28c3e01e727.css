@@ -8878,9 +8878,8 @@ div.missed-connection {
 }
 
 .header-chart-panel .symbol-edit-widget {
-    display: none;
     margin-right: -1px;
-   /*width: 100px*/
+    width: 100px
 }
 
 .chart-top-toolbar .space-single,
@@ -8969,6 +8968,7 @@ div.missed-connection {
 
 .symbol-search-dialog input,
 input.symbol-edit {
+    display: none;
     background-color: #fff;
     border: 1px solid #c9cbcd;
     width: 291px;
@@ -8981,6 +8981,7 @@ input.symbol-edit {
 }
 
 .symbol-edit-widget .symbol-edit-wrap {
+    display: none;
     position: absolute;
     z-index: 1;
     width: 100px;
@@ -9866,7 +9867,8 @@ div.symbol-edit-popup .exchange-filter .sbToggle {
 
 .button.fullscreen,
 .header-chart-panel .button.fullscreen {
-    padding: 5px 6px 9px
+    padding: 5px 6px 9px;
+    display: none;
 }
 
 .button.fullscreen svg {
@@ -13028,8 +13030,7 @@ td.chart-markup-table {
     pointer-events: none;
     border: 0;
     box-sizing: border-box;
-    /*background-color:;*/
-    display: none;
+    background-color: transparent
 }
 
 .pane-legend svg {

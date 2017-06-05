@@ -4,19 +4,19 @@
     angular
         .module('app.gantt-chart', [
             // 3rd Party Dependencies
-            'gantt',
-            'gantt.sortable',
-            'gantt.movable',
-            'gantt.drawtask',
-            'gantt.tooltips',
-            'gantt.bounds',
-            'gantt.progress',
-            'gantt.table',
-            'gantt.tree',
-            'gantt.groups',
-            'gantt.dependencies',
-            'gantt.overlap',
-            'gantt.resizeSensor'
+            // 'gantt',
+            // 'gantt.sortable',
+            // 'gantt.movable',
+            // 'gantt.drawtask',
+            // 'gantt.tooltips',
+            // 'gantt.bounds',
+            // 'gantt.progress',
+            // 'gantt.table',
+            // 'gantt.tree',
+            // 'gantt.groups',
+            // 'gantt.dependencies',
+            // 'gantt.overlap',
+            // 'gantt.resizeSensor'
         ])
         .config(config);
 
@@ -30,15 +30,15 @@
                     templateUrl: 'app/main/apps/gantt-chart/gantt-chart.html',
                     controller: 'GanttChartController as vm'
                 }
-            },
-            resolve: {
-                Tasks: function(msApi) {
-                    return msApi.resolve('ganttChart.tasks@get');
-                },
-                Timespans: function(msApi) {
-                    return msApi.resolve('ganttChart.timespans@get');
-                }
             }
+            // resolve: {
+            //     Tasks: function(msApi) {
+            //         return msApi.resolve('ganttChart.tasks@get');
+            //     },
+            //     Timespans: function(msApi) {
+            //         return msApi.resolve('ganttChart.timespans@get');
+            //     }
+            // }
         });
 
         // Translation
@@ -46,15 +46,15 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.gantt-chart', {
-            title: '天厚实盘情况',
+            title: '充值与取款',
             icon: 'icon-calendar-text',
             state: 'app.gantt-chart',
             weight: 3
         });
 
         // Api
-        msApiProvider.register('ganttChart.tasks', ['app/data/gantt-chart/tasks.json']);
-        msApiProvider.register('ganttChart.timespans', ['app/data/gantt-chart/timespans.json']);
+        // msApiProvider.register('ganttChart.tasks', ['app/data/gantt-chart/tasks.json']);
+        // msApiProvider.register('ganttChart.timespans', ['app/data/gantt-chart/timespans.json']);
 
     }
 
