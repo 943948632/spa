@@ -9,6 +9,7 @@
     /** @ngInject */
     function DashboardAnalyticsController(DashboardData, uiGmapGoogleMapApi, $http, $scope) {
         var vm = this;
+
         vm.dashboardData = DashboardData;
         vm.widget4 = vm.dashboardData.widget4;
         var toke = sessionStorage.getItem("Token");
@@ -50,6 +51,22 @@
             }).error(function(error) {});
             vm.nmfalse = "平仓";
         }, 2000);
+
+
+
+        var token = sessionStorage.getItem("Token")
+
+        $http({
+            data: { page: 1, per_page: 20, offset: 0, },
+            method: "get",
+            url: "https://staging.tophold.com/api/v2/orders",
+            headers: { "Content-Type": "application/json", "X-Access-Token": token }
+        }).success(function(d) {
+
+            vm.aa = d.orders;
+
+
+        }).error(function(error) {});
 
 
 
