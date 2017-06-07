@@ -1,1 +1,32 @@
-{"name":"USD/MXN","exchange-traded":"NasdaqNM","exchange-listed":"NasdaqNM","timezone":"America/New_York","minmov":1,"minmov2":0,"pointvalue":1,"session":"0930-1630","has_intraday":false,"has_no_volume":false,"description":"Apple Inc.","type":"stock","supported_resolutions":["D","2D","3D","W","3W","M","6M"],"pricescale":100,"ticker":"AAPL"}
+{
+    "ticker": "FX^EURUSD",
+    "symbol": "FX^EURUSD",
+    "timezone": "UTC",
+    "name": "EURUSD",
+    "description": "Euro (B) VS United States Dollar Spot (Eur\/USD)",
+    "exchange-traded": "FX",
+    "exchange-listed": "FX",
+    "pricescale": 100000,
+    "minmov": 1,
+    "minmove2": 0,
+    "fractional": false,
+
+    "has_intraday": true,
+    "intraday_multipliers": [
+        "1",
+        "5",
+        "10",
+        "15",
+        "30",
+        "60"
+    ],
+    "has_daily": true,
+    "has_weekly_and_monthly": false,
+    "has_no_volume": false,
+    "has_empty_bars": false,
+    "force_session_rebuild": true,
+    "volume_precision": "0",
+    "expired": false,
+    "data_status": "delayed_streaming",
+    "session": "24x7"
+}

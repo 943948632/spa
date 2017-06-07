@@ -43,11 +43,13 @@
         // }, 2000);
 
 
-        $scope.dummyFunction = function(ev, task, en_name, current_price, name, symbol) {
+        $scope.dummyFunction = function(ev, task, en_name, current_price, name, symbol, names) {
             var id = ev;
+
 
             // $state.go('app.dashboard-analytics');
             sessionStorage.setItem("gusymbol", symbol);
+            sessionStorage.setItem("zhgusymbol", task);
             localStorage.setItem("gusymbol", symbol);
             console.log(id + "" + task + "" + en_name + "" + current_price + "这是点击的事件" + name);
             $scope.isactive = id;

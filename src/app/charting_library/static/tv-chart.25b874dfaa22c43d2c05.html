@@ -7,9 +7,9 @@
 
     <link rel="stylesheet" type="text/css" href="bundles/ibrary.fdf3134341551f124cdca28c3e01e727.css" />
     <style>
-        .chart-markup-table>tbody>tr:nth-of-type(3) {
+        /*.chart-markup-table>tbody>tr:nth-of-type(3) {
             display: none;
-        }
+        }*/
     </style>
 </head>
 
@@ -77,8 +77,42 @@
             return a
         })();
         window.language = urlParams.locale;
-
         window.actualLanguage = urlParams.locale;
+        window.addEventListener("click", function(e) {
+
+            var Timesharing = e.srcElement.innerText;
+
+            if (Timesharing === "1 分") {
+                var Timesharing = "1min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "5 分") {
+                var Timesharing = "5min";
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "15 分") {
+                var Timesharing = "15min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "30 分") {
+                var Timesharing = "30min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 小时") {
+                var Timesharing = "1hour"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "4 小时") {
+                var Timesharing = "4hour"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 日") {
+                var Timesharing = "1day"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 周") {
+                var Timesharing = "1week"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 月") {
+                var Timesharing = "1month"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            }
+
+
+        });
     </script>
     <script src="bundles/vendors.34bf759ffa1915446a01.js"></script>
     <script src="bundles/library.36a3cd6ddec12382f297.js"></script>

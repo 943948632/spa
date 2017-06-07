@@ -98,9 +98,10 @@ Datafeeds.UDFCompatibleDatafeed.prototype._send = function(url, params) {
 Datafeeds.UDFCompatibleDatafeed.prototype._initialize = function() {
     var that = this;
 
-    this._send(this._datafeedURL + '/config')
+    this._send("http://localhost:3000/app/charting_library/data/config.json")
         .done(function(response) {
-            var configurationData = JSON.parse(response);
+            //var configurationData = JSON.parse(response);
+            var configurationData = response;
             that._setupWithConfiguration(configurationData);
         })
         .fail(function(reason) {
@@ -280,12 +281,12 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, o
     }
 
     if (!this._configuration.supports_group_request) {
-        this._send(this._datafeedURL + this._symbolResolveURL, {
+        this._send("http://localhost:3000/app/charting_library/data/symbols.json", {
                 symbol: symbolName ? symbolName.toUpperCase() : ''
             })
             .done(function(response) {
-                var data = JSON.parse(response);
-
+                // var data = JSON.parse(response);
+                var data = response;
                 if (data.s && data.s !== 'ok') {
                     onResolveErrorCallback('unknown_symbol');
                 } else {
@@ -311,23 +312,25 @@ Datafeeds.UDFCompatibleDatafeed.prototype._historyURL = '/history';
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, rangeStartDate, rangeEndDate, onDataCallback, onErrorCallback) {
     //	timestamp sample: 1399939200
+    console.log(symbolInfo)
     if (rangeStartDate > 0 && (rangeStartDate + '').length > 10) {
         throw new Error(['Got a JS time instead of Unix one.', rangeStartDate, rangeEndDate]);
+
     }
-    var mode = "1day";
-    var limit = 501;
+
+    var mode = sessionStorage.getItem("Timesharing");
+    var code = sessionStorage.getItem("gusymbol");
+    var limit = 2000;
     var order_by = 1;
-    this._send(this._datafeedURL, {
-        code: code || "AAPL",
-        mode: mode,
-        limit: limit,
-        order_by: order_by
-    })
     this._send('https://staging.tophold.com/api/v2/products/quotes', {
             code: code || "AAPL",
-            mode: mode,
+            mode: mode || "5min",
             limit: limit,
             order_by: order_by
+                //            symbol: symbolInfo.ticker.toUpperCase(),
+                //            resolution: resolution,
+                //            from: rangeStartDate,
+                //            to: rangeEndDate
         })
         .done(function(response) {
             var data = response.quotes;
@@ -374,11 +377,18 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
             }
             console.log("================");
             console.log(bars);
+            if (limit === 2000) {
 
+            } else {
+
+            }
+            //onDataCallback();
             onDataCallback(bars, {
                 noData: nodata,
                 nextTime: data.nb || data.nextTime
             });
+
+
         })
         .fail(function(arg) {
             console.warn(['getBars(): HTTP error', arg]);
@@ -759,8 +769,7 @@ Datafeeds.DataPulseUpdater.prototype.subscribeDataListener = function(symbolInfo
 
 Datafeeds.DataPulseUpdater.prototype.periodLengthSeconds = function(resolution, requiredPeriodsCount) {
     var daysCount = 0;
-
-    if (resolution === 'D') {
+    if (resolution === 'h') {
         daysCount = requiredPeriodsCount;
     } else if (resolution === 'M') {
         daysCount = 31 * requiredPeriodsCount;
