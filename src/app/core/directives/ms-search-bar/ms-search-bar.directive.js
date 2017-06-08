@@ -1,5 +1,4 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
@@ -8,8 +7,7 @@
         .directive('msSearchBar', msSearchBarDirective);
 
     /** @ngInject */
-    function MsSearchBarController($scope, $element, $timeout)
-    {
+    function MsSearchBarController($scope, $element, $timeout) {
         var vm = this;
 
         // Data
@@ -40,63 +38,52 @@
 
         init();
 
-        function init()
-        {
+        function init() {
             // Watch the model changes to trigger the search
-            $scope.$watch('MsSearchBar.query', function (current, old)
-            {
-                if ( angular.isUndefined(current) )
-                {
+            $scope.$watch('MsSearchBar.query', function(current, old) {
+                if (angular.isUndefined(current)) {
                     return;
                 }
 
-                if ( angular.equals(current, old) )
-                {
+                if (angular.equals(current, old)) {
                     return;
                 }
 
-                if ( vm.collapsed )
-                {
+                if (vm.collapsed) {
                     return;
                 }
 
                 // Evaluate the onSearch function to access the
                 // function itself
-                var onSearchEvaluated = $scope.$parent.$eval(vm.onSearch, {query: current}),
+                var onSearchEvaluated = $scope.$parent.$eval(vm.onSearch, { query: current }),
                     isArray = angular.isArray(onSearchEvaluated),
                     isPromise = (onSearchEvaluated && !!onSearchEvaluated.then);
 
-                if ( isArray )
-                {
+                if (isArray) {
                     // Populate the results
                     vm.populateResults(onSearchEvaluated);
                 }
 
-                if ( isPromise )
-                {
+                if (isPromise) {
                     // Show the loader
                     vm.resultsLoading = true;
 
                     onSearchEvaluated.then(
                         // Success
-                        function (response)
-                        {
+                        function(response) {
                             // Populate the results
                             vm.populateResults(response);
                         },
                         // Error
-                        function ()
-                        {
+                        function() {
                             // Assign an empty array to show
                             // the no-results screen
                             vm.populateResults([]);
                         }
-                    ).finally(function ()
-                        {
-                            // Hide the loader
-                            vm.resultsLoading = false;
-                        }
-                    );
+                    ).finally(function() {
+                        // Hide the loader
+                        vm.resultsLoading = false;
+                    });
                 }
             });
         }
@@ -106,12 +93,10 @@
          *
          * @param results
          */
-        function populateResults(results)
-        {
+        function populateResults(results) {
             // Before doing anything,
             // make sure the search bar is expanded
-            if ( vm.collapsed )
-            {
+            if (vm.collapsed) {
                 return;
             }
 
@@ -119,8 +104,7 @@
                 isNull = results === null;
 
             // Only accept arrays and null values
-            if ( !isArray && !isNull )
-            {
+            if (!isArray && !isNull) {
                 return;
             }
 
@@ -134,8 +118,7 @@
         /**
          * Expand
          */
-        function expand()
-        {
+        function expand() {
             // Set collapsed status
             vm.collapsed = false;
 
@@ -143,8 +126,7 @@
             $scope.expand();
 
             // Callback
-            if ( vm.onExpand && angular.isFunction(vm.onExpand) )
-            {
+            if (vm.onExpand && angular.isFunction(vm.onExpand)) {
                 vm.onExpand();
             }
         }
@@ -152,8 +134,7 @@
         /**
          * Collapse
          */
-        function collapse()
-        {
+        function collapse() {
             // Empty the query
             vm.query = '';
 
@@ -167,8 +148,7 @@
             $scope.collapse();
 
             // Callback
-            if ( vm.onCollapse && angular.isFunction(vm.onCollapse) )
-            {
+            if (vm.onCollapse && angular.isFunction(vm.onCollapse)) {
                 vm.onCollapse();
             }
         }
@@ -178,8 +158,7 @@
          *
          * @param event
          */
-        function absorbEvent(event)
-        {
+        function absorbEvent(event) {
             event.preventDefault();
         }
 
@@ -188,75 +167,18 @@
          *
          * @param event
          */
-        function handleKeydown(event)
-        {
+        function handleKeydown(event) {
             var keyCode = event.keyCode,
                 keys = [27, 38, 40];
 
             // Prevent the default action if
             // one of the keys are pressed that
             // we are listening
-            if ( keys.indexOf(keyCode) > -1 )
-            {
+            if (keys.indexOf(keyCode) > -1) {
                 event.preventDefault();
             }
 
-            switch ( keyCode )
-            {
-                // Enter
-                case 13:
 
-                    // Trigger result click
-                    vm.handleResultClick(vm.results[vm.selectedResultIndex]);
-
-                    break;
-
-                // Escape
-                case 27:
-
-                    // Collapse the search bar
-                    vm.collapse();
-
-                    break;
-
-                // Up Arrow
-                case 38:
-
-                    // Decrease the selected result index
-                    if ( vm.selectedResultIndex - 1 >= 0 )
-                    {
-                        // Decrease the selected index
-                        vm.selectedResultIndex--;
-
-                        // Make sure the selected result is in the view
-                        vm.ensureSelectedResultIsVisible();
-                    }
-
-                    break;
-
-                // Down Arrow
-                case 40:
-
-                    if ( !vm.results )
-                    {
-                        return;
-                    }
-
-                    // Increase the selected result index
-                    if ( vm.selectedResultIndex + 1 < vm.results.length )
-                    {
-                        // Increase the selected index
-                        vm.selectedResultIndex++;
-
-                        // Make sure the selected result is in the view
-                        vm.ensureSelectedResultIsVisible();
-                    }
-
-                    break;
-
-                default:
-                    break;
-            }
         }
 
         /**
@@ -264,10 +186,8 @@
          *
          * @param index
          */
-        function handleMouseenter(index)
-        {
-            if ( vm.ignoreMouseEvents )
-            {
+        function handleMouseenter(index) {
+            if (vm.ignoreMouseEvents) {
                 return;
             }
 
@@ -281,8 +201,7 @@
          * to make other functions to ignore
          * the mouse events
          */
-        function temporarilyIgnoreMouseEvents()
-        {
+        function temporarilyIgnoreMouseEvents() {
             // Set the variable
             vm.ignoreMouseEvents = true;
 
@@ -290,8 +209,7 @@
             $timeout.cancel(vm.mouseEventIgnoreTimeout);
 
             // Set the timeout
-            vm.mouseEventIgnoreTimeout = $timeout(function ()
-            {
+            vm.mouseEventIgnoreTimeout = $timeout(function() {
                 vm.ignoreMouseEvents = false;
             }, 250);
         }
@@ -301,11 +219,9 @@
          *
          * @param item
          */
-        function handleResultClick(item)
-        {
-            if ( vm.onResultClick )
-            {
-                vm.onResultClick({item: item});
+        function handleResultClick(item) {
+            if (vm.onResultClick) {
+                vm.onResultClick({ item: item });
             }
 
             // Collapse the search bar
@@ -317,26 +233,22 @@
          * always be visible on the results
          * area
          */
-        function ensureSelectedResultIsVisible()
-        {
+        function ensureSelectedResultIsVisible() {
             var resultsEl = $element.find('.ms-search-bar-results'),
                 selectedItemEl = angular.element(resultsEl.find('.result')[vm.selectedResultIndex]);
 
-            if ( resultsEl && selectedItemEl )
-            {
+            if (resultsEl && selectedItemEl) {
                 var top = selectedItemEl.position().top - 8,
                     bottom = selectedItemEl.position().top + selectedItemEl.outerHeight() + 8;
 
                 // Start ignoring mouse events
                 vm.temporarilyIgnoreMouseEvents();
 
-                if ( resultsEl.scrollTop() > top )
-                {
+                if (resultsEl.scrollTop() > top) {
                     resultsEl.scrollTop(top);
                 }
 
-                if ( bottom > (resultsEl.height() + resultsEl.scrollTop()) )
-                {
+                if (bottom > (resultsEl.height() + resultsEl.scrollTop())) {
                     resultsEl.scrollTop(bottom - resultsEl.height());
                 }
             }
@@ -344,28 +256,25 @@
     }
 
     /** @ngInject */
-    function msSearchBarDirective($document)
-    {
+    function msSearchBarDirective($document) {
         return {
-            restrict        : 'E',
-            scope           : {},
-            require         : 'msSearchBar',
-            controller      : 'MsSearchBarController as MsSearchBar',
+            restrict: 'E',
+            scope: {},
+            require: 'msSearchBar',
+            controller: 'MsSearchBarController as MsSearchBar',
             bindToController: {
-                debounce     : '=?',
-                onSearch     : '@',
+                debounce: '=?',
+                onSearch: '@',
                 onResultClick: '&?',
-                onExpand     : '&?',
-                onCollapse   : '&?'
+                onExpand: '&?',
+                onCollapse: '&?'
             },
-            templateUrl     : 'app/core/directives/ms-search-bar/ms-search-bar.html',
-            compile         : function (tElement)
-            {
+            templateUrl: 'app/core/directives/ms-search-bar/ms-search-bar.html',
+            compile: function(tElement) {
                 // Add class
                 tElement.addClass('ms-search-bar');
 
-                return function postLink(scope, iElement)
-                {
+                return function postLink(scope, iElement) {
                     // Data
                     var inputEl,
                         bodyEl = $document.find('body');
@@ -382,8 +291,7 @@
                     /**
                      * Initialize
                      */
-                    function init()
-                    {
+                    function init() {
                         // Grab the input element
                         inputEl = iElement.find('#ms-search-bar-input');
                     }
@@ -391,8 +299,7 @@
                     /**
                      * Expand action
                      */
-                    function expand()
-                    {
+                    function expand() {
                         // Add expanded class
                         iElement.addClass('expanded');
 
@@ -406,8 +313,7 @@
                     /**
                      * Collapse action
                      */
-                    function collapse()
-                    {
+                    function collapse() {
                         // Remove expanded class
                         iElement.removeClass('expanded');
 

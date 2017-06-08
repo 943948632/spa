@@ -311,13 +311,11 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, o
 Datafeeds.UDFCompatibleDatafeed.prototype._historyURL = '/history';
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, rangeStartDate, rangeEndDate, onDataCallback, onErrorCallback) {
-    //	timestamp sample: 1399939200
-    console.log(symbolInfo)
-    if (rangeStartDate > 0 && (rangeStartDate + '').length > 10) {
-        throw new Error(['Got a JS time instead of Unix one.', rangeStartDate, rangeEndDate]);
 
+    if (rangeStartDate <= 1496481230) {
+        return
     }
-
+    console.log(rangeStartDate + "开始时间" + rangeEndDate)
     var mode = sessionStorage.getItem("Timesharing");
     var code = sessionStorage.getItem("gusymbol");
     var limit = 2000;

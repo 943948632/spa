@@ -1,31 +1,26 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
-        .module('app.dashboards.analytics',
-            [
-                // 3rd Party Dependencies
-                'nvd3'
-            ]
-        )
+        .module('app.dashboards.analytics', [
+            // 3rd Party Dependencies
+            'nvd3'
+        ])
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, msApiProvider)
-    {
+    function config($stateProvider, msApiProvider) {
         // State
         $stateProvider.state('app.dashboards_analytics', {
-            url      : '/dashboard-analytics',
-            views    : {
+            url: '/dashboard-analytics',
+            views: {
                 'content@app': {
                     templateUrl: 'app/main/apps/dashboards/analytics/dashboard-analytics.html',
-                    controller : 'DashboardAnalyticsController as vm'
+                    controller: 'DashboardAnalyticsController as vm'
                 }
             },
-            resolve  : {
-                DashboardData: function (msApi)
-                {
+            resolve: {
+                DashboardData: function(msApi) {
                     return msApi.resolve('dashboard.analytics@get');
                 }
             },
@@ -34,7 +29,7 @@
 
         // Api
         msApiProvider.register('dashboard.analytics', ['app/data/dashboard/analytics/data.json']);
-        
+
     }
 
 })();

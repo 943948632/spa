@@ -40,7 +40,6 @@
         }).spin(document.getElementById("loading-indicator"));
     </script>
     <script>
-        var JSServer = {};
         var __initialEnabledFeaturesets = ["charting_library"];
     </script>
     <script>
@@ -79,7 +78,7 @@
         window.language = urlParams.locale;
         window.actualLanguage = urlParams.locale;
         window.addEventListener("click", function(e) {
-
+            console.log(e);
             var Timesharing = e.srcElement.innerText;
 
             if (Timesharing === "1 分") {

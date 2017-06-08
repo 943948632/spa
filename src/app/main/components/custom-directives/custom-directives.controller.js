@@ -1,5 +1,4 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
@@ -7,9 +6,10 @@
         .controller('CustomDirectivesController', CustomDirectivesController);
 
     /** @ngInject */
-    function CustomDirectivesController()
-    {
+    function CustomDirectivesController(query) {
         // Data
+        var vm = this;
+
 
         // Methods
 

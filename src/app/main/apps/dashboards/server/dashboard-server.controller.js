@@ -10,10 +10,29 @@
         var vm = this;
 
 
+        //交易过的产品
 
 
-        // Data
-        // vm.dashboardData = DashboardData;
+
+        var id = sessionStorage.getItem("id");
+
+        $http({
+            method: "get",
+
+            data: { "id": id },
+
+            url: "https://staging.tophold.com/api/v2/users/3/trade_products",
+
+            headers: { "Content-Type": "application/json" }
+        }).success(function(d) {
+            vm.products = d.products;
+
+        }).error(function(error) {
+
+
+        });
+
+
 
     }
 })();

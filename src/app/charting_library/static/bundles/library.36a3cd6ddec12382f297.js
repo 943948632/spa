@@ -1,4 +1,7 @@
+var JSServer = {};
+var urlParams;
 webpackJsonp([4], [function(t, e, i) {
+
     (function(t) {
         "use strict";
 
@@ -18,7 +21,7 @@ webpackJsonp([4], [function(t, e, i) {
             O.resolve()
         }
         var s, r, a, l, h, c, d, p, u, _, f, m, g, v, y, b, w, S, T, C, x, P, L, k, I, A, E, M, D, O, V;
-        i(423), i(634), i(28), s = i(661), i(619), i(591), i(489), r = i(256), a = i(47).Action, l = i(339).ChartSaver, h = i(574), c = i(70), d = i(33), p = i(27), u = p.formatterOptions, _ = p.customFormatters, f = i(449), m = i(491), g = i(236).Root, v = i(444).ChartPage, y = new g(window), b = new v(y.allocate()), i(483), w = i(506), S = i(503), T = i(570), C = i(551), x = i(480), P = i(52).UndoHistory, L = i(258), k = i(578), i(135), i(486), I = i(76), A = !!urlParams.indicatorsFile, E = $.Deferred(), M = $.Deferred(), $.when(E, M).done(function() {
+        i(423), i(634), i(28), s = i(661), i(619), i(591), i(489), r = i(256), a = i(47).Action, l = i(339).ChartSaver, h = i(574), c = i(70), d = i(33), p = i(27), u = p.formatterOptions, _ = p.customFormatters, f = i(449), m = i(491), g = i(236).Root, v = i(444).ChartPage, y = new g(window), b = new v(y.allocate()), i(483), w = i(506), S = i(503), T = i(570), C = i(551), x = i(480), P = i(52).UndoHistory, L = i(258), k = i(578), i(135), i(486), I = i(76), A = urlParams.indicatorsFile, E = $.Deferred(), M = $.Deferred(), $.when(E, M).done(function() {
                 ChartApiInstance.start()
             }), A ? $.getScript(urlParams.indicatorsFile).done(function() {
                 void 0 !== window.__customIndicators && window.isArray(window.__customIndicators) && (window.PineJS = i(55), JSServer.studyLibrary = JSServer.studyLibrary.concat(window.__customIndicators), console.log("{0} custom indicators loaded.".format(window.__customIndicators.length)), E.resolve())
@@ -12078,6 +12081,7 @@ webpackJsonp([4], [function(t, e, i) {
 }, function(t, e, i) {
     "use strict";
     var o = i(55);
+
     JSServer.studyLibrary = [{
         name: "Accumulation/Distribution",
         metainfo: {
@@ -54634,4 +54638,5 @@ webpackJsonp([4], [function(t, e, i) {
 
 var code = sessionStorage.getItem("gusymbol") || "AAPL";
 var code = sessionStorage.getItem("zhgusymbol") || "AAPL";
-$(".js-rootresizer__contents>h1").html(code);
+//$(".js-rootresizer__contents>h1").html(code); || "AAPL";
+//$(".js-rootresizer__contents>h1").html(code);

@@ -23,8 +23,7 @@
 
             <span class="h2 pt-16">Description:</span>
             <p>
-                <b>ms-search-bar</b> is an autocomplete supported search bar directive. It has various options and
-                events for you to use.
+                <b>ms-search-bar</b> is an autocomplete supported search bar directive. It has various options and events for you to use.
             </p>
 
             <span class="h2 pt-16">Options:</span>
@@ -40,23 +39,19 @@
                         <tr>
                             <td>debounce</td>
                             <td>
-                                (integer) Model update debounce. Can be used to stop triggering the on-search event for
-                                every keystroke.
+                                (integer) Model update debounce. Can be used to stop triggering the on-search event for every keystroke.
                             </td>
                         </tr>
                         <tr>
                             <td>on-search</td>
                             <td>
-                                (function (query)) A callback function that will trigger on model update.
-                                Must return an Array or a Promise object that caries an Array. Has 'query' parameter to
-                                access the search query.
+                                (function (query)) A callback function that will trigger on model update. Must return an Array or a Promise object that caries an Array. Has 'query' parameter to access the search query.
                             </td>
                         </tr>
                         <tr>
                             <td>on-result-click</td>
                             <td>
-                                (function (item)) A callback function that will trigger on search result click. Has
-                                'item' parameter to access the clicked item.
+                                (function (item)) A callback function that will trigger on search result click. Has 'item' parameter to access the clicked item.
                             </td>
                         </tr>
                         <tr>
@@ -79,7 +74,7 @@
 
             <!-- htmlmin:ignore -->
             <hljs language="html" class="source-code">
-                <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
+                <ms-search-bar on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
             </hljs>
             <!-- htmlmin:ignore -->
 
