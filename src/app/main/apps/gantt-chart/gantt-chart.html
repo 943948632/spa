@@ -1,8 +1,7 @@
 <div id="gantt-chart" class="page-layout carded fullwidth" ng-class="{'date-filter-active':vm.dateFilterActive, 'search-active': vm.searchActive}" layout="row">
 
     <!-- SETTINGS SIDENAV -->
-    <md-sidenav class="sidenav settings-sidenav md-sidenav-right" md-component-id="settings-sidenav" ng-include="'app/main/apps/gantt-chart/sidenavs/settings/settings-sidenav.html'" ms-scroll ms-sidenav-helper>
-    </md-sidenav>
+
     <!-- / SETTINGS SIDENAV -->
 
     <!-- TOP BACKGROUND -->
@@ -133,7 +132,7 @@
                                                 </div>
                                             </md-input-container>
                                         </div>
-                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                        <md-button ng-click="addDialog($event)" class="md-raised md-primary">生成汇款单</md-button>
                                     </md-card>
                                 </md-content>
                             </md-content>

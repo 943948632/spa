@@ -58,6 +58,7 @@
 
                     alert(id + "这是市场行情的")
                 }
+
                 var data = {
                     custom_typ: 1,
                     product_id: id,

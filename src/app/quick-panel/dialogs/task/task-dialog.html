@@ -27,16 +27,16 @@
             <div>
                 <div layout="column" layout-gt-xs="row">
                     <md-input-container flex>
-                        <label>数量</label>
-                        <input type="text" name="number" ng-model="vm.number">
+                        <label></label>
+                        <input type="number" name="number" ng-maxlength="5" pattern="[0-9]{1,15}" placeholder=" 请出入购买数量" ng-model="vm.number">
                     </md-input-container>
                     <!--<md-input-container flex>
                         <span>估计金额：{{vm.number*vm.mairuprice/2}]</span>
                     </md-input-container>-->
-                    <md-radio-group ng-model="selected">
+                    <!--<md-radio-group ng-model="selected">
                         <md-radio-button ng-repeat="d in colorOptions" ng-value="d.value" aria-label="{{ d.label }}">{{ d.label }}
                         </md-radio-button>
-                    </md-radio-group>
+                    </md-radio-group>-->
 
                     <md-radio-group>
                         <md-radio-button id="1" value="{{ vm.ll}}" ng-click="my(vm.ll)" class="md-primary">即时</md-radio-button>

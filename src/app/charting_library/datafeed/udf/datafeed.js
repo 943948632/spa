@@ -36,7 +36,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.defaultConfiguration = function() {
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getServerTime = function(callback) {
     if (this._configuration.supports_time) {
-        this._send(this._datafeedURL + '/time', {})
+        this._send(this._datafeedURL, {})
             .done(function(response) {
                 callback(+response);
             })
@@ -159,22 +159,22 @@ Datafeeds.UDFCompatibleDatafeed.prototype._setupWithConfiguration = function(con
 //	===============================================================================================================================
 //	The functions set below is the implementation of JavaScript API.
 
-Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
-    if (this._configuration.supports_marks) {
-        this._send(this._datafeedURL + '/marks', {
-                symbol: symbolInfo.ticker.toUpperCase(),
-                from: rangeStart,
-                to: rangeEnd,
-                resolution: resolution
-            })
-            .done(function(response) {
-                onDataCallback(JSON.parse(response));
-            })
-            .fail(function() {
-                onDataCallback([]);
-            });
-    }
-};
+// Datafeeds.UDFCompatibleDatafeed.prototype.getMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
+//     if (this._configuration.supports_marks) {
+//         this._send(this._datafeedURL + '/marks', {
+//                 symbol: symbolInfo.ticker.toUpperCase(),
+//                 from: rangeStart,
+//                 to: rangeEnd,
+//                 resolution: resolution
+//             })
+//             .done(function(response) {
+//                 onDataCallback(JSON.parse(response));
+//             })
+//             .fail(function() {
+//                 onDataCallback([]);
+//             });
+//     }
+// };
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getTimescaleMarks = function(symbolInfo, rangeStart, rangeEnd, onDataCallback, resolution) {
     if (this._configuration.supports_timescale_marks) {
@@ -310,83 +310,65 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function(symbolName, o
 
 Datafeeds.UDFCompatibleDatafeed.prototype._historyURL = '/history';
 
+
+
+var rangeStartDate = 1451614210;
+var rangeEndDate = 1477966210;
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, rangeStartDate, rangeEndDate, onDataCallback, onErrorCallback) {
 
-    if (rangeStartDate <= 1496481230) {
-        return
-    }
-    console.log(rangeStartDate + "开始时间" + rangeEndDate)
+
     var mode = sessionStorage.getItem("Timesharing");
     var code = sessionStorage.getItem("gusymbol");
-    var limit = 2000;
+    var limit = 500;
     var order_by = 1;
+    var start_ts = 1451614210;
+    var end_ts = 1477966210;
+
+
     this._send('https://staging.tophold.com/api/v2/products/quotes', {
             code: code || "AAPL",
             mode: mode || "5min",
             limit: limit,
-            order_by: order_by
-                //            symbol: symbolInfo.ticker.toUpperCase(),
-                //            resolution: resolution,
-                //            from: rangeStartDate,
-                //            to: rangeEndDate
+            order_by: order_by,
+            // symbol: symbolInfo.ticker.toUpperCase(),
+            resolution: resolution,
+            from: start_ts,
+            to: end_ts
         })
         .done(function(response) {
             var data = response.quotes;
-
-            /*data.s = "ok";
-
-            var nodata = data.s === 'no_data';
-
-            if (data.s !== 'ok' && !nodata) {
-                if (!!onErrorCallback) {
-                    onErrorCallback(data.s);
-                }
-
-                return;
-            }*/
-
             var nodata = false;
             var bars = [];
-
-            //	data is JSON having format {s: "status" (ok, no_data, error),
-            //  v: [volumes], t: [times], o: [opens], h: [highs], l: [lows], c:[closes], nb: "optional_unixtime_if_no_data"}
             var barsCount = nodata ? 0 : data.length;
-
             var volumePresent = typeof data.v != 'undefined';
             var ohlPresent = typeof data.o != 'undefined';
-
             var rg = /([0-9]{1,4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})/;
-
+            var barValues;
             for (var i = 0; i < barsCount; ++i) {
-
                 var mt = data[i]['t'];
                 var matched = rg.exec(mt);
                 var timestamp2 = Date.UTC(matched[1], matched[2] - 1, matched[3], matched[4], matched[5], matched[6])
-
                 var barValue = {
                     time: Math.floor(timestamp2.valueOf() / 1000) * 1000
                 };
+
                 barValue.open = data[i]['o'];
                 barValue.close = data[i]['c'];
                 barValue.high = data[i]['h'];
                 barValue.low = data[i]['l'];
-
                 bars.push(barValue);
             }
-            console.log("================");
-            console.log(bars);
-            if (limit === 2000) {
 
-            } else {
 
-            }
-            //onDataCallback();
+            console.log(i + "数组的i值");
+            console.log(bars[9].time + "这是数据第10组条时间");
+            console.log(bars[0].time + "这是数据第1组条时间");
+            console.log(rangeStartDate + "开始时间");
+            console.log(rangeEndDate + "结束时间");
             onDataCallback(bars, {
                 noData: nodata,
                 nextTime: data.nb || data.nextTime
             });
-
-
         })
         .fail(function(arg) {
             console.warn(['getBars(): HTTP error', arg]);
@@ -396,6 +378,10 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
             }
         });
 };
+
+
+
+
 
 Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, resolution, onRealtimeCallback, listenerGUID, onResetCacheNeededCallback) {
     this._barsPulseUpdater.subscribeDataListener(symbolInfo, resolution, onRealtimeCallback, listenerGUID, onResetCacheNeededCallback);
