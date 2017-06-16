@@ -1,5 +1,4 @@
-(function ()
-{
+(function() {
     'use strict';
 
     angular
@@ -7,16 +6,15 @@
         .config(config);
 
     /** @ngInject */
-    function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide)
-    {
+    function config($translateProvider, $provide) {
         // Put your common app configurations here
 
         // uiGmapgoogle-maps configuration
-        uiGmapGoogleMapApiProvider.configure({
-            //    key: 'your api key',
-            v        : '3.exp',
-            libraries: 'weather,geometry,visualization'
-        });
+        // uiGmapGoogleMapApiProvider.configure({
+        //     //    key: 'your api key',
+        //     v        : '3.exp',
+        //     libraries: 'weather,geometry,visualization'
+        // });
 
         // angular-translate configuration
         $translateProvider.useLoader('$translatePartialLoader', {
@@ -27,21 +25,21 @@
 
         // Text Angular options
         $provide.decorator('taOptions', [
-            '$delegate', function (taOptions)
-            {
+            '$delegate',
+            function(taOptions) {
                 taOptions.toolbar = [
                     ['bold', 'italics', 'underline', 'ul', 'ol', 'quote']
                 ];
 
                 taOptions.classes = {
-                    focussed           : 'focussed',
-                    toolbar            : 'ta-toolbar',
-                    toolbarGroup       : 'ta-group',
-                    toolbarButton      : 'md-button',
+                    focussed: 'focussed',
+                    toolbar: 'ta-toolbar',
+                    toolbarGroup: 'ta-group',
+                    toolbarButton: 'md-button',
                     toolbarButtonActive: 'active',
-                    disabled           : '',
-                    textEditor         : 'form-control',
-                    htmlEditor         : 'form-control'
+                    disabled: '',
+                    textEditor: 'form-control',
+                    htmlEditor: 'form-control'
                 };
 
                 return taOptions;
@@ -50,8 +48,8 @@
 
         // Text Angular tools
         $provide.decorator('taTools', [
-            '$delegate', function (taTools)
-            {
+            '$delegate',
+            function(taTools) {
                 taTools.quote.iconclass = 'icon-format-quote';
                 taTools.bold.iconclass = 'icon-format-bold';
                 taTools.italics.iconclass = 'icon-format-italic';

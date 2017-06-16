@@ -8,49 +8,49 @@
         .module('fuse', [
 
             // Common 3rd Party Dependencies
-            'uiGmapgoogle-maps',
+            //'uiGmapgoogle-maps',
             'textAngular',
             'xeditable',
-
             // Core
             'app.core',
-
             // Navigation
             'app.navigation',
-
             // Toolbar
             'app.toolbar',
-
             // Quick Panel
             'app.quick-panel',
-
             // Apps
-            'app.dashboards',
-            'app.calendar',
-            //'app.e-commerce',
-            'app.gantt-chart',
-            //'app.mail',
-            'app.chat',
+            // 'app.dashboards',
+            // 'app.calendar',
+            // 'app.e-commerce',
+            // 'app.mail',
+            // 'app.chat',
             // 'app.file-manager',
-
-            //'app.scrumboard',
-            'app.todo',
-            'app.contacts',
-            //'app.notes',
+            // 'app.gantt-chart',
+            // 'app.scrumboard',
+            // 'app.todo',
+            // 'app.contacts',
+            // 'app.notes',
 
             // Pages
             'app.pages',
-            //blank
-            //'app.blank',
-            //////////////////
-
-
-
-
             // User Interface
-            //'app.ui',
-
+            // 'app.ui',
             // Components
-            // 'app.components'
+            // 'app.components',
+
+            /////////////
+            //登录 注册 找回密码·
+
+            //Trade  交易
+            'app.trade',
+            //资金账户
+            'app.account',
+            //冲值与取款
+            'app.deltawthd',
+            //市场行情
+            'app.marketquotation',
+            //
+            'app.server'
         ]);
 })();

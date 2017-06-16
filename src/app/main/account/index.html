@@ -1,0 +1,185 @@
+<!DOCTYPE html >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.3.1/echarts.common.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body data-ng-app="MyApp" style="height:100%;">
+    <div data-ng-controller='MyCtrl' style="width: 100%;height: 500px;">
+
+        <div data-ng-show="show" bar-charts data-source='groupData' style="width: 100%;height:500px;"></div>
+
+    </div>
+
+    <script>
+        (function() {
+
+
+            angular.module('MyApp', [])
+                .controller('MyCtrl', function($scope, $http) {
+
+
+
+
+                    $scope.groupData = ['测试栏目1', '测试栏目2', '测试栏目3', '测试栏目4', '测试栏目5', '测试栏目6'];
+
+                    $scope.chart = 0;
+                    $scope.show = true;
+                    $scope.myCharts = {
+                        "柱状图": 0,
+                        "饼图": 1
+                    };
+                    $scope.showChange = function(chart) {
+
+
+
+
+                        if (chart == 0) {
+                            $scope.show = true;
+                        } else {
+                            $scope.show = false;
+                        }
+                    };
+
+                })
+                .directive('barCharts', function() {
+
+
+                    return {
+                        template: '<div>这是柱图</div>',
+                        controller: function($scope, $http) {
+
+                        },
+                        link: function(scope, element, attr) {
+
+
+
+
+                            console.log(scope.source);
+                            var chart = element.find('div')[0];
+                            var parent = element['context'];
+                            //    console.log(parent.clientHeight+":"+parent.clientWidth);
+                            chart.style.width = parent.clientWidth + 'px';
+                            chart.style.height = parent.clientHeight + 'px';
+
+                            var myChart = echarts.init(chart);
+                            // var t=['2017-05-19 21:27:43','2017-06-19 21:27:43','2017-07-19 21:27:43',]
+                            var t = new Array();
+                            var total_sum = new Array();
+                            (function() {
+                                var token = sessionStorage.getItem("Token");
+                                $.ajax({
+                                    type: "get",
+                                    url: "https://staging.tophold.com/api/v2/accounts/transactions?page=1&per_page=20&offset=0",
+                                    async: false,
+                                    headers: {
+                                        "X-Access-Token": token
+                                    },
+                                    dataType: "json",
+
+                                    success: function(data) {
+
+                                        var data = data.transactions;
+                                        var data = data.reverse();
+
+                                        for (k in data) {
+
+                                            t[k] = data[k].time;
+                                            total_sum[k] = data[k].total_sum;
+
+                                        }
+
+                                    }
+                                });
+                            })();
+
+                            var option = {
+                                title: {
+                                    text: '资金流动记录'
+                                        // subtext: '纯属虚构'
+                                },
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                legend: {
+                                    data: ['最高气温', '最低气温']
+                                },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        mark: {
+                                            show: true
+                                        },
+                                        dataView: {
+                                            show: true,
+                                            readOnly: false
+                                        },
+                                        magicType: {
+                                            show: true,
+                                            type: ['line', 'bar']
+                                        },
+                                        restore: {
+                                            show: true
+                                        },
+                                        saveAsImage: {
+                                            show: true
+                                        }
+                                    }
+                                },
+
+                                calculable: true,
+                                xAxis: [{
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: t
+                                }],
+                                yAxis: [{
+                                    type: 'value',
+                                    axisLabel: {
+                                        formatter: '{value} $'
+                                    }
+                                }],
+                                series: [{
+                                    name: '最高资金',
+                                    type: 'line',
+                                    data: total_sum,
+                                    markPoint: {
+                                        data: [{
+                                            type: 'max',
+                                            name: '最大值'
+                                        }, {
+                                            type: 'min',
+                                            name: '最小值'
+                                        }]
+                                    },
+                                    markLine: {
+                                        data: [{
+                                            type: 'average',
+                                            name: '平均值'
+                                        }]
+                                    }
+                                }]
+                            };
+
+                            myChart.setOption(option);
+
+                        }
+                    };
+                });
+        })();
+    </script>
+</body>
+
+</html>

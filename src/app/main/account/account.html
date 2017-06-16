@@ -1,0 +1,92 @@
+<div id="dashboard-server">
+
+    <!-- WIDGETS -->
+    <div id="widgets">
+        <!-- WIDGET GROUP -->
+        <div class="widget-group" layout="row" flex="100" layout-wrap>
+            <!-- WIDGET 1 -->
+            <ms-widget flippable="false" layout="row" flex="100">
+
+                <!-- Front -->
+                <ms-widget-front class="p-16 white-bg">
+                    <div class="pb-16" layout="row" layout-align="space-between center">
+                        <div class="h3">{{vm.widget1.title}}</div>
+
+                        <md-menu>
+                            <md-button aria-label="more" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                            </md-button>
+                            <md-menu-content width="2">
+                                <md-menu-item>
+                                    <md-button ng-click="refreshWidget()" aria-label="Refresh widget">
+                                        Refresh
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+
+                    <div>
+                        <nvd3 class="h-320" class="remove-x-lines" options="vm.widget1.chart.options" data="vm.widget1.chart.data"></nvd3>
+                    </div>
+
+                </ms-widget-front>
+                <!-- / Front -->
+
+            </ms-widget>
+            <!-- / WIDGET 1 -->
+
+            <!--<md-tab label="Team Members">-->
+
+            <!-- WIDGET GROUP -->
+            <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                <!-- WIDGET 11 -->
+                <ms-widget layout="row" flex="100">
+
+                    <!-- Front -->
+                    <ms-widget-front class="white-bg">
+
+                        <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
+                            <div class="h2">{{vm.widget11.title}}</div>
+                            <div class="text-boxed red-bg white-fg m-0">{{vm.widget11.table.rows.length}} members
+                            </div>
+                        </div>
+
+                        <table class="dataTable row-border hover" datatable="ng" dt-options="vm.widget11.dtOptions">
+                            <thead>
+                                <tr>
+                                    <th class="secondary-text" ng-repeat="column in ::vm.widget11.table.columns">
+                                        <div class="table-header">
+                                            <span class="column-title">{{column.title}}</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in ::vm.widget11.table.rows">
+                                    <td ng-repeat="cell in row">
+                                        <img class="avatar" ng-if="$index === 0" ng-src="assets/images/avatars/{{cell}}">
+                                        <span ng-if="$index != 0">
+                                                    {{cell}}
+                                                </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </ms-widget-front>
+                    <!-- / Front -->
+
+                </ms-widget>
+                <!-- / WIDGET 11 -->
+
+            </div>
+            <!-- / WIDGET GROUP -->
+
+            <!--</md-tab>-->
+        </div>
+        <!-- / WIDGET GROUP -->
+    </div>
+
+</div>

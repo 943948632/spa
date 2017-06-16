@@ -1,10 +1,12 @@
 {
-    "data": [{
+    "data": [
+        {
             "name": "Alice Freeman",
             "avatar": "assets/images/avatars/alice.jpg",
-            "lastMessage": "今天美元/比索（墨）赚了好多啊钱 。亲快来一起玩天后投资吧",
+            "lastMessage": "Are you going to commit latest...",
             "status": "online",
-            "dialog": [{
+            "dialog": [
+                {
                     "who": "contact",
                     "message": "Quickly come to the meeting room 1B, we have a big server issue",
                     "time": "12 mins. ago"
@@ -81,7 +83,8 @@
             "avatar": "assets/images/avatars/joyce.jpg",
             "lastMessage": "Something wrong with our servers...",
             "status": "away",
-            "dialog": [{
+            "dialog": [
+                {
                     "who": "contact",
                     "message": "Quickly come to the meeting room 1B, we have a big server issue",
                     "time": "12 mins. ago"
@@ -104,11 +107,13 @@
             "lastMessage": "Everybody, quickly gather in the...",
             "status": "online",
             "unread": 3,
-            "dialog": [{
-                "who": "contact",
-                "message": "Quickly come to the meeting room 1B, we have a big server issue",
-                "time": "12 mins. ago"
-            }]
+            "dialog": [
+                {
+                    "who": "contact",
+                    "message": "Quickly come to the meeting room 1B, we have a big server issue",
+                    "time": "12 mins. ago"
+                }
+            ]
         }
     ]
 }

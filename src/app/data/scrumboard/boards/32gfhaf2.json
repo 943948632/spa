@@ -8,7 +8,8 @@
             "subscribed": false,
             "cardCoverImages": true
         },
-        "lists": [{
+        "lists": [
+            {
                 "id": "56027cf5a2ca3839a5d36103",
                 "name": "Design",
                 "idCards": [
@@ -47,7 +48,8 @@
                 ]
             }
         ],
-        "cards": [{
+        "cards": [
+            {
                 "id": "2837273da9b93dd84243s0f9",
                 "name": "Update generators",
                 "description": "Current generator doesn't support Node.js 6 and above.",
@@ -63,11 +65,13 @@
                 "checklists": [],
                 "checkItems": 0,
                 "checkItemsChecked": 0,
-                "comments": [{
-                    "idMember": "36027j1930450d8bf7b10158",
-                    "message": "AngularCLI could be a nice alternative.",
-                    "time": "now"
-                }],
+                "comments": [
+                    {
+                        "idMember": "36027j1930450d8bf7b10158",
+                        "message": "AngularCLI could be a nice alternative.",
+                        "time": "now"
+                    }
+                ],
                 "activities": [],
                 "due": null
             },
@@ -83,7 +87,8 @@
                     "56027e4119ad3a5dc28b36cd",
                     "5640635e19ad3a5dc21416b2"
                 ],
-                "attachments": [{
+                "attachments": [
+                    {
                         "id": "67027cahbe3b52ecf2dc631c",
                         "name": "mail.jpg",
                         "src": "assets/images/scrumboard/mail.jpg",
@@ -99,11 +104,13 @@
                     }
                 ],
                 "subscribed": true,
-                "checklists": [{
+                "checklists": [
+                    {
                         "id": "63021cfdbe1x72wcf1fc451v",
                         "name": "Checklist",
                         "checkItemsChecked": 1,
-                        "checkItems": [{
+                        "checkItems": [
+                            {
                                 "name": "Implement a calendar library",
                                 "checked": false
                             },
@@ -125,7 +132,8 @@
                         "name": "Checklist 2",
                         "id": "74031cfdbe1x72wcz1dc166z",
                         "checkItemsChecked": 1,
-                        "checkItems": [{
+                        "checkItems": [
+                            {
                                 "name": "Replace event colors with Material Design colors",
                                 "checked": true
                             },
@@ -142,7 +150,8 @@
                 ],
                 "checkItems": 7,
                 "checkItemsChecked": 2,
-                "comments": [{
+                "comments": [
+                    {
                         "idMember": "56027c1930450d8bf7b10758",
                         "message": "We should be able to add moment.js without any problems",
                         "time": "12 mins. ago"
@@ -153,7 +162,8 @@
                         "time": "30 mins. ago"
                     }
                 ],
-                "activities": [{
+                "activities": [
+                    {
                         "idMember": "56027c1930450d8bf7b10758",
                         "message": "added a comment",
                         "time": "12 mins. ago"
@@ -205,32 +215,35 @@
                 ],
                 "attachments": [],
                 "subscribed": false,
-                "checklists": [{
-                    "id": "dbfb.99bd0ad37dabc.e05046f0c824d.18f26bb524c96.78bebc8488634.240c0ee6a5e45.4cb872965",
-                    "name": "Pages",
-                    "checkItemsChecked": 2,
-                    "checkItems": [{
-                            "name": "Login",
-                            "checked": true
-                        },
-                        {
-                            "name": "Register",
-                            "checked": true
-                        },
-                        {
-                            "name": "Lost Password",
-                            "checked": false
-                        },
-                        {
-                            "name": "Recover Password",
-                            "checked": false
-                        },
-                        {
-                            "name": "Activate Account",
-                            "checked": false
-                        }
-                    ]
-                }],
+                "checklists": [
+                    {
+                        "id": "dbfb.99bd0ad37dabc.e05046f0c824d.18f26bb524c96.78bebc8488634.240c0ee6a5e45.4cb872965",
+                        "name": "Pages",
+                        "checkItemsChecked": 2,
+                        "checkItems": [
+                            {
+                                "name": "Login",
+                                "checked": true
+                            },
+                            {
+                                "name": "Register",
+                                "checked": true
+                            },
+                            {
+                                "name": "Lost Password",
+                                "checked": false
+                            },
+                            {
+                                "name": "Recover Password",
+                                "checked": false
+                            },
+                            {
+                                "name": "Activate Account",
+                                "checked": false
+                            }
+                        ]
+                    }
+                ],
                 "checkItems": 5,
                 "checkItemsChecked": 2,
                 "comments": [],
@@ -251,11 +264,13 @@
                 "checklists": [],
                 "checkItems": 0,
                 "checkItemsChecked": 0,
-                "comments": [{
-                    "idMember": "36027j1930450d8bf7b10158",
-                    "message": "I'm on it!",
-                    "time": "now"
-                }],
+                "comments": [
+                    {
+                        "idMember": "36027j1930450d8bf7b10158",
+                        "message": "I'm on it!",
+                        "time": "now"
+                    }
+                ],
                 "activities": [],
                 "due": "1580428800000"
             },
@@ -319,11 +334,13 @@
                 "checklists": [],
                 "checkItems": 0,
                 "checkItemsChecked": 0,
-                "comments": [{
-                    "idMember": "36027j1930450d8bf7b10158",
-                    "message": "This should be a medium priority bug, shouldn't it?",
-                    "time": "now"
-                }],
+                "comments": [
+                    {
+                        "idMember": "36027j1930450d8bf7b10158",
+                        "message": "This should be a medium priority bug, shouldn't it?",
+                        "time": "now"
+                    }
+                ],
                 "activities": [],
                 "due": null
             },
@@ -359,7 +376,8 @@
                     "6540635g19ad3s5dc31412b2",
                     "5640635e19ad3a5dc21416b2"
                 ],
-                "attachments": [{
+                "attachments": [
+                    {
                         "id": "12027cafbe3b52ecf2ef632c",
                         "name": "header-.jpg",
                         "src": "assets/images/scrumboard/header-1.jpg",
@@ -378,11 +396,13 @@
                 "checklists": [],
                 "checkItems": 0,
                 "checkItemsChecked": 0,
-                "comments": [{
-                    "idMember": "36027j1930450d8bf7b10158",
-                    "message": "Currently we have two new designs ready to ship.",
-                    "time": "now"
-                }],
+                "comments": [
+                    {
+                        "idMember": "36027j1930450d8bf7b10158",
+                        "message": "Currently we have two new designs ready to ship.",
+                        "time": "now"
+                    }
+                ],
                 "activities": [],
                 "due": null
             },
@@ -421,11 +441,13 @@
                 "checklists": [],
                 "checkItems": 0,
                 "checkItemsChecked": 0,
-                "comments": [{
-                    "idMember": "36027j1930450d8bf7b10158",
-                    "message": "I'm not sure why we re-doing the navigation. The current collapsable navigation works flawlessly.",
-                    "time": "now"
-                }],
+                "comments": [
+                    {
+                        "idMember": "36027j1930450d8bf7b10158",
+                        "message": "I'm not sure why we re-doing the navigation. The current collapsable navigation works flawlessly.",
+                        "time": "now"
+                    }
+                ],
                 "activities": [],
                 "due": null
             },
@@ -468,11 +490,13 @@
                 ],
                 "attachments": [],
                 "subscribed": true,
-                "checklists": [{
+                "checklists": [
+                    {
                         "id": "6926.2b31d119e4a.889401e0ca7a0.13ad8ce2e569d.976e54e8b5d87.456afccd7e820.d6c77106a",
                         "name": "API Monitoring",
                         "checkItemsChecked": 2,
-                        "checkItems": [{
+                        "checkItems": [
+                            {
                                 "name": "Simple dashboard design",
                                 "checked": false
                             },
@@ -490,7 +514,8 @@
                         "id": "7c22.5261c7924387f.248e8b1d32205.003f7a9f501d1.1d48dcdbe8b23.8099dcc5f75a7.29a966196",
                         "name": "API Recovery",
                         "checkItemsChecked": 1,
-                        "checkItems": [{
+                        "checkItems": [
+                            {
                                 "name": "Warning notifications to all developers",
                                 "checked": false
                             },
@@ -512,7 +537,8 @@
                 "due": "1510563021781"
             }
         ],
-        "members": [{
+        "members": [
+            {
                 "id": "56027c1930450d8bf7b10758",
                 "name": "Alice Freeman",
                 "avatar": "assets/images/avatars/alice.jpg"
@@ -533,7 +559,8 @@
                 "avatar": "assets/images/avatars/vincent.jpg"
             }
         ],
-        "labels": [{
+        "labels": [
+            {
                 "id": "26022e4129ad3a5sc28b36cd",
                 "name": "High Priority",
                 "color": "red"

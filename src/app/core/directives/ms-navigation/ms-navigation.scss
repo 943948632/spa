@@ -1,53 +1,45 @@
 /*----------------------------------------------------------------*/
+
+
 /*  ms-navigation
 /*----------------------------------------------------------------*/
 
 .ms-navigation {
-
     display: block;
     position: relative;
     color: rgba(255, 255, 255, 0.70);
     user-select: none;
-
-    ul, li {
+    ul,
+    li {
         padding: 0;
         margin: 0;
     }
-
     ul {
         display: block;
         overflow: hidden;
-
         li {
             position: relative;
-
             &.collapsed {
-
                 ul {
                     display: none;
                 }
             }
         }
     }
-
     .animate-height {
         transition: height 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940);
     }
-
     .ms-navigation-node {
-
         .ms-navigation-item {
             display: block;
             position: relative;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.70);
-
             &:hover {
                 background: rgba(0, 0, 0, 0.1);
             }
-
             // Non-link & Link Common
-            > .ms-navigation-button {
+            >.ms-navigation-button {
                 display: flex;
                 position: relative;
                 width: 100%;
@@ -61,12 +53,10 @@
                 text-decoration: none;
                 white-space: nowrap;
                 overflow: hidden;
-
                 .icon {
                     color: rgba(255, 255, 255, 0.7);
                     margin: 0 16px 0 0;
                 }
-
                 // Non-link
                 span {
                     white-space: nowrap;
@@ -74,7 +64,6 @@
                     opacity: 1;
                     transition: opacity 0.25s ease-in-out 0.1s;
                 }
-
                 // Link
                 a {
                     white-space: nowrap;
@@ -82,14 +71,12 @@
                     opacity: 1;
                     transition: opacity 0.25s ease-in-out 0.1s;
                 }
-
                 // Arrow
                 .arrow {
                     margin: 0;
                     opacity: 1;
                     transition: transform 0.3s ease-in-out, opacity 0.25s ease-in-out 0.1s;
                 }
-
                 // Badge
                 .badge {
                     position: absolute;
@@ -105,14 +92,11 @@
                     transform: translateY(-50%);
                     transition: opacity 0.2s ease-in-out 0.1s;
                 }
-
                 &.active {
                     color: #FFFFFF;
-
                     .icon {
                         color: #FFFFFF;
                     }
-
                     .badge {
                         background: #FFFFFF !important;
                         color: rgba(0, 0, 0, 0.87) !important;
@@ -120,25 +104,20 @@
                 }
             }
         }
-
         // Arrow on expanded node
         &:not(.collapsed) {
-
-            > .ms-navigation-item {
-
-                > .ms-navigation-button {
-
+            >.ms-navigation-item {
+                >.ms-navigation-button {
                     .arrow {
                         transform: rotate(90deg);
                     }
                 }
             }
         }
-
         // Group
         &.group {
-
-            > .ms-navigation-item {
+            >.ms-navigation-item {
+                display: none;
                 font-size: 12px;
                 font-weight: 500;
                 margin-top: 8px;
@@ -148,66 +127,50 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-
-                > .ms-navigation-button {
+                >.ms-navigation-button {
                     height: 32px;
                     line-height: 32px;
                     color: rgba(255, 255, 255, 0.3);
                 }
             }
         }
-
         // Background color on expanded node
         &:not(.group).has-children {
-
             &:not(.collapsed) {
                 background-color: rgba(0, 0, 0, 0.12);
             }
-
             &.collapsing {
                 background-color: rgba(0, 0, 0, 0.12);
             }
-
             .has-children {
-
                 &:not(.collapsed) {
                     background: none;
                 }
             }
         }
     }
-
     // Level 1
     li {
-
         .ms-navigation-button {
             padding-left: 24px;
         }
-
         // Level 2
         li {
-
             .ms-navigation-button {
                 padding-left: 56px;
             }
-
             // Level 3
             li {
-
                 .ms-navigation-button {
                     padding-left: 72px;
                 }
-
                 // Level 4
                 li {
-
                     .ms-navigation-button {
                         padding-left: 88px;
                     }
-
                     // Level 5
                     li {
-
                         .ms-navigation-button {
                             padding-left: 104px;
                         }
@@ -216,38 +179,28 @@
             }
         }
     }
-
     // Level 1 (group-title)
     li.group {
-
         .ms-navigation-button {
             padding-left: 24px;
         }
-
         // Level 2
         li {
-
             .ms-navigation-button {
                 padding-left: 24px;
             }
-
             // Level 3
             li {
-
                 .ms-navigation-button {
                     padding-left: 56px;
                 }
-
                 // Level 4
                 li {
-
                     .ms-navigation-button {
                         padding-left: 72px;
                     }
-
                     // Level 5
                     li {
-
                         .ms-navigation-button {
                             padding-left: 88px;
                         }
@@ -265,64 +218,50 @@
     max-height: $toolbarHeight;
     background: #FFFFFF;
     z-index: 54;
-
     .ms-navigation-horizontal {
         display: flex;
         position: relative;
         user-select: none;
-
-        ul, li {
+        ul,
+        li {
             padding: 0;
             margin: 0;
             list-style: none;
         }
-
         // First <ul>
         .horizontal {
             display: flex;
             flex: 1;
-
             li {
                 position: relative;
                 cursor: pointer;
-
                 &:not(.active):hover {
                     background: rgba(0, 0, 0, 0.12);
                 }
             }
-
             // Root menu items
-            > li {
-
-                > .ms-navigation-horizontal-item {
-
-                    > .ms-navigation-horizontal-button {
+            >li {
+                >.ms-navigation-horizontal-item {
+                    >.ms-navigation-horizontal-button {
                         display: block;
                         float: left;
                         padding: 12px 14px;
-
                         .arrow {
                             display: none;
                         }
-
                         &.active {
                             background: none;
                             border-bottom: 2px solid;
                         }
                     }
                 }
-
                 &:last-child {
                     margin-right: 0;
                 }
-
                 // Not root menu items
                 li {
-
                     .ms-navigation-horizontal-item {
-
                         .ms-navigation-horizontal-button {
-
                             &.active {
                                 color: #FFFFFF !important;
                             }
@@ -330,10 +269,8 @@
                     }
                 }
             }
-
             // Every menu item that has children
             .has-children {
-
                 ul {
                     display: none;
                     position: absolute;
@@ -344,26 +281,20 @@
                     top: 0;
                     left: 100%;
                 }
-
                 &:hover {
-
-                    > ul {
+                    >ul {
                         display: block;
                     }
                 }
             }
-
             // Root menu items that has children
-            > .has-children {
-
-                > ul {
+            >.has-children {
+                >ul {
                     top: 100%;
                     left: 0;
                 }
             }
-
             .ms-navigation-horizontal-item {
-
                 .ms-navigation-horizontal-button {
                     display: flex;
                     align-items: center;
@@ -372,12 +303,10 @@
                     white-space: nowrap;
                     padding: 14px 16px;
                     text-decoration: none;
-
                     .icon {
                         color: rgba(0, 0, 0, 0.54);
                         margin-right: 8px;
                     }
-
                     // Badge
                     .badge {
                         min-width: 20px;
@@ -389,18 +318,14 @@
                         border-radius: 20px;
                         transition: opacity 0.2s ease-in-out 0.1s;
                     }
-
                     .arrow {
                         margin-left: 8px;
                     }
-
                     &.active {
-
                         .badge {
                             background: #FFFFFF !important;
                             color: rgba(0, 0, 0, 0.87) !important;
                         }
-
                         .icon {
                             color: #FFFFFF;
                         }
@@ -413,29 +338,19 @@
 
 // Folded navigation
 @media only screen and (min-width: $layout-breakpoint-sm) {
-
     body {
-
         &.ms-navigation-folded {
-
             &:not(.ms-navigation-folded-open) {
-
                 .ms-navigation {
-
                     .animate-height {
                         transition: none;
                     }
-
                     .ms-navigation-node {
-
                         .ms-navigation-item {
-
                             .ms-navigation-button {
-
                                 .icon {
                                     margin: 0;
                                 }
-
                                 .title,
                                 .arrow,
                                 .badge {
@@ -444,13 +359,9 @@
                                 }
                             }
                         }
-
                         &.group {
-
-                            > .ms-navigation-item {
-
+                            >.ms-navigation-item {
                                 .ms-navigation-button {
-
                                     &:before {
                                         content: '';
                                         display: block;
@@ -463,7 +374,6 @@
                         }
                     }
                 }
-
                 #ms-navigation-fold-expander {
                     position: absolute;
                     top: 0;
@@ -473,7 +383,6 @@
                     z-index: 999;
                 }
             }
-
             #ms-navigation-fold-collapser {
                 position: absolute;
                 top: 0;
@@ -488,36 +397,27 @@
 
 // Mobile horizontal navigation
 @media only screen and (max-width: $layout-breakpoint-sm) {
-
     body {
-
         &.ms-navigation-horizontal-mobile-menu-active {
-
             #horizontal-navigation {
-
                 .navigation-toggle {
                     height: $toolbarHeight;
                     margin-right: 16px;
-
                     .md-button {
                         margin: 0;
                         width: $toolbarHeight;
                         height: $toolbarHeight;
                     }
                 }
-
                 .ms-navigation-horizontal {
                     display: block !important;
                     background: #FFFFFF;
                 }
             }
-
         }
     }
-
     #horizontal-navigation {
         z-index: 60;
-
         .ms-navigation-horizontal {
             position: absolute;
             display: none;
@@ -529,79 +429,60 @@
             z-index: 9998;
             overflow-x: hidden;
             overflow-y: scroll;
-
             .horizontal {
                 flex-direction: column;
                 min-height: 100%;
                 width: 100%;
-
                 li {
-
                     &:not(.active) {
-
                         &:hover {
                             background: none;
                         }
-
                         .ms-navigation-horizontal-item {
                             margin: 4px;
-
                             &:hover {
                                 background: rgba(0, 0, 0, 0.12);
                             }
                         }
                     }
                 }
-
-                > li {
+                >li {
                     padding: 0 12px;
-
-                    > .ms-navigation-horizontal-item {
-
-                        > .ms-navigation-horizontal-button {
+                    >.ms-navigation-horizontal-item {
+                        >.ms-navigation-horizontal-button {
                             display: flex;
                             float: none;
-
                             .arrow {
                                 display: block;
                             }
                         }
                     }
                 }
-
                 // Every menu item that has children
                 .has-children {
-
                     ul {
                         position: relative;
                         top: 0;
                         left: 0;
                         box-shadow: none;
                     }
-
                     &:hover {
-
-                        > ul {
+                        >ul {
                             display: none;
                         }
                     }
-
                     .expanded {
-
-                        > .ms-navigation-horizontal-button {
-
+                        >.ms-navigation-horizontal-button {
                             .arrow {
                                 transform: rotate(90deg);
                             }
                         }
-
-                        + ul {
+                        +ul {
                             display: block;
                             margin-left: 16px;
                         }
                     }
                 }
-
                 .ms-navigation-horizontal-item {
                     min-height: 48px;
                     height: 48px;

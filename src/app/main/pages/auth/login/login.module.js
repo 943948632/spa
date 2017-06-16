@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider) {
         // State
         $stateProvider.state('app.pages_auth_login', {
             url: '/pages/auth/login',
@@ -25,21 +25,19 @@
 
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/pages/auth/login');
-        // apI
-        // msApiProvider.register('dashboard.analytics', ['app/data/dashboard/analytics/data.json']);
-        // msApiProvider.register('dashboard.analytics', ['https://staging.tophold.com/api/v2/user_cties?api_key=wklking']);
-        // Navigation
-        // msNavigationServiceProvider.saveItem('pages.auth', {
-        //     title: 'Authentication',
-        //     icon: 'icon-lock',
-        //     weight: 0
-        // });
 
-        // msNavigationServiceProvider.saveItem('pages.auth.login', {
-        //     title: 'Login',
-        //     state: 'app.pages_auth_login',
-        //     weight: 1
-        // });
+        // Navigation
+        msNavigationServiceProvider.saveItem('pages.auth', {
+            // title : 'Authentication',
+            // icon: 'icon-lock',
+            // weight: 1
+        });
+
+        msNavigationServiceProvider.saveItem('pages.auth.login', {
+            title: 'Login',
+            state: 'app.pages_auth_login',
+            weight: 1
+        });
     }
 
 })();

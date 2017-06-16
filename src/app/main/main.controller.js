@@ -1,4 +1,5 @@
-(function() {
+(function ()
+{
     'use strict';
 
     angular
@@ -6,15 +7,17 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope, $rootScope) {
+    function MainController($scope, $rootScope)
+    {
         // Data
-        const vm = this;
-        vm.use
-            //////////
+
+        //////////
 
         // Remove the splash screen
-        $scope.$on('$viewContentAnimationEnded', function(event) {
-            if (event.targetScope.$id === $scope.$id) {
+        $scope.$on('$viewContentAnimationEnded', function (event)
+        {
+            if ( event.targetScope.$id === $scope.$id )
+            {
                 $rootScope.$broadcast('msSplashScreen::remove');
             }
         });

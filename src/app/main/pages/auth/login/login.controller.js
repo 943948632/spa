@@ -5,14 +5,9 @@
         .module('app.pages.auth.login')
         .controller('LoginController', LoginController);
 
-    /** @ngInject */
-    function LoginController($scope, $state, msApi, $http) {
-        // Data
-        // Methods
-        const vm = this;
 
-        console.log(vm)
-        console.log($scope)
+    function LoginController($scope, $state, $http) {
+        var vm = this;
 
         $scope.logins = function() {
 
@@ -42,14 +37,13 @@
                 //获取id
                 sessionStorage.setItem("id", d.user.id)
                     // 登陆成功自动跳转
-                $state.go('app.dashboards_analytics');
+                $state.go('app.trade');
 
             }).error(function(error) {
                 vm.cc = "账号密码错误";
                 console.log(error + "错误");
 
             });
-
         }
     }
 })();

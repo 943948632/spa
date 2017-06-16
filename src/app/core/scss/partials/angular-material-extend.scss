@@ -1,40 +1,41 @@
 /*----------------------------------------------------------------*/
+
+
 /*  Angular Material Extend
 /*  Adds and/or modifies Angular Material styles
 /*----------------------------------------------------------------*/
+
 
 /* --- FIXES --- */
 
 // IE layout-fill fix
 [layout] {
-
-    > * {
+    >* {
         min-height: auto;
         min-height: initial;
     }
 }
 
 // IE card img auto height Fix
-md-card > img,
-md-card > :not(md-card-content) img {
+md-card>img,
+md-card> :not(md-card-content) img {
     height: inherit;
     height: initial;
 }
 
 // Date picker box-sizing Fix
 .md-datepicker-calendar-pane {
-
     * {
         box-sizing: initial;
     }
 }
 
+
 /* --- MODIFICATIONS --- */
 
 // Autocomplete
 md-autocomplete-wrap {
-
-    > input[type="search"] {
+    >input[type="search"] {
         background: #FFFFFF;
         padding: 0 15px !important;
     }
@@ -42,7 +43,6 @@ md-autocomplete-wrap {
 
 // Backdrop
 md-backdrop {
-
     &.md-opaque {
         background-color: rgba(33, 33, 33, 0.48) !important;
     }
@@ -50,11 +50,8 @@ md-backdrop {
 
 // Card
 md-card {
-
     md-card-header {
-
         md-card-avatar {
-
             md-icon {
                 width: 40px;
                 height: 40px;
@@ -65,7 +62,6 @@ md-card {
 
 // Checkbox
 md-checkbox {
-
     &.no-label {
         margin: 0;
     }
@@ -73,12 +69,9 @@ md-checkbox {
 
 // Chip
 md-chip {
-
     .md-chip-remove {
-
         md-icon {
             margin-left: 2px;
-
             svg {
                 width: 18px;
                 height: 18px;
@@ -92,20 +85,17 @@ md-chip {
 
 // Datepicker
 md-datepicker {
-
     .md-datepicker-button {
         padding: 0 !important;
         margin: 0 !important;
         vertical-align: middle;
     }
-
     .md-datepicker-input-container {
         margin-left: 0;
     }
 }
 
 .md-inline-form {
-
     md-datepicker {
         margin-top: 14px;
     }
@@ -113,16 +103,13 @@ md-datepicker {
 
 // Dialog
 md-dialog {
-
     md-dialog-content {
         padding: 32px 24px 24px 24px;
     }
-
     md-dialog-actions {
         min-height: 64px;
         padding-top: 8px;
         padding-bottom: 8px;
-
         .md-button {
             margin: 0 8px;
         }
@@ -131,14 +118,11 @@ md-dialog {
 
 // Input
 md-input-container {
-
     &.no-errors-spacer {
-
         .md-errors-spacer {
             display: none;
         }
     }
-
     .input-hint {
         position: absolute;
         right: auto;
@@ -149,9 +133,7 @@ md-input-container {
         transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
         color: rgba(0, 0, 0, 0.54);
     }
-
     &.md-icon-left {
-
         .input-hint {
             left: 38px;
         }
@@ -160,9 +142,7 @@ md-input-container {
 
 // Lists
 md-list-item {
-
     .md-list-item-text {
-
         p {
             font-size: 13px !important;
         }
@@ -177,35 +157,26 @@ md-menu,
 
 // Menubar
 md-menu-content {
-
     &.md-menu-bar-menu {
-
         &.md-dense {
             padding: 8px 0;
-
             .md-button,
             md-menu-item {
                 height: 40px;
                 line-height: 40px;
-
                 &.md-indent {
-
-                    > md-icon {
+                    >md-icon {
                         top: 8px;
                     }
                 }
-
             }
         }
     }
 }
 
 .md-open-menu-container {
-
     md-menu-content {
-
         md-menu-item {
-
             &.selected {
                 opacity: 0.4;
             }
@@ -215,9 +186,7 @@ md-menu-content {
 
 // IE fix
 md-menu-content {
-
     md-menu-item {
-
         .md-button {
             text-align: left;
         }
@@ -226,45 +195,34 @@ md-menu-content {
 
 // Select
 md-select {
-
     &.simplified {
         margin: 0 8px;
-
         .md-select-value {
             border: none !important;
             box-sizing: border-box;
             padding: 0;
-
             & *:first-child {
                 transform: none;
                 height: auto;
             }
-
             .md-select-icon {
                 transform: none;
                 font-size: 16px;
-
                 &:after {
                     top: 1px;
                 }
             }
         }
     }
-
     &[multiple] {
-
         md-select-value {
-
-            & > *:first-child {
+            &>*:first-child {
                 display: flex;
-
-                & > *:first-child {
+                &>*:first-child {
                     flex: 0;
                 }
-
                 .md-container {
                     padding-right: 6px;
-
                     &:first-of-type {
                         padding-right: 0;
                     }
@@ -276,7 +234,6 @@ md-select {
 
 // Select element contents
 md-select-menu {
-
     md-select-header {
         position: relative;
         display: flex;
@@ -286,7 +243,6 @@ md-select-menu {
         padding-left: 10.667px;
         box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
         cursor: pointer;
-
         input[type="search"] {
             border: none;
             outline: none;
@@ -304,40 +260,31 @@ md-sidenav {
 
 // Toolbar
 md-toolbar {
-
     // Colored toolbar element compatibility
     &.colored-toolbar {
         color: rgba(255, 255, 255, 0.87);
-
         md-menu-bar {
-
             md-menu {
-
                 &._md-open {
-
-                    > button {
+                    >button {
                         background: rgba(0, 0, 0, 0.12);
                     }
                 }
             }
         }
-
         md-menu {
-
             &._md-open {
-
-                > button {
+                >button {
                     background: rgba(0, 0, 0, 0.12);
                 }
             }
         }
-
         input {
             color: rgba(255, 255, 255, 0.87) !important;
         }
     }
 }
 
-md-progress-circular[disabled]{
+md-progress-circular[disabled] {
     visibility: hidden;
 }

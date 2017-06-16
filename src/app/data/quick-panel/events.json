@@ -1,59 +1,20 @@
 {
-    "data": [{
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
+    "data": [
+        {
+            "title": "Group Meeting",
+            "detail": "In 32 Minutes, Room 1B"
         },
         {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
+            "title": "Public Beta Release",
+            "detail": "11:00 PM"
         },
         {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
+            "title": "Dinner with David",
+            "detail": "17:30 PM"
         },
         {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
-        },
-        {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
-        },
-        {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
-        },
-        {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
-        },
-        {
-            "title": "美元/比索（墨）",
-            "detail": "USD/MXN",
-            "cost": "19.0751",
-            "Presentprice": "23.5944"
-
+            "title": "Q&A Session",
+            "detail": "20:30 PM"
         }
     ]
 }

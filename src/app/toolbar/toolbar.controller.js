@@ -6,21 +6,10 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService, $http) {
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService) {
         var vm = this;
-        //用户的名称
-        var username = sessionStorage.getItem('name');
-        vm.cc = username;
-        //用户头像
-        vm.img  = localStorage.getItem('touxiang');
-        //  //截取用户头像地址
-        
 
-
-
-        vm.cost = "10000";
-        vm.paic = "50000";
-
+        // Data
         $rootScope.global = {
             search: ''
         };
@@ -105,17 +94,8 @@
          * @param sidenavId
          */
         function toggleSidenav(sidenavId) {
-
-
-            var Token = sessionStorage.getItem("Token");
-
-
-
             $mdSidenav(sidenavId).toggle();
-        };
-
-
-
+        }
 
         /**
          * Sets User Status
@@ -129,10 +109,9 @@
          * Logout Function
          */
         function logout() {
-            // Do logout here..
-            sessionStorage.clear();
-            // 这是退出并切换页面
-            $state.go('app.pages_auth_login')
+
+            $state.go("app.pages_auth_login")
+                // Do logout here..
         }
 
         /**
@@ -217,6 +196,9 @@
             }
 
             // Fake service delay
+            $timeout(function() {
+                deferred.resolve(navigation);
+            }, 1000);
 
             return deferred.promise;
         }

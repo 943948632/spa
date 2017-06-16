@@ -1,4 +1,5 @@
-(function() {
+(function ()
+{
     'use strict';
 
     angular
@@ -6,18 +7,19 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider) {
+    function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider)
+    {
         // State
         $stateProvider.state('app.pages_auth_register', {
-            url: '/pages/auth/register',
-            views: {
-                'main@': {
+            url      : '/pages/auth/register',
+            views    : {
+                'main@'                          : {
                     templateUrl: 'app/core/layouts/content-only.html',
-                    controller: 'MainController as vm'
+                    controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_register': {
                     templateUrl: 'app/main/pages/auth/register/register.html',
-                    controller: 'RegisterController as vm'
+                    controller : 'RegisterController as vm'
                 }
             },
             bodyClass: 'register'
@@ -28,8 +30,8 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.auth.register', {
-            title: 'Register',
-            state: 'app.pages_auth_register',
+            title : 'Register',
+            state : 'app.pages_auth_register',
             weight: 3
         });
     }

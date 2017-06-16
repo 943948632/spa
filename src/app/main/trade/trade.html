@@ -1,0 +1,333 @@
+<div id="dashboard-analytics">
+
+    <!-- WIDGETS -->
+    <div id="widgets">
+
+        <!-- WIDGET GROUP -->
+        <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+            <!-- WIDGET 1 -->
+            <ms-widget flippable="false" layout="row" flex="100">
+
+                <!-- Front -->
+                <ms-widget-front class="white-bg">
+
+
+                    <!--<script>
+                        var host = window.location.host;
+                    </script>-->
+                    <iframe src="https://staging-h5.tophold.com/dist/trad.html" frameborder="0" width="100%" height="600">
+                        
+                    </iframe>
+
+
+
+                    <div class="simple-table-container md-whiteframe-4dp">
+                        <br/>
+                        <div ng-cloak>
+                            <md-content>
+                                <md-tabs md-dynamic-height md-border-bottom>
+                                    <md-tab label="我的下单">
+                                        <md-content class="md-padding">
+
+                                            <form name="taskForm" class="md-inline-form" novalidate>
+                                                <md-toolbar class="md-accent md-hue-2">
+                                                    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                                                        <span class="title">交易中心</span><span class="title">{{vm.zhgusymbol}}{{vm.yichu}}</span><span class="title"></span>
+                                                        <!--<span class="title">当前交易：{{vm.task}} </span>-->
+                                                        <!--<md-button class="md-icon-button" ng-click="vm.closeDialog()">
+                                                            <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                                                        </md-button>-->
+
+                                                    </div>
+                                                </md-toolbar>
+
+                                                <md-dialog-content ms-scroll>
+                                                    <!--<md-input-container class="md-block">
+                <label translate="TODO.TITLE">Title</label>
+                <input name="title" ng-model="vm.task.title" required md-autofocus>
+                <div ng-messages="taskForm.title.$error" ng-show="taskForm.title.$touched" role="alert">
+                    <div ng-message="required">
+                        <span translate="TODO.ERRORS.TITLE_REQUIRED">Title field is required</span>
+                    </div>
+                </div>
+            </md-input-container>-->
+
+
+
+                                                    <div>
+                                                        <div layout="column" layout-gt-xs="row">
+                                                            <md-input-container flex>
+                                                                <label></label>
+                                                                <input type="number" name="number" ng-maxlength="5" pattern="[0-9]{1,15}" placeholder=" 请出入购买数量" ng-model="vm.number">
+                                                            </md-input-container>
+                                                            <!--<md-input-container flex>
+                        <span>估计金额：{{vm.number*vm.mairuprice/2}]</span>
+                    </md-input-container>-->
+                                                            <!--<md-radio-group ng-model="selected">
+                        <md-radio-button ng-repeat="d in colorOptions" ng-value="d.value" aria-label="{{ d.label }}">{{ d.label }}
+                        </md-radio-button>
+                    </md-radio-group>-->
+
+                                                            <md-radio-group>
+                                                                <md-radio-button id="1" value="{{ vm.ll}}" ng-click="my(vm.ll)" class="md-primary">即时</md-radio-button>
+                                                                <md-radio-button id="2" value="2" ng-click="my(vm.kk)"> 委托 </md-radio-button>
+                                                                <md-radio-button id="3" value="3" ng-click="my(vm.kl)">止损</md-radio-button>
+                                                            </md-radio-group>
+
+                                                        </div>
+                                                        <div layout="column" layout-gt-xs="row">
+                                                            <md-input-container flex>
+                                                                <span class="md-subhead">卖价：{{vm.maichu}}</span>
+                                                            </md-input-container>
+                                                            <md-input-container flex>
+                                                                <span class="md-subhead">买价：{{vm.mairuprice}}</span>
+                                                            </md-input-container>
+
+                                                            <md-radio-group>
+                                                                <md-radio-button id="0" value="0" ng-click="mys(vm.lm)">当日有效</md-radio-button>
+                                                                <md-radio-button id="1" value="1" ng-click="mys(vm.ln)">撤销前有效</md-radio-button>
+
+                                                            </md-radio-group>
+                                                        </div>
+                                                    </div>
+
+
+                                                </md-dialog-content>
+
+                                                <md-dialog-actions layout="row" layout-align="space-between center">
+                                                    <div layout="row" layout-align="start center">
+                                                        <md-button type="submit" ng-click="buy(vm.ord_type,vm.time_in_force)" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
+                                                            买入
+                                                        </md-button>
+                                                    </div>
+                                                    <div layout="row" layout-align="start center">
+                                                        <md-button type="submit" ng-click="remove(a)" class="send-button md-accent md-raised">
+                                                            移除自选股
+                                                        </md-button>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <md-button type="submit" ng-click="vm.sale()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
+                                                            卖出
+                                                        </md-button>
+                                                    </div>
+                                                </md-dialog-actions>
+                                            </form>
+
+
+
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label=" 我的持仓">
+                                        <md-content class="md-padding">
+                                            <div class="content">
+                                                <table class="dataTable row-border hover" datatable="ng">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">交易品种</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">数量</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">持仓本金</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">平均价格</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">价格</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">币种</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">盈亏</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">盈亏$</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">市值</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">市值$</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">操作</span>
+                                                                </div>
+                                                            </th>
+                                                            <!--<th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">id</span>
+                                                                </div>
+                                                            </th>-->
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+
+
+                                                        <tr ng-repeat="cic in vm.aa" ng-class="{'md-2-line':true,'activehind': isactive==cic.product_id}">
+
+                                                            <td>{{ cic.name }}</td>
+                                                            <td>{{ cic.custom_typ_name }}</td>
+                                                            <td>{{ cic.symbol }}</td>
+                                                            <td>{{ cic.avg_px }}</td>
+                                                            <td>{{ cic.value }}</td>
+                                                            <td>{{ cic.symbol }}</td>
+                                                            <td>{{ cic.profit_and_loss }}</td>
+                                                            <td>{{ cic.converted_profit_and_loss }}</td>
+                                                            <td>{{ cic.value }}</td>
+                                                            <td>{{ cic.converted_value }}</td>
+                                                            <td>
+                                                                <button class=" md-raised md-primary md-button md-default-theme " ,style="coloe:#ffffff " ng-click="toggle(orders.id ,cic.symbol,cic.product_id) " type="button ">{{ vm.nmfalse}}</button>
+                                                            </td>
+                                                            <!--<td>{{cic.product_id}} </td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <style>
+                                                    .activehind {
+                                                        display: none;
+                                                    }
+                                                </style>
+
+
+                                            </div>
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label="我的订单">
+                                        <md-content class="md-padding">
+                                            <table class="dataTable row-border hover" datatable="ng">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">交易品种</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">状态</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">类型</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">方向</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">数量</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">已成交</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">委托价</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">平均价</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">止损</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">成交时间</span>
+                                                            </div>
+                                                        </th>
+                                                        <!--<th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">操作</span>
+                                </div>
+                            </th>-->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <tr ng-repeat="orders in vm.proucts">
+                                                        <td>{{ orders.product.name }}</td>
+                                                        <td>{{ orders.status_name }}</td>
+                                                        <td>{{ orders.ord_type_name }}</td>
+                                                        <td>{{ orders.side_name }}</td>
+                                                        <td>{{ orders.qty }}</td>
+                                                        <td>{{ orders.filled }}</td>
+                                                        <td>{{ orders.name }}</td>
+                                                        <td>{{ orders.avg_px }}</td>
+                                                        <td>{{ orders.stop_px }}</td>
+                                                        <td>{{ orders.last_updated }}</td>
+                                                        <!--<td>{{ orders.is_active }}</td>-->
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </md-content>
+                                    </md-tab>
+
+                                </md-tabs>
+                            </md-content>
+                        </div>
+                    </div>
+
+                </ms-widget-front>
+
+            </ms-widget>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dataTables_length {
+        position: relative;
+        top: 15px;
+    }
+    
+    .dataTables_filter {
+        position: relative;
+        top: -20px;
+    }
+    
+    .dataTables_info {
+        position: relative;
+        top: 35px;
+    }
+</style>
