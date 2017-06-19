@@ -10,16 +10,21 @@
 
         // Methods
         var vm = this;
+
+
+
+        $scope.canClicknext = true;
+        $scope.canClickPhoneNexts = true;
         $scope.description = "获取验证码";
         $scope.descriptions = "下一步";
         var second = 59;
         var timerHandler;
-        //手机验证
-        var reg = /^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.){1,4}[a-z]{2,3}$/;
-        var mm = vm.email;
-        if (reg.test(mm)) {
-            $scope.getTestCode = function(email) {
 
+        $scope.getTestCodeEmail = function(email) {
+            sessionStorage.setItem("ForGotEamil", email);
+            alert(email);
+            var reg = /^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.){1,4}[a-z]{2,3}$/;
+            if (reg.test(email)) {
                 $scope.canClick = false;
                 timerHandler = $interval(function() {
                     if (second <= 0) {
@@ -33,6 +38,9 @@
                         $scope.canClick = true;
                     }
                 }, 1000)
+                var data = {
+                    email: email
+                }
 
                 $http({
                     method: "post",
@@ -40,91 +48,76 @@
                     url: "https://staging.tophold.com/api/v2/users/send_password_code",
                     headers: { "Content-Type": "application/json" }
                 }).success(function(d) {
-                    alert(" 我成功了")
+
                     $scope.canClick = false;
-                    vm.phone = "";
-                    vm.email = "";
+
 
                 }).error(function(error) { console.log(error + "错误"); });
+            } else {
+
+            }
+            $scope.next = function(emailcode) {
+                if (emailcode.length == 6) {
+                    sessionStorage.setItem("code", emailcode)
+                    $state.go("app.pages_auth_forgot-passwords");
+                } else {
+                    vm.rightcode = "重新输入验证码";
+                }
 
             };
-        } else {
+        }
 
 
+        //向手机发送手机验证码
+        // $scope.canClickPhoneNexts = true;
+        //$scope.descriptionsNext = "下一步";
 
-            $scope.getTestCode = function(phone) {
+        var secondPhone = 59;
+        $scope.getTestCodePhone = function(phone) {
+            sessionStorage.setItem("ForGotPhone", phone);
+            var reg = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+            if (reg.test(phone)) {
 
-                $scope.canClick = false;
+
+                $scope.canClickPhone = false;
                 timerHandler = $interval(function() {
                     if (second <= 0) {
                         $interval.cancel(timerHandler);
-                        second = 59;
-                        $scope.description = "获取验证码";
-                        $scope.canClick = false;
+                        secondPhone = 59;
+                        $scope.descriptionPhone = "获取验证码";
+                        $scope.canClickPhone = false;
                     } else {
-                        $scope.description = second + "s后重发";
-                        second--;
-                        $scope.canClick = true;
+                        $scope.descriptionPhone = secondPhone + "s后重发";
+                        secondPhone--;
+                        $scope.canClickPhone = true;
                     }
                 }, 1000)
+                var data = {
+                    phone: phone
+                }
 
                 $http({
                     method: "post",
-                    data: phone,
+                    data: data,
                     url: "https://staging.tophold.com/api/v2/users/send_password_code",
                     headers: { "Content-Type": "application/json" }
                 }).success(function(d) {
-                    alert(" 我成功了")
-                    $scope.canClick = false;
-                    vm.phone = "";
-                    vm.email = "";
+
+
+                    $scope.canClickPhoneNexts = false;
+
                 }).error(function(error) { console.log(error + "错误"); });
+            } else {}
 
-            };
-
-
+            $scope.next = function(phonecode) {
+                if (phonecode.length == 6) {
+                    sessionStorage.setItem("code", phonecode)
+                    $state.go("app.pages_auth_forgot-passwords");
+                } else {
+                    vm.rightcode = "重新输入验证码";
+                }
+            }
         };
-
-
-        //邮箱验证
-        // $scope.getTestCode = function(email) {
-        //     vm.phone = "";
-        //     $scope.canClick = false;
-        //     timerHandler = $interval(function() {
-        //         if (second <= 0) {
-        //             $interval.cancel(timerHandler);
-        //             second = 59;
-        //             $scope.description = "获取验证码";
-        //             $scope.canClick = false;
-        //         } else {
-        //             $scope.description = second + "s后重发";
-        //             second--;
-        //             $scope.canClick = true;
-        //         }
-        //     }, 1000)
-
-        //     $http({
-        //         method: "post",
-        //         data: email,
-        //         url: "https://staging.tophold.com/api/v2/users/send_password_code",
-        //         headers: { "Content-Type": "application/json" }
-        //     }).success(function(d) {
-        //         alert(" 我成功了")
-        //         $scope.canClick = false;
-
-        //     }).error(function(error) { console.log(error + "错误"); });
-
-        // };
-
-
-
-
-
-
-
-        $scope.next = function() {
-            $state.go("app.pages_auth_forgot-passwords");
-        }
 
     }
 })();

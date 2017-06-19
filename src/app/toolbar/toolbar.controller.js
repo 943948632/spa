@@ -109,7 +109,7 @@
          * Logout Function
          */
         function logout() {
-
+            sessionStorage.removeItem("Token");
             $state.go("app.pages_auth_login")
                 // Do logout here..
         }

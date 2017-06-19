@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.trade', [])
+        .module('app.trade', ['datatables'])
         .config(config);
 
     /** @ngInject */
@@ -17,11 +17,12 @@
                         controller: 'TradeController as vm'
                     }
                 },
-                // resolve: {
-                //     TradeData: function(msApi) {
-                //         return msApi.resolve('trade@get');
-                //     }
-                // }
+                resolve: {
+                    DashboardData: function(msApi) {
+                        return msApi.resolve('trade@get');
+                    }
+                }
+
             });
 
         // Translation
@@ -29,6 +30,8 @@
 
         // Api
         //msApiProvider.register('trade', ['app/data/trade/trade.json']);
+        //msApiProvider.register('trade', ['app/data/dashboard/project/data.json']);
+        msApiProvider.register('trade', ['app/data/dashboard/server/data.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {

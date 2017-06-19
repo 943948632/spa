@@ -7,10 +7,16 @@
 
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/pages/auth/login');
-
+        //$urlRouterProvider.otherwise('/pages/auth/login');
+        if (!sessionStorage.getItem("Token")) {
+            $urlRouterProvider.otherwise('/pages/auth/login');
+        } else {
+            $urlRouterProvider.otherwise(function($injector, $location) {
+                return $location.search().url || '/trade';
+            });
+        }
         /**
          * Layout Style Switcher
          *

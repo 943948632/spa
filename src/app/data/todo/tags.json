@@ -1,34 +1,40 @@
 {
-    "data": [
-        {
-            "id": 1,
-            "name": "frontend",
-            "label": "Frontend",
+    "data": [{
+            "id": 0,
+            "name": "外汇",
+            "label": "外汇",
             "color": "#388E3C"
         },
         {
-            "id": 2,
-            "name": "backend",
-            "label": "Backend",
+            "id": 1,
+            "name": "商品",
+            "label": "商品",
             "color": "#F44336"
         },
         {
-            "id": 3,
-            "name": "API",
-            "label": "API",
+            "id": 2,
+            "name": "指数",
+            "label": "指数",
             "color": "#FF9800"
         },
         {
-            "id": 4,
-            "name": "issue",
-            "label": "Issue",
+            "id": 3,
+            "name": "A股",
+            "label": "A股",
             "color": "#0091EA"
         },
         {
+            "id": 4,
+            "name": "港股",
+            "label": "港股",
+            "color": "#9C27B0"
+        },
+        {
             "id": 5,
-            "name": "mobile",
-            "label": "Mobile",
+            "name": "美股",
+            "label": "美股",
             "color": "#9C27B0"
         }
+
     ]
 }

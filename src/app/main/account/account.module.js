@@ -24,7 +24,7 @@
                 },
                 resolve: {
                     DashboardData: function(msApi) {
-                        return msApi.resolve('dashboard.server@get');
+                        return msApi.resolve('account@get');
                     }
                 },
                 bodyClass: 'dashboard-server'

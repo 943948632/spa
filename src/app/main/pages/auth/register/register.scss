@@ -11,7 +11,8 @@
             width: 384px;
             max-width: 384px;
             padding: 32px;
-            background: #FFFFFF;
+          background: #FFFFFF;
+
             text-align: center;
 
             .logo {
@@ -23,6 +24,7 @@
                 margin: 32px auto;
                 color: #FFFFFF;
                 border-radius: 2px;
+                background: url('/assets/images/logos/logo128.png')no-repeat;
             }
 
             .title {

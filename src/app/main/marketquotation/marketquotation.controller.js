@@ -6,14 +6,54 @@
         .controller('MarketquotationController', MarketquotationController);
 
     /** @ngInject */
-    function MarketquotationController($document, MarketquotationData, Tasks, Tags, $mdDialog, $mdSidenav) {
+    function MarketquotationController($document, MarketquotationData, Tasks, Tags, $mdDialog, $mdSidenav, $http, $scope) {
         var vm = this;
 
         // Data
         //vm.helloText = SampleData.data.helloText;
         // Data
-        vm.tasks = Tasks.data;
+
+        vm.name = sessionStorage.getItem("name");
+        //头像
+        vm.img = localStorage.getItem('touxiang');
+
+        (function(a) {
+            if (a == 0) {
+                vm.guname = "美股"
+            } else if (a == 1) {
+                vm.guname = "A股"
+            } else if (a == 2) {
+                vm.guname = "指数"
+            } else if (a == 3) {
+                vm.guname = "外汇"
+            } else {
+                vm.guname = "商品"
+            }
+            $http({
+                method: "get",
+
+                // data: { "sub_category": a, "page": 1, per_page: 100, offset: 0 },
+
+                url: "https://staging.tophold.com/api/v2/products" + "/?sub_category=" + a + "&page=1&per_page=100&offset=0",
+
+                headers: { "Content-Type": "application/json" }
+            }).success(function(d) {
+
+                vm.gupiao = d.products;
+
+
+
+            }).error(function(error) {
+
+
+            })
+
+        })(0)
+
+        // vm.tasks = Tasks.data;
+
         vm.tags = Tags.data;
+
         vm.completed = [];
         vm.colors = ['blue', 'blue-grey', 'orange', 'pink', 'purple'];
         vm.projects = {
@@ -105,7 +145,13 @@
          * @param ev
          * @param task
          */
-        function openTaskDialog(ev, task) {
+        function openTaskDialog(ev, task, guid, gupiao, td, by) {
+            //股票ID
+            var id = guid;
+            // 股票名称
+            vm.task = task;
+
+            console.log(ev + "scsc" + task + guid + gupiao + td + by);
             $mdDialog.show({
                 controller: 'TaskDialogController',
                 controllerAs: 'vm',
@@ -116,7 +162,8 @@
                 locals: {
                     Task: task,
                     Tasks: vm.tasks,
-                    event: ev
+                    event: ev,
+                    guid: guid
                 }
             });
         }
@@ -178,9 +225,9 @@
          * Check filters and mark showAllTasks
          * as true if no filters selected
          */
-        function checkFilters() {
-            vm.showAllTasks = !!angular.equals(vm.taskFiltersDefaults, vm.taskFilters);
-        }
+        // function checkFilters() {
+        //     vm.showAllTasks = !!angular.equals(vm.taskFiltersDefaults, vm.taskFilters);
+        // }
 
         /**
          * Filter by startDate
@@ -211,20 +258,38 @@
         }
 
         /**
-         * Toggles tag filter
+         * 点击股票显示列表
          *
          * @param tag
          */
         function toggleTagFilter(tag) {
-            var i = vm.taskFilters.tags.indexOf(tag);
-
-            if (i > -1) {
-                vm.taskFilters.tags.splice(i, 1);
-            } else {
-                vm.taskFilters.tags.push(tag);
+            var a = tag.id;
+            if (a == 0) {
+                vm.guname = "外汇"
+            } else if (a == 1) {
+                vm.guname = "商品"
+            } else if (a == 2) {
+                vm.guname = "指数"
+            } else if (a == 3) {
+                vm.guname = "A股"
+            } else if (a == 4) {
+                vm.guname = "港股"
+            } else if (a == 5) {
+                vm.guname = "美股"
             }
+            $http({
+                method: "get",
 
-            checkFilters();
+                // data: { "sub_category": a, "page": 1, per_page: 100, offset: 0 },
+
+                url: "https://staging.tophold.com/api/v2/products" + "/?sub_category=" + a + "&page=1&per_page=100&offset=0",
+
+                headers: { "Content-Type": "application/json" }
+            }).success(function(d) {
+
+                vm.gupiao = d.products;
+
+            }).error(function(error) {})
         }
 
         /**

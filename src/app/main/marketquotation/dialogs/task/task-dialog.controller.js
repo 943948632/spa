@@ -6,108 +6,89 @@
         .controller('TaskDialogController', TaskDialogController);
 
     /** @ngInject */
-    function TaskDialogController($mdDialog, Task, Tasks, event) {
+    function TaskDialogController($mdDialog, Task, Tasks, event, $http) {
+        console.log(Task + "666" + Tasks + "666" + event)
         var vm = this;
-
-        // Data
-        vm.title = 'Edit Task';
-        vm.task = angular.copy(Task);
-        vm.tasks = Tasks;
-        vm.newTask = false;
-
-        if (!vm.task) {
-            vm.task = {
-                'id': '',
-                'title': '',
-                'notes': '',
-                'startDate': new Date(),
-                'startDateTimeStamp': new Date().getTime(),
-                'dueDate': '',
-                'dueDateTimeStamp': '',
-                'completed': false,
-                'starred': false,
-                'important': false,
-                'deleted': false,
-                'tags': []
-            };
-            vm.title = 'New Task';
-            vm.newTask = true;
-            vm.task.tags = [];
-        }
-
+        vm.title = '查看大盘';
+        vm.Task = Task;
+        vm.gusymbol = sessionStorage.getItem("gusymbol");
         // Methods
-        vm.addNewTask = addNewTask;
-        vm.saveTask = saveTask;
-        vm.deleteTask = deleteTask;
-        vm.newTag = newTag;
+        vm.addNewContact = addNewContact;
+        vm.addContact = addContact;
+        vm.dealContact = dealContact;
+        vm.deleteContactConfirm = deleteContactConfirm;
         vm.closeDialog = closeDialog;
-
-        //////////
-
         /**
-         * Add new task
+         * Add new contact
          */
-        function addNewTask() {
-            vm.tasks.unshift(vm.task);
+        function addNewContact() {
+            vm.contacts.unshift(vm.contact);
 
             closeDialog();
         }
 
         /**
-         * Save task
+         * ADD contact 添加自选股
          */
-        function saveTask() {
-            // Dummy save action
-            for (var i = 0; i < vm.tasks.length; i++) {
-                if (vm.tasks[i].id === vm.task.id) {
-                    vm.tasks[i] = angular.copy(vm.task);
-                    break;
-                }
-            }
+        function addContact(a) {
+            var guid = sessionStorage.getItem("guid");
+            var token = sessionStorage.getItem("Token");
+            $http({
+                url: 'https://staging.tophold.com/api/v2/likes',
+                method: 'POST',
+                data: { "obj_type": "product", "obj_id": guid },
+                headers: { "X-Access-Token": token }
 
-            closeDialog();
+            }).success(function(data) {
+                vm.success = "自选股添加成功"
+                    // setTimeout(function() {
+                    //     closeDialog();
+                    // }, 3000);
+
+
+            }).error(function(data) {
+                vm.success = "稍后重试 ..."
+            });
         }
+        // 交易
+        function dealContact(ev, task, a, current_price) {
 
-        /**
-         * Delete task
-         */
-        function deleteTask() {
-            var confirm = $mdDialog.confirm()
-                .title('Are you sure?')
-                .content('The Task will be deleted.')
-                .ariaLabel('Delete Task')
-                .ok('Delete')
-                .cancel('Cancel')
-                .targetEvent(event);
+            //sessionStorage.removeItem("id");
+            $mdDialog.show({
+                controller: 'TaskDialogController',
+                controllerAs: 'vm',
+                templateUrl: 'app/quick-panel/dialogs/task/task-dialog.html',
+                // parent: angular.element($document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    Task: task,
+                    Tasks: vm.tasks,
+                    event: ev,
+                    current_price: current_price
 
-            $mdDialog.show(confirm).then(function() {
-                // Dummy delete action
-                for (var i = 0; i < vm.tasks.length; i++) {
-                    if (vm.tasks[i].id === vm.task.id) {
-                        vm.tasks[i].deleted = true;
-                        break;
-                    }
                 }
-            }, function() {
-                // Cancel Action
+
             });
         }
 
-
         /**
-         * New tag
-         *
-         * @param chip
-         * @returns {{label: *, color: string}}
+         * Delete Contact Confirm Dialog
          */
-        function newTag(chip) {
-            var tagColors = ['#388E3C', '#F44336', '#FF9800', '#0091EA', '#9C27B0'];
+        function deleteContactConfirm(ev) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure want to delete the contact?')
+                .htmlContent('<b>' + vm.contact.name + ' ' + vm.contact.lastName + '</b>' + ' will be deleted.')
+                .ariaLabel('delete contact')
+                .targetEvent(ev)
+                .ok('OK')
+                .cancel('CANCEL');
 
-            return {
-                name: chip,
-                label: chip,
-                color: tagColors[Math.floor(Math.random() * (tagColors.length))]
-            };
+            $mdDialog.show(confirm).then(function() {
+
+                vm.contacts.splice(vm.contacts.indexOf(Contact), 1);
+
+            });
         }
 
         /**
@@ -116,5 +97,6 @@
         function closeDialog() {
             $mdDialog.hide();
         }
+
     }
 })();

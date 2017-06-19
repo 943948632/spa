@@ -7,13 +7,11 @@
 
     /** @ngInject */
     function AccountController($scope, $interval, DashboardData) {
+        // Data
         var vm = this;
         vm.dashboardData = DashboardData;
-        console.log(vm.dashboardData)
-            // Data
-            //vm.helloText = SampleData.data.helloText;
 
-        // Methods
+        // Widget 1
         vm.widget1 = {
             title: vm.dashboardData.widget1.title,
             chart: {
@@ -69,12 +67,9 @@
             }
         };
 
-        //////////
-
         vm.widget11 = {
-            //  title: vm.dashboardDatas.widget11.title,
-            //  table: vm.dashboardDatas.widget11.table,
-            title: "标题",
+            title: vm.dashboardData.widget11.title,
+            table: vm.dashboardData.widget11.table,
             dtOptions: {
                 dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
                 pagingType: 'simple',

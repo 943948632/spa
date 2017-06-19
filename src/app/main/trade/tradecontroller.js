@@ -6,9 +6,9 @@
         .controller('TradeController', TradeController);
 
     /** @ngInject */
-    function TradeController($http, $scope) {
+    function TradeController($http, $scope, DashboardData) {
         var vm = this;
-
+        vm.dashboardData = DashboardData;
 
         var toke = sessionStorage.getItem("Token");
         //野狗配置
@@ -152,6 +152,30 @@
         }).success(function(d) {
             vm.proucts = d.orders;
         }).error(function(error) {});
+
+        //tabs切换
+        vm.widget11 = {
+            title: vm.dashboardData.widget11.title,
+            table: vm.dashboardData.widget11.table,
+            // title: "标题",
+            dtOptions: {
+                dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+                pagingType: 'simple',
+                autoWidth: false,
+                responsive: true,
+                order: [1, 'asc'],
+                columnDefs: [{
+                        width: '40',
+                        orderable: false,
+                        targets: [0]
+                    },
+                    {
+                        width: '20%',
+                        targets: [1, 2, 3, 4, 5]
+                    }
+                ]
+            }
+        };
 
 
     }

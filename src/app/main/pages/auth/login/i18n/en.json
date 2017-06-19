@@ -6,6 +6,7 @@
         "REMEMBER_ME": "记住密码",
         "FORGOT_PASSWORD": "忘记密码",
         "LOG_IN": "登录",
+        "SLOG_IN": "登录",
         "OR": "OR",
         "WITH_GOOGLE": "Log in with Google",
         "WITH_FACEBOOK": "Log in with Facebook",

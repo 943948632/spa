@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <link rel="stylesheet" type="text/css" href="bundles/ibrary.fdf3134341551f124cdca28c3e01e727.css" />
+    <script src="https://cdn.wilddog.com/sdk/js/2.5.8/wilddog.js"></script>
+    <style>
+        /*.chart-markup-table>tbody>tr:nth-of-type(3) {
+            display: none;
+        }*/
+    </style>
+</head>
+
+<body class="chart-page on-widget">
+    <div class="loading-indicator" id="loading-indicator"></div>
+    <script src="js/external/spin.min.js"></script>
+    <script>
+        var loadingSpinner = new Spinner({
+            lines: 17,
+            length: 0,
+            width: 3,
+            radius: 30,
+            scale: 1,
+            corners: 1,
+            color: "#00A2E2",
+            opacity: 0,
+            rotate: 0,
+            direction: 1,
+            speed: 1.5,
+            trail: 60,
+            fps: 20,
+            zIndex: 2000000000,
+            className: "spinner",
+            top: "50%",
+            left: "50%",
+            shadow: false,
+            hwaccel: false
+        }).spin(document.getElementById("loading-indicator"));
+    </script>
+    <script>
+        var __initialEnabledFeaturesets = ["charting_library"];
+    </script>
+    <script>
+        urlParams = (function() {
+            var b, e = /\+/g,
+                d = /([^&=]+)=?([^&]*)/g,
+                h = function(i) {
+                    return decodeURIComponent(i.replace(e, " ")).replace(/<\/?[^>]+(>|$)/g, "")
+                },
+                f = function() {
+                    var j = location.href;
+
+                    var i = j.indexOf("#");
+                    if (i >= 0) {
+                        return j.substring(i + 1)
+                    } else {
+                        throw "Unexpected use of this page"
+                    }
+                }(),
+                a = {};
+            while (b = d.exec(f)) {
+                a[h(b[1])] = h(b[2])
+            }
+            var c = window.parent[a.uid];
+            for (var g in c) {
+                if (g == "tradingController") {
+                    window.tradingController = c[g]
+                } else {
+                    if (g != "datafeed" && g != "customFormatters") {
+                        a[g] = JSON.stringify(c[g])
+                    }
+                }
+            }
+            return a
+        })();
+        window.language = urlParams.locale;
+        window.actualLanguage = urlParams.locale;
+        window.addEventListener("click", function(e) {
+            console.log(e);
+            var Timesharing = e.srcElement.innerText;
+
+            if (Timesharing === "1 分") {
+                var Timesharing = "1min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "5 分") {
+                var Timesharing = "5min";
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "15 分") {
+                var Timesharing = "15min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "30 分") {
+                var Timesharing = "30min"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 小时") {
+                var Timesharing = "1hour"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "4 小时") {
+                var Timesharing = "4hour"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 日") {
+                var Timesharing = "1day"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 周") {
+                var Timesharing = "1week"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            } else if (Timesharing === "1 月") {
+                var Timesharing = "1month"
+                sessionStorage.setItem("Timesharing", Timesharing);
+            }
+
+
+        });
+    </script>
+    <script src="bundles/vendors.34bf759ffa1915446a01.js"></script>
+    <script src="bundles/library.36a3cd6ddec12382f297.js"></script>
+</body>
+
+</html>
