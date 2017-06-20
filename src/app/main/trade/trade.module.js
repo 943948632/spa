@@ -21,6 +21,8 @@
                     DashboardData: function(msApi) {
                         return msApi.resolve('trade@get');
                     }
+
+
                 }
 
             });
@@ -28,10 +30,10 @@
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/trade');
 
-        // Api
-        //msApiProvider.register('trade', ['app/data/trade/trade.json']);
-        //msApiProvider.register('trade', ['app/data/dashboard/project/data.json']);
+
         msApiProvider.register('trade', ['app/data/dashboard/server/data.json']);
+        msApiProvider.register('trade', ['app/data/trade/data.json']);
+
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {

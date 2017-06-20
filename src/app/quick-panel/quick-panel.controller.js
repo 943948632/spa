@@ -8,11 +8,6 @@
     /** @ngInject */
     function QuickPanelController($document, msApi, $http, $scope, $mdDialog, $state) {
         var vm = this;
-        // if(event==undefined){
-        //         $state.go('app.dashboard-analytics');
-        //         alert("5155")
-        //     }
-        // Data
         $scope.isactive = 0;
         vm.date = new Date();
         vm.settings = {
@@ -22,25 +17,35 @@
         };
 
         msApi.request('quickPanel.activities@get', {},
-            // Success
+
             function(response) {
                 vm.activities = response.data;
             }
         );
+
+
+
         var Token = sessionStorage.getItem("Token");
         // setInterval(function() {
-        $http({
-            method: "get",
-            data: { page: 1, per_page: 20, offset: 0 },
-            url: "https://staging.tophold.com/api/v2/products/likes",
-            headers: { "Content-Type": "application/json", "X-Access-Token": Token }
-        }).success(function(d) {
-            vm.events = d.products;
+        function Right() {
+
+            $http({
+                method: "get",
+                data: { page: 1, per_page: 20, offset: 0 },
+                url: "https://staging.tophold.com/api/v2/products/likes",
+                headers: { "Content-Type": "application/json", "X-Access-Token": Token }
+            }).success(function(d) {
+                vm.events = d.products;
 
 
-
-        }).error(function(error) {});
-        // }, 2000);
+            }).error(function(error) {});
+        }
+        // Right()
+        window.addEventListener('click', function(e) {
+            if (e.target.id == "Right") {
+                Right()
+            }
+        })
 
 
         $scope.dummyFunction = function(ev, task, en_name, current_price, name, symbol, names) {
@@ -48,7 +53,7 @@
             sessionStorage.setItem("product_id", ev);
 
 
-            // $state.go('app.dashboard-analytics');
+
             sessionStorage.setItem("gusymbol", symbol);
             sessionStorage.setItem("zhgusymbol", task);
             localStorage.setItem("gusymbol", symbol);
@@ -61,26 +66,10 @@
             } else {
                 $state.go('app.dashboards_analytics');
             }
-            // $mdDialog.show({
-            //     controller: 'TaskDialogController',
-            //     controllerAs: 'vm',
-            //     templateUrl: 'app/quick-panel/dialogs/task/task-dialog.html',
-            //     parent: angular.element($document.body),
-            //     targetEvent: ev,
-            //     clickOutsideToClose: true,
-            //     locals: {
-            //         Task: task,
-            //         Tasks: vm.tasks,
-            //         event: ev,
-            //         current_price: current_price
-
-            //     }
-
-            // });
         }
 
         msApi.request('quickPanel.notes@get', {},
-            // Success
+
             function(response) {
                 vm.notes = response.data;
             }

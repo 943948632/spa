@@ -6,10 +6,11 @@
         .controller('AccountController', AccountController);
 
     /** @ngInject */
-    function AccountController($scope, $interval, DashboardData) {
+    function AccountController($scope, $interval, DashboardData, $http) {
         // Data
         var vm = this;
         vm.dashboardData = DashboardData;
+        console.log(vm.dashboardData);
 
         // Widget 1
         vm.widget1 = {
@@ -67,26 +68,25 @@
             }
         };
 
-        vm.widget11 = {
-            title: vm.dashboardData.widget11.title,
-            table: vm.dashboardData.widget11.table,
-            dtOptions: {
-                dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-                pagingType: 'simple',
-                autoWidth: false,
-                responsive: true,
-                order: [1, 'asc'],
-                columnDefs: [{
-                        width: '40',
-                        orderable: false,
-                        targets: [0]
-                    },
-                    {
-                        width: '20%',
-                        targets: [1, 2, 3, 4, 5]
-                    }
-                ]
-            }
+
+
+
+        var id = sessionStorage.getItem("id");
+        $http({
+            method: "get",
+            data: { "id": id },
+            url: "https://staging.tophold.com/api/v2/users/3/trade_products",
+            headers: { "Content-Type": "application/json" }
+        }).success(function(d) {
+            vm.products = d.products;
+
+        }).error(function(error) {});
+
+        vm.dtOptions = {
+            dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<i><"pagination"p>>>',
+            pagingType: 'simple',
+            autoWidth: false,
+            responsive: true
         };
     }
 })();

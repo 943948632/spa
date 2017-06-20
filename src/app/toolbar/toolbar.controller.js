@@ -6,8 +6,26 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService) {
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService, $http) {
         var vm = this;
+        var username = sessionStorage.getItem('name');
+        vm.cc = username;
+        //用户头像
+        vm.img = localStorage.getItem('touxiang');
+
+        var token = sessionStorage.getItem("Token");
+        setInterval(function() {
+
+            $http({
+                method: "get",
+                url: "https://staging.tophold.com/api/v2/accounts/detail",
+                headers: { "X-Access-Token": token }
+            }).success(function(d) {
+                vm.paic = d.account.account_value;
+                var cost = d.account.account_value - d.account.used_margin;
+                vm.cost = Math.round(cost * 100) / 100;
+            }).error(function(error) {});
+        }, 2000);
 
         // Data
         $rootScope.global = {
@@ -74,6 +92,10 @@
 
         //////////
 
+
+
+
+
         init();
 
         /**
@@ -94,7 +116,11 @@
          * @param sidenavId
          */
         function toggleSidenav(sidenavId) {
+
             $mdSidenav(sidenavId).toggle();
+
+
+
         }
 
         /**

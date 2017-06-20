@@ -161,9 +161,10 @@
                                         </md-content>
                                     </md-tab>
                                     <md-tab label=" 我的持仓">
-                                        <md-content class="md-padding">
-                                            <div class="content">
-                                                <table class="dataTable row-border hover" datatable="ng">
+                                        <div class="content">
+
+                                            <div class="white-bg md-whiteframe-4dp">
+                                                <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
                                                     <thead>
                                                         <tr>
                                                             <th class="secondary-text">
@@ -221,6 +222,11 @@
                                                                     <span class="column-title">操作</span>
                                                                 </div>
                                                             </th>
+                                                            <!--<th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">id</span>
+                                                                </div>
+                                                            </th>-->
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -239,6 +245,7 @@
                                                             <td>
                                                                 <button class=" md-raised md-primary md-button md-default-theme " ,style="coloe:#ffffff " ng-click="toggle(orders.id ,cic.symbol,cic.product_id) " type="button ">{{ vm.nmfalse}}</button>
                                                             </td>
+
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -248,42 +255,86 @@
                                                     }
                                                 </style>
                                             </div>
-                                        </md-content>
+
+                                        </div>
 
                                     </md-tab>
-                                    <md-tab label="我的持仓">
-                                        <div class="widget-group" layout="row" flex="100" layout-wrap>
-                                            <ms-widget layout="row" flex="100">
-                                                <ms-widget-front class="white-bg">
-                                                    <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
-                                                        <div class="h2">{{vm.widget11.title}}</div>
-                                                        <div class="text-boxed red-bg white-fg m-0">{{vm.widget11.table.rows.length}} members
-                                                        </div>
-                                                    </div>
-                                                    <table class="dataTable row-border hover" datatable="ng" dt-options="vm.widget11.dtOptions">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="secondary-text" ng-repeat="column in ::vm.widget11.table.columns">
-                                                                    <div class="table-header">
-                                                                        <span class="column-title">{{column.title}}</span>
-                                                                    </div>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr ng-repeat="row in ::vm.widget11.table.rows">
-                                                                <td ng-repeat="cell in row">
-                                                                    <img class="avatar" ng-if="$index === 0" ng-src="assets/images/avatars/{{cell}}">
+                                    <md-tab label="我的订单">
+                                        <div class="content">
 
-                                                                    <span ng-if="$index != 0"> 
-                                                                                  {{cell}}
-                                                                             </span>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </ms-widget-front>
-                                            </ms-widget>
+                                            <div class="white-bg md-whiteframe-4dp">
+                                                <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">交易品种</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">状态</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">类型</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">方向</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">数量</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">已成交</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">委托价</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">平均价</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">止损</span>
+                                                                </div>
+                                                            </th>
+                                                            <th class="secondary-text">
+                                                                <div class="table-header">
+                                                                    <span class="column-title">成交时间</span>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="employee in ::vm.employees">
+                                                            <td>{{ employee.product.name }}</td>
+                                                            <td>{{ employee.status_name }}</td>
+                                                            <td>{{ employee.ord_type_name}}</td>
+                                                            <td>{{ employee.side_name }}</td>
+                                                            <td>{{ employee.qty }}</td>
+                                                            <td>{{ employee.filled }}</td>
+                                                            <td>{{ employee.name }}</td>
+                                                            <td>{{ employee.avg_px }}</td>
+                                                            <td>{{ employee.stop_px }}</td>
+                                                            <td>{{ employee.last_updated }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         </div>
                                     </md-tab>
                                 </md-tabs>
@@ -301,13 +352,8 @@
         position: relative;
         top: 15px;
     }
-    /*.dataTables_filter {
-        position: relative;
-        top: -20px;
-    }*/
     
-    .dataTables_info {
-        position: relative;
-        top: 35px;
+    #DataTables_Table_1_info {
+        display: none;
     }
 </style>

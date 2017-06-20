@@ -12,17 +12,12 @@
 
         var toke = sessionStorage.getItem("Token");
         //野狗配置
-        // var config = {
-        //     authDomain: "tophold-development.wilddog.com",
-        //     syncURL: "https://tophold-development.wilddogio.com"
-        // };
-        // wilddog.initializeApp(config);
-        // var ref = wilddog.sync().ref("products/aapl/");
-        // ref.on('value', function(snapshot) {
-        //     var newPost = snapshot.val();
-        // }, function(error) {
-        //     console.log(error);
-        // });
+        var config = {
+            authDomain: "tophold-development.wilddog.com",
+            syncURL: "https://tophold-development.wilddogio.com"
+        };
+        wilddog.initializeApp(config);
+
 
 
         //我的下单 
@@ -114,35 +109,78 @@
 
 
         //持仓定时刷新
-        setTimeout(function() {
-            //持仓列表
-            $http({
-                method: "get",
-                url: "https://staging.tophold.com/api/v2/accounts/detail",
-                headers: { "X-Access-Token": toke }
-            }).success(function(d) {
-                vm.aa = d.holds;
-                $scope.toggle = function(a, b, c) {
-                    //c 是id b是股票代码
-                    var c = c;
-                    var Token = sessionStorage.getItem("Token");
-                    $http({
-                        data: { symbol: b },
-                        method: "delete",
-                        url: "https://staging.tophold.com/api/v2/holds/sell",
-                        headers: { "Content-Type": "application/json", "X-Access-Token": Token }
-                    }).success(function(d) {
-                        vm.bb = "已平仓";
-                        vm.ft = false;
-                        alert("平唱");
-                        $scope.isactive = c;
-                    }).error(function(error) {});
-                };
-                vm.bb = "平仓";
-            }).error(function(error) {});
-            vm.nmfalse = "平仓";
-        }, 1000);
+
+        //持仓列表
+        function kk(d) {
+            var guname = d.holds;
+            for (var key in guname) {
+                var symbol = guname[key].symbol;
+                var ref = wilddog.sync().ref("/products/" + symbol);
+                ref.on('value', function(snapshot) {
+                    var newPost = snapshot.val();
+                    console.log(newPost);
+                }, function(error) {
+                    console.log(error);
+                });
+
+            }
+        }
+
+        vm.nmfalse = "平仓";
+
+
+        $http({
+            method: "get",
+            url: "https://staging.tophold.com/api/v2/accounts/detail",
+            headers: { "X-Access-Token": toke }
+        }).success(function(d) {
+            vm.aa = d.holds;
+            kk(d)
+            $scope.toggle = function(a, b, c) {
+                //c 是id b是股票
+                console.log(a + "||" + b + "==" + c + "==")
+                var c = c;
+                var Token = sessionStorage.getItem("Token");
+                $http({
+                    data: { symbol: b },
+                    method: "delete",
+                    url: "https://staging.tophold.com/api/v2/holds/sell",
+                    headers: { "Content-Type": "application/json", "X-Access-Token": Token }
+                }).success(function(d) {
+                    vm.bb = "已平仓";
+                    vm.ft = false;
+                    alert("平唱");
+                    $scope.isactive = c;
+                }).error(function(error) {});
+            };
+
+        }).error(function(error) {});
+
+
+
+        vm.nmfalse = "平仓";
+
+        $http({
+            method: "get",
+            url: "https://staging.tophold.com/api/v2/accounts/detail",
+            headers: { "X-Access-Token": toke }
+        }).success(function(d) {
+            vm.aas = d.holds;
+
+        }).error(function(error) {});
+
+
+
+
+
         //订单列表
+        vm.dtOptions = {
+            dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<i><"pagination"p>>>',
+            pagingType: 'simple',
+            autoWidth: false,
+            responsive: true
+        };
+
         var token = sessionStorage.getItem("Token")
         $http({
             data: { page: 1, per_page: 20, offset: 0, },
@@ -150,32 +188,10 @@
             url: "https://staging.tophold.com/api/v2/orders",
             headers: { "Content-Type": "application/json", "X-Access-Token": token }
         }).success(function(d) {
-            vm.proucts = d.orders;
+            vm.employees = d.orders;
+            //console.log(vm.proucts)
         }).error(function(error) {});
 
-        //tabs切换
-        vm.widget11 = {
-            title: vm.dashboardData.widget11.title,
-            table: vm.dashboardData.widget11.table,
-            // title: "标题",
-            dtOptions: {
-                dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-                pagingType: 'simple',
-                autoWidth: false,
-                responsive: true,
-                order: [1, 'asc'],
-                columnDefs: [{
-                        width: '40',
-                        orderable: false,
-                        targets: [0]
-                    },
-                    {
-                        width: '20%',
-                        targets: [1, 2, 3, 4, 5]
-                    }
-                ]
-            }
-        };
 
 
     }
