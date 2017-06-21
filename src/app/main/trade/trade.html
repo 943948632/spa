@@ -10,13 +10,13 @@
                         <div ng-cloak>
                             <md-content>
                                 <md-tabs md-dynamic-height md-border-bottom>
-                                    <md-tab label="即时下单">
+                                    <md-tab id="jishixiadan" label="即时下单">
                                         <md-content class="md-padding">
 
                                             <form name="taskForm" class="md-inline-form" novalidate>
                                                 <md-toolbar class="md-accent md-hue-2">
                                                     <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                                                        <span class="title">交易中心</span><span class="title">{{vm.zhgusymbol}}{{vm.yichu}}</span><span class="title"></span>
+                                                        <span class="title">交易中心</span><span class="title">{{vm.zhgusymbol}}{{vm.success}}</span><span class="title"></span>
                                                     </div>
                                                 </md-toolbar>
                                                 <md-dialog-content ms-scroll>
@@ -34,10 +34,10 @@
                                                         </div>
                                                         <div layout="column" layout-gt-xs="row">
                                                             <md-input-container flex>
-                                                                <span class="md-subhead">卖价：{{vm.maichu}}</span>
+                                                                <span class="md-subhead">卖价：{{vm.bid_price}}</span>
                                                             </md-input-container>
                                                             <md-input-container flex>
-                                                                <span class="md-subhead">买价：{{vm.mairuprice}}</span>
+                                                                <span class="md-subhead">买价：{{vm.offer_price}}</span>
                                                             </md-input-container>
                                                             <md-radio-group>
                                                                 <md-radio-button id="0" value="0" ng-click="mys(vm.lm)">当日有效</md-radio-button>
@@ -47,14 +47,14 @@
                                                         <div layout-gt-sm="row">
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>止赢</label>
-                                                                <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
+                                                                <input name="phone" ng-model="vm.custom_price" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
                                                             </md-input-container>
                                                             <div flex="5" hide-xs hide-sm>
                                                                 <!-- Spacer //-->
                                                             </div>
                                                             <md-input-container class="md-block" flex-gt-sm>
                                                                 <label>止损</label>
-                                                                <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
+                                                                <input name="phone" ng-model="vm.custom_stop_px" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
                                                             </md-input-container>
                                                             <style>
                                                                 body[dir=rtl] .hint {
@@ -67,7 +67,7 @@
                                                 </md-dialog-content>
                                                 <md-dialog-actions layout="row" layout-align="space-between center">
                                                     <div layout="row" layout-align="start center">
-                                                        <md-button type="submit" ng-click="buy(vm.ord_type,vm.time_in_force)" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
+                                                        <md-button type="submit" ng-click="buy(vm.ord_type,vm.time_in_force)" class="send-button md-accent md-raised" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
                                                             买入
                                                         </md-button>
                                                     </div>
@@ -77,7 +77,7 @@
                                                         </md-button>
                                                     </div>
                                                     <div layout="row">
-                                                        <md-button type="submit" ng-click="vm.sale()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
+                                                        <md-button type="submit" ng-click="sale()" class="send-button md-accent md-raised" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
                                                             卖出
                                                         </md-button>
                                                     </div>
@@ -85,9 +85,8 @@
                                             </form>
                                         </md-content>
                                     </md-tab>
-                                    <md-tab label="委托下单">
+                                    <md-tab id="weitouxiadan" label="委托下单">
                                         <md-content class="md-padding">
-
                                             <form name="taskForm" class="md-inline-form" novalidate>
                                                 <md-toolbar class="md-accent md-hue-2">
                                                     <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
@@ -103,16 +102,16 @@
                                                             </md-input-container>
                                                             <md-radio-group>
 
-                                                                <md-radio-button id="2" value="2" ng-click="my(vm.kk)"> 限价 </md-radio-button>
-                                                                <md-radio-button id="3" value="3" ng-click="my(vm.kl)">顺势</md-radio-button>
+                                                                <md-radio-button id="2" value="2" ng-click="mya(vm.kk)"> 限价 </md-radio-button>
+                                                                <md-radio-button id="3" value="3" ng-click="mya(vm.kl)">顺势</md-radio-button>
                                                             </md-radio-group>
                                                         </div>
                                                         <div layout="column" layout-gt-xs="row">
                                                             <md-input-container flex>
-                                                                <span class="md-subhead">卖价：{{vm.maichu}}</span>
+                                                                <span class="md-subhead">卖价：{{vm.bid_price}}</span>
                                                             </md-input-container>
                                                             <md-input-container flex>
-                                                                <span class="md-subhead">买价：{{vm.mairuprice}}</span>
+                                                                <span class="md-subhead">买价：{{vm.offer_price}}</span>
                                                             </md-input-container>
                                                             <md-radio-group>
                                                                 <md-radio-button id="0" value="0" ng-click="mys(vm.lm)">当日有效</md-radio-button>
@@ -121,14 +120,14 @@
                                                         </div>
                                                         <div layout-gt-sm="row">
                                                             <md-input-container class="md-block" flex-gt-sm>
-                                                                <label>止赢</label>
+                                                                <label>止赢：请输入百分比</label>
                                                                 <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
                                                             </md-input-container>
                                                             <div flex="5" hide-xs hide-sm>
                                                                 <!-- Spacer //-->
                                                             </div>
                                                             <md-input-container class="md-block" flex-gt-sm>
-                                                                <label>止损</label>
+                                                                <label>止损：请输入百分比</label>
                                                                 <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
                                                             </md-input-container>
                                                             <style>
@@ -142,17 +141,17 @@
                                                 </md-dialog-content>
                                                 <md-dialog-actions layout="row" layout-align="space-between center">
                                                     <div layout="row" layout-align="start center">
-                                                        <md-button type="submit" ng-click="buy(vm.ord_type,vm.time_in_force)" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
+                                                        <md-button type="submit" ng-click="buys(vm.ord_type,vm.time_in_force)" class="send-button md-accent md-raised" aria-label="卖出" translate-attr-aria-label="TODO.SAVE">
                                                             买入
                                                         </md-button>
                                                     </div>
                                                     <div layout="row" layout-align="start center">
-                                                        <md-button type="submit" ng-click="remove(a)" class="send-button md-accent md-raised">
+                                                        <md-button type="submit" ng-click="removes(a)" class="send-button md-accent md-raised">
                                                             移除自选股
                                                         </md-button>
                                                     </div>
                                                     <div layout="row">
-                                                        <md-button type="submit" ng-click="vm.sale()" class="send-button md-accent md-raised" ng-disabled="taskForm.$invalid || taskForm.$pristine" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
+                                                        <md-button type="submit" ng-click="sales()" class="send-button md-accent md-raised" aria-label="买入" translate-attr-aria-label="TODO.SAVE">
                                                             卖出
                                                         </md-button>
                                                     </div>
@@ -160,7 +159,7 @@
                                             </form>
                                         </md-content>
                                     </md-tab>
-                                    <md-tab label=" 我的持仓">
+                                    <md-tab id="wodechicang" label=" 我的持仓">
                                         <div class="content">
 
                                             <div class="white-bg md-whiteframe-4dp">
@@ -260,7 +259,7 @@
 
                                     </md-tab>
                                     <md-tab label="我的订单">
-                                        <div class="content">
+                                        <div class="content" id="wodedingdan">
 
                                             <div class="white-bg md-whiteframe-4dp">
                                                 <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">

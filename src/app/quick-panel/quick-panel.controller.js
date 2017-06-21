@@ -40,7 +40,7 @@
 
             }).error(function(error) {});
         }
-        // Right()
+        Right()
         window.addEventListener('click', function(e) {
             if (e.target.id == "Right") {
                 Right()
@@ -49,23 +49,16 @@
 
 
         $scope.dummyFunction = function(ev, task, en_name, current_price, name, symbol, names) {
-            var id = ev;
+            $scope.isactive = ev;
+            vm.chname = name.name;
             sessionStorage.setItem("product_id", ev);
 
-
-
+            // $state.go('app.dashboard-analytics');
             sessionStorage.setItem("gusymbol", symbol);
             sessionStorage.setItem("zhgusymbol", task);
             localStorage.setItem("gusymbol", symbol);
-            // console.log(id + "" + task + "" + en_name + "" + current_price + "这是点击的事件" + name);
-            $scope.isactive = id;
-            var adds = window.location.pathname;
 
-            if (adds == "/dashboard-analytics") {
 
-            } else {
-                $state.go('app.dashboards_analytics');
-            }
         }
 
         msApi.request('quickPanel.notes@get', {},

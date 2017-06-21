@@ -14,18 +14,18 @@
         vm.img = localStorage.getItem('touxiang');
 
         var token = sessionStorage.getItem("Token");
-        setInterval(function() {
+        // setInterval(function() {
 
-            $http({
-                method: "get",
-                url: "https://staging.tophold.com/api/v2/accounts/detail",
-                headers: { "X-Access-Token": token }
-            }).success(function(d) {
-                vm.paic = d.account.account_value;
-                var cost = d.account.account_value - d.account.used_margin;
-                vm.cost = Math.round(cost * 100) / 100;
-            }).error(function(error) {});
-        }, 2000);
+        $http({
+            method: "get",
+            url: "https://staging.tophold.com/api/v2/accounts/detail",
+            headers: { "X-Access-Token": token }
+        }).success(function(d) {
+            vm.paic = d.account.account_value;
+            var cost = d.account.account_value - d.account.used_margin;
+            vm.cost = Math.round(cost * 100) / 100;
+        }).error(function(error) {});
+        // }, 1000);
 
         // Data
         $rootScope.global = {

@@ -11,7 +11,7 @@
             //'uiGmapgoogle-maps',
             'textAngular',
             'xeditable',
-            // Core
+
             'app.core',
             // Navigation
             'app.navigation',
@@ -51,6 +51,6 @@
             //市场行情
             'app.marketquotation',
             //
-            'app.server'
+            //'app.server'
         ]);
 })();
