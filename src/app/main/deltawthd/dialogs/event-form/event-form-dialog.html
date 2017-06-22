@@ -1,0 +1,59 @@
+<md-dialog class="contact-dialog" aria-label="New Task">
+
+    <form name="contactForm" class="md-inline-form" novalidate>
+
+
+        <md-toolbar class="md-accent md-tall" layout="column">
+
+            <div class="md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+                <span class="title">支付宝充值</span>
+                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" translate translate-attr-aria-label="CONTACTS.CLOSE_DIALOG">
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+
+            <div class="md-toolbar-tools md-toolbar-tools-middle" flex layout="column" layout-align="center center">
+                <div layout="column" layout-align="center center">
+                    <img src="/assets/images/etc/top.png" class="md-avatar avatar contact-avatar huge" />
+                    <div class="contact-name">扫描支付宝转账</div>
+                </div>
+            </div>
+
+            <div class="md-toolbar-tools md-toolbar-tools-bottom" layout="row" layout-align="center center">
+
+                <div flex layout="row" layout-align="center center">
+
+
+                    <md-menu>
+
+
+                        <span class="md-subhead">支付宝：admin@tophold.com</span>
+                        <span class="md-subhead">开户姓名：上海竺凌金融信息服务有限公司</span>
+                        <span class="md-subhead">汇款金额：</span>
+                        <span class="md-subhead">Subhead</span>
+                        <span class="md-subhead">备注：RAG6019.001</span>
+
+
+
+                    </md-menu>
+                </div>
+            </div>
+            <style>
+                .avatar {
+                    border-radius: 0;
+                }
+                
+                .avatar.huge {
+                    width: 160px;
+                    min-width: 160px;
+                    height: 160px;
+                    line-height: 160px;
+                }
+            </style>
+
+        </md-toolbar>
+
+
+    </form>
+
+</md-dialog>

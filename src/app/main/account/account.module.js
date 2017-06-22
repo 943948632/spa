@@ -5,6 +5,7 @@
         .module('app.account', [
 
             // 3rd Party Dependencies
+            'chart.js',
             'nvd3',
             'datatables'
         ])

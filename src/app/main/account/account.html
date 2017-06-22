@@ -19,8 +19,13 @@
                         </md-menu>
                     </div>
                     <div>
-                        <nvd3 class="h-320" class="remove-x-lines" options="vm.widget1.chart.options" data="vm.widget1.chart.data"></nvd3>
+
+                        <canvas id="line" class="chart chart-line" chart-data="vm.lineChart.data" chart-labels="vm.lineChart.labels" chart-legend="true" chart-series="vm.lineChart.series">
+            </canvas>
                     </div>
+                    <!--<div>
+                        <nvd3 class="h-320" class="remove-x-lines" options="vm.widget1.chart.options" data="vm.widget1.chart.data"></nvd3>
+                    </div>-->
                 </ms-widget-front>
             </ms-widget>
         </div>

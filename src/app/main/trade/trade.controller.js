@@ -22,7 +22,7 @@
 
             vm.zhgusymbol = sessionStorage.getItem("zhgusymbol");
             var syms = sessionStorage.getItem("gusymbol");
-            var sym = syms.toLowerCase()
+            var sym = syms.toLowerCase();
             var mm = sym.replace(/[/]/, "-");
             var ref = wilddog.sync().ref("/products/" + mm);
             ref.on('value', function(snapshot) {

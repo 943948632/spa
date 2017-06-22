@@ -50,7 +50,7 @@
             <div>
                 <md-content>
                     <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="支付宝汇款">
+                        <md-tab label="支付宝">
                             <md-content class="md-padding">
                                 <md-content class="page-container">
                                     <md-card class="page" style="padding-left: 30px;">
@@ -64,81 +64,42 @@
                                     <md-card class="page" style="padding-left: 30px;">
                                         <div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款帐号:</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                <label>支付宝账号:</label>
+                                                <input name="social" ng-model="vm.ZZz" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
-                                            <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
-                                            </div>
+                                            <!--<div flex="5" hide-xs hide-sm>
+                                            </div>-->
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款金额(￥)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>充值的人民币金额:</label>
+                                                <input name="social" ng-model="vm.RMBz" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
                                         </div>
-
-
-                                        <div layout-gt-sm="row">
+                                        <!--<div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>现汇买入价：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
-                                            <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
-                                            </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>兑换($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>支付宝账号:</label>
+                                                <input name="social" ng-model="vm.ZZz" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
-                                        </div>
-
-
-                                        <div layout-gt-sm="row">
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>赠金($)：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
                                             <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
                                             </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>到账金额($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-                                                <div class="hint" ng-if="showHints">###-##-####</div>
-                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
-                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
-                                                </div>
-                                            </md-input-container>
-                                        </div>
-                                        <md-button class="md-raised md-primary" ng-click="vm.addEvent($event)">生成汇款单</md-button>
+                                        </div>-->
+                                        <md-button class="md-raised md-primary" ng-click="addEventsZ(vm.ZZz,vm.RMBz)">充 值</md-button>
                                     </md-card>
                                 </md-content>
                             </md-content>
-
                         </md-tab>
-                        <md-tab label="银行汇款">
+                        <md-tab label="银行卡">
                             <md-content class="md-padding">
                                 <md-content class="page-container">
                                     <md-card class="page" style="padding-left: 30px;">
@@ -152,80 +113,42 @@
                                     <md-card class="page" style="padding-left: 30px;">
                                         <div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款帐号:</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                <label>银行卡号:</label>
+                                                <input name="social" ng-model="vm.CardNoc" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
                                             <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
                                             </div>
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款金额(￥)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>充值的人民币金额:</label>
+                                                <input name="social" ng-model="vm.RMBc" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
                                         </div>
-
-
                                         <div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>现汇买入价：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
-                                            <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
-                                            </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>兑换($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>支付宝账号:</label>
+                                                <input name="social" ng-model="vm.ZZc" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
-                                        </div>
-
-
-                                        <div layout-gt-sm="row">
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>赠金($)：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
                                             <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
                                             </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>到账金额($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-                                                <div class="hint" ng-if="showHints">###-##-####</div>
-                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
-                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
-                                                </div>
-                                            </md-input-container>
                                         </div>
-                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                        <md-button class="md-raised md-primary" ng-click="addEventsC(vm.ZZc，vm.RMBc)">充 值</md-button>
                                     </md-card>
                                 </md-content>
                             </md-content>
                         </md-tab>
-                        <md-tab label="网银在线">
+                        <md-tab label="微信充值">
                             <md-content class="md-padding">
                                 <md-content class="page-container">
                                     <md-card class="page" style="padding-left: 30px;">
@@ -239,79 +162,91 @@
                                     <md-card class="page" style="padding-left: 30px;">
                                         <div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款帐号:</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                                                <label>银行卡号:</label>
+                                                <input name="social" ng-model="vm.CardNow" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
                                             <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
                                             </div>
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>汇款金额(￥)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>充值的人民币金额:</label>
+                                                <input name="social" ng-model="vm.RMBw" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
                                         </div>
-
-
                                         <div layout-gt-sm="row">
                                             <md-input-container class="md-block" flex-gt-sm>
-                                                <label>现汇买入价：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
-                                            <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
-                                            </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>兑换($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+                                                <label>支付宝账号:</label>
+                                                <input name="social" ng-model="vm.ZZw" type="number" />
                                                 <div class="hint" ng-if="showHints">###-##-####</div>
                                                 <div ng-messages="userForm.social.$error" ng-if="!showHints">
                                                     <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
                                                 </div>
                                             </md-input-container>
-                                        </div>
-
-
-                                        <div layout-gt-sm="row">
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>赠金($)：</label>
-                                                <input md-maxlength="30" required name="name" type="number" ng-model="user.name" />
-                                                <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
-                                                <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
-                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-                                                </div>
-                                            </md-input-container>
                                             <div flex="5" hide-xs hide-sm>
-                                                <!-- Spacer //-->
                                             </div>
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label>到账金额($)：</label>
-                                                <input name="social" ng-model="user.social" type="number" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-                                                <div class="hint" ng-if="showHints">###-##-####</div>
-                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
-                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
-                                                </div>
-                                            </md-input-container>
                                         </div>
-                                        <md-button class="md-raised md-primary">生成汇款单</md-button>
+                                        <md-button class="md-raised md-primary" ng-click="addEventsW(vm.CardNow,vm.RMBw,vm.ZZw)">充 值</md-button>
                                     </md-card>
                                 </md-content>
                             </md-content>
                         </md-tab>
+                        <md-tab label="网银充值">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <h1>支付宝汇款须知</h1>
+                                        <p>充值须知：填好以下充值信息后,需要您自主登录支付宝或网银向汇款账户进行手动打款,充值金额最少$10</p>
+                                        <p>充值时间：7*24小时可充,我们确认收到汇款后充值到您的账户</p>
+                                        <p>赠送资金：100-199.99美元赠送50%；200-499.99美元赠送75%；500美元及以上赠送100%。当本金亏损完，赠金亏损≥100美金时，账户自动清零。如重新充值可继续获得赠金。</p>
+                                        <p>备注信息：请务必在汇款附言中填写您的备注信息</p>
+                                        <p>如果您有疑问,请联系客服或者拨打400 118 0770</p>
+                                    </md-card>
+                                    <md-card class="page" style="padding-left: 30px;">
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>银行卡号:</label>
+                                                <input name="social" ng-model="vm.CardNowy" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>充值的人民币金额:</label>
+                                                <input name="social" ng-model="vm.RMBwy" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <div layout-gt-sm="row">
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>支付宝账号:</label>
+                                                <input name="social" ng-model="vm.ZZwy" type="number" />
+                                                <div class="hint" ng-if="showHints">###-##-####</div>
+                                                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                                    <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                            </div>
+                                        </div>
+                                        <md-button class="md-raised md-primary" ng-click="addEventsWY(vm.CardNowy,vm.RMBwy,vm.ZZwy)">充 值</md-button>
+                                    </md-card>
+                                </md-content>
+                            </md-content>
+                        </md-tab>
+
 
                         <md-tab label="取款">
                             <md-content class="md-padding">
@@ -401,6 +336,63 @@
                                 </md-content>
                             </md-content>
                         </md-tab>
+                        <md-tab label="冲值记录">
+                            <md-content class="md-padding">
+                                <md-content class="page-container">
+                                    <div class="content">
+
+                                        <div class="white-bg md-whiteframe-4dp">
+
+                                            <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">充值方式</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">充值状态</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">充值金额</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">时间</span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="secondary-text">
+                                                            <div class="table-header">
+                                                                <span class="column-title">券商充值时间</span>
+                                                            </div>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="result-item user" ng-repeat="deposits in vm.deposits">
+                                                        <td class="name textcont">{{deposits.payment_type_name}}</td>
+                                                        <td class="position textcont">{{deposits.status_name}}</td>
+                                                        <td class="office textcont">{{deposits.amount}}</td>
+                                                        <td class="age textcont text-left">{{deposits.created_at}}</td>
+                                                        <td class="age textcont text-left">{{deposits.xcfd_at}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </md-content>
+                            </md-content>
+                        </md-tab>
                     </md-tabs>
                 </md-content>
             </div>
@@ -425,5 +417,9 @@
         min-height: 0px;
         max-height: 0px;
         padding: 0px;
+    }
+    
+    .page-layout.carded.fullwidth>.center .content-card .content {
+        padding: 1px;
     }
 </style>

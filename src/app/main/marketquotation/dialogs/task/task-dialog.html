@@ -7,7 +7,8 @@
         <md-toolbar class="md-accent md-tall" layout="column">
 
             <!-- TOOLBAR TOP -->
-            <div class="md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+
+            <div class="md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center" style="margin-top: 15px">
                 <span class="title">{{vm.title}}</span>
                 <span class="title">您当前查看股票代码：{{vm.Task}}</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" translate translate-attr-aria-label="CONTACTS.CLOSE_DIALOG">
@@ -79,6 +80,6 @@
 <!-- / DIALOG -->
 <style>
     md-dialog {
-        max-height: 99%;
+        max-height: 90%;
     }
 </style>
